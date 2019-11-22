@@ -13,3 +13,4 @@ It comprises two major parts:
   * HTML + CSS generation
 
 ## Demo
+![UI Components detection result](https://github.com/MulongXie/UI2CODE/blob/master/demo/uied.png)
