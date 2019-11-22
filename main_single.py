@@ -1,10 +1,12 @@
 import time
 
-is_ctpn = False
+is_ctpn = True
 is_uied = True
 is_merge = True
 
+# set input image path
 PATH_IMG_INPUT = 'data\\input\\1.png'
+# outputs
 PATH_LABEL_COMPO = 'data\\output\\compo.json'
 PATH_LABEL_TEXT = 'data\\output\\ocr.txt'
 PATH_CTPN_DRAWN = 'data\\output\\ctpn.png'
@@ -12,7 +14,9 @@ PATH_UIED_DRAWN = 'data\\output\\uied.png'
 PATH_UIED_BIN = 'data\\output\\gradient.png'
 PATH_MERGE = 'data\\output\\merged.png'
 PATH_COMPONENT = 'data\\output\\components'
-img_section = (3000, 1500)  # selected img section, height and width
+
+# clip image, height and width
+img_section = (3000, 1500)
 
 start = time.clock()
 
