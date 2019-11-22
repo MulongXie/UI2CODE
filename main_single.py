@@ -5,7 +5,7 @@ is_uied = True
 is_merge = True
 
 # set input image path
-PATH_IMG_INPUT = 'data\\input\\1.png'
+PATH_IMG_INPUT = 'data\\input\\3.png'
 # outputs
 PATH_LABEL_COMPO = 'data\\output\\compo.json'
 PATH_LABEL_TEXT = 'data\\output\\ocr.txt'
@@ -28,6 +28,6 @@ if is_uied:
     ui.uied(PATH_IMG_INPUT, PATH_LABEL_COMPO, PATH_UIED_DRAWN, PATH_UIED_BIN, img_section)
 if is_merge:
     import merge
-    merge.incorporate(PATH_IMG_INPUT, PATH_LABEL_COMPO, PATH_LABEL_TEXT, PATH_MERGE, img_section, is_clip=True, clip_path=PATH_COMPONENT)
+    merge.incorporate(PATH_IMG_INPUT, PATH_LABEL_COMPO, PATH_LABEL_TEXT, PATH_MERGE, img_section, is_clip=False, clip_path=PATH_COMPONENT)
 
 print('Time Taken:%.3f s\n' % (time.clock() - start))
