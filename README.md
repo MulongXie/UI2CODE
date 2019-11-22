@@ -6,4 +6,6 @@ UI2CODE is a system converting the GUI image into cooresponding front-end code t
 
 It comprises two major parts: 
 * UI components detection
+  * Graphical components detection
+  * Text recognition
 * Code generation
