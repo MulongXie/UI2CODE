@@ -9,3 +9,5 @@ It comprises two major parts:
   * Graphical components detection 
   * Text recognition through CTPN 
 * Code generation
+  * DOM tree construction
+  * HTML + CSS generation
