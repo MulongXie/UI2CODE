@@ -11,7 +11,7 @@ It comprises two major parts:
 * Code generation
   * DOM tree construction
   * HTML + CSS generation
-  
+   
 ## File structure
 *config/*
 * Set path of the CNN training result (UI components classification) and CTPN training result (text recognition) 
@@ -43,6 +43,6 @@ To test the your own image(s):
 * To change the location of the pretrained CNN and CTPN models, revise the `self.MODEL_PATH` and `self.CTPN_PATH` in *config/CONFIG.py*
 
 ## Demo
-GUI elemnts detection result for web screenshot
+GUI element detection result for web screenshot
 
 ![UI Components detection result](https://github.com/MulongXie/UI2CODE/blob/master/demo/uied.png)
