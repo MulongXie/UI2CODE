@@ -1,7 +1,7 @@
 import time
 
 is_ctpn = False
-is_uied = False
+is_uied = True
 is_merge = True
 
 # set input image path
@@ -16,7 +16,7 @@ PATH_MERGE_IMG = 'data\\output\\merged.png'
 PATH_MERGE_LABEL = 'data\\output\\merged.txt'
 PATH_COMPONENT = 'data\\output\\components'
 
-# clip image, height and width
+# clip image, maximum height and width
 img_section = (3000, 1500)
 
 start = time.clock()
