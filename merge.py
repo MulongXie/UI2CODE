@@ -60,6 +60,17 @@ def save_clipping(org, corners, compo_classes, compo_index, output_root=C.ROOT_I
         cv2.imwrite(pjoin(compo_path, str(compo_index[compo_classes[i]]) + '.png'), clip)
 
 
+def save_label_txt(img_path, compo_corners, compo_class, label_txt_path):
+    f = open(label_txt_path, 'a')
+    label_txt = img_path + ' '
+    for i in range(len(compo_corners)):
+        if compo_class[i] == 'text':
+            continue
+        label_txt += ','.join([str(c) for c in compo_corners[i]]) + ',' + str(C.class_index[compo_class[i]]) + ' '
+    label_txt += '\n'
+    f.write(label_txt)
+
+
 def nms(org, corners_compo_old, compos_class_old, corner_text):
     corners_compo_refine = []
     compos_class_refine = []
@@ -161,7 +172,7 @@ def refine_text(org, corners_text, max_line_gap, min_word_length):
     return corners_text_refine
 
 
-def incorporate(img_path, compo_path, text_path, output_path, img_section, is_clip=False, clip_path=None):
+def incorporate(img_path, compo_path, text_path, output_path_img, output_path_label_txt, img_section, is_clip=False, clip_path=None):
     img = cv2.imread(img_path)
     img = img[:img_section[0], :img_section[1]]
     compo_f = open(compo_path, 'r')
@@ -182,11 +193,11 @@ def incorporate(img_path, compo_path, text_path, output_path, img_section, is_cl
     corners_compo_new, compos_class_new = nms(img, corners_compo, compos_class, corners_text)
 
     board = draw_bounding_box_class(img, corners_compo_new, compos_class_new)
-    # board = draw_bounding_box(board, corners_text, line=1)
+    save_label_txt(img_path, corners_compo_new, compos_class_new, output_path_label_txt)
 
-    cv2.imwrite(output_path, board)
+    cv2.imwrite(output_path_img, board)
 
-    print('*** Merge Complete and Save to', output_path, '***')
+    print('*** Merge Complete and Save to', output_path_img, '***')
 
     if is_clip:
         save_clipping(img, corners_compo_new, compos_class_new, compo_index, clip_path)

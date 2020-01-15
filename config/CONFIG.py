@@ -17,7 +17,7 @@ class Config:
         # setting dataflow paths
         # used for continuously processing
         self.ROOT_INPUT = "E:/Mulong/Datasets/google_play/data/play_store_screenshots"
-        self.ROOT_OUTPUT = "E:/Mulong/Result/googleplay_all"
+        self.ROOT_OUTPUT = "E:/Mulong/Result/manually_label"
 
         # *** Frozen ***
         self.ROOT_IMG_ORG = pjoin(self.ROOT_INPUT, "org")
@@ -31,6 +31,7 @@ class Config:
         self.COLOR = {'block': (0, 255, 0), 'img': (0, 0, 255), 'icon': (255, 166, 166), 'input': (255, 166, 0),
                       'text': (77, 77, 255), 'search': (255, 0, 166), 'list': (166, 0, 255), 'select': (166, 166, 166),
                       'button': (0, 166, 255)}
+        self.class_index = {'button':0, 'input':1, 'select':2, 'search':3, 'list':4, 'img':5, 'block':6, 'text':7, 'icon':8}
 
     def build_output_folders(self, is_clip):
         if not os.path.exists(self.ROOT_LABEL_UIED):
