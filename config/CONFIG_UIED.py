@@ -2,10 +2,10 @@ class Config:
 
     def __init__(self):
         # Adjustable
-        self.THRESHOLD_MIN_GRADIENT = 1             # dribbble:4 rico:4 web:1
-        self.THRESHOLD_BLOCK_MIN_EDGE_LENGTH = 70   # dribbble:68 rico:210 web:70
-        self.THRESHOLD_UICOMPO_MAX_W_H_RATIO = 22   # dribbble:10 rico:10 web:22
-        self.THRESHOLD_MIN_IOU = 0.003              # dribbble:0.003 rico:0.1 web:0.1
+        self.THRESHOLD_MIN_GRADIENT = 4             # dribbble:4 rico:4 web:1
+        self.THRESHOLD_BLOCK_MIN_EDGE_LENGTH = 210   # dribbble:68 rico:210 web:70
+        self.THRESHOLD_UICOMPO_MAX_W_H_RATIO = 10   # dribbble:10 rico:10 web:22
+        self.THRESHOLD_MIN_IOU = 0.1              # dribbble:0.003 rico:0.1 web:0.1
 
         # *** Frozen ***
         self.THRESHOLD_OBJ_MIN_AREA = 175

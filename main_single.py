@@ -1,11 +1,11 @@
 import time
 
-is_ctpn = False
+is_ctpn = True
 is_uied = True
 is_merge = True
 
 # set input image path
-PATH_IMG_INPUT = 'data\\input\\5.png'
+PATH_IMG_INPUT = 'data\\input\\3.jpg'
 # outputs
 PATH_LABEL_COMPO = 'data\\output\\compo.json'
 PATH_LABEL_TEXT = 'data\\output\\ocr.txt'
