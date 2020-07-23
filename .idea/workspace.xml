@@ -2,120 +2,55 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2918ab5b-5438-425a-92ad-fcba5152d254" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/UI2CODE.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/CONFIG.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/CONFIG_UIED.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/.idea/ocr.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/ctpn/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/ctpn/demo.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/ctpn/demo_pb.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/ctpn/generate_pb.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/ctpn/text.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/ctpn/train_net.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/data/VOCdevkit2007" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/doing.lnk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/datasets/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/datasets/factory.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/datasets/imdb.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/datasets/pascal_voc.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/fast_rcnn/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/fast_rcnn/bbox_transform.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/fast_rcnn/config.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/fast_rcnn/nms_wrapper.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/fast_rcnn/test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/fast_rcnn/train.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/networks/VGGnet_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/networks/VGGnet_train.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/networks/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/networks/factory.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/networks/network.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/prepare_training_data/ToVoc.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/prepare_training_data/split_label.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/roi_data_layer/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/roi_data_layer/layer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/roi_data_layer/minibatch.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/roi_data_layer/roidb.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/rpn_msr/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/rpn_msr/anchor_target_layer_tf.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/rpn_msr/generate_anchors.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/rpn_msr/proposal_layer_tf.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/text_connector/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/text_connector/detectors.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/text_connector/other.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/text_connector/text_connect_cfg.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/text_connector/text_proposal_connector.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/text_connector/text_proposal_connector_oriented.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/text_connector/text_proposal_graph_builder.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/utils/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/utils/bbox.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/utils/bbox.cp35-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/utils/bbox.pyx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/utils/blob.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/utils/boxes_grid.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/utils/build/lib.win-amd64-3.5/lib/utils/bbox.cp35-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/utils/build/lib.win-amd64-3.5/lib/utils/cython_nms.cp35-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/utils/build/temp.win-amd64-3.5/Release/bbox.cp35-win_amd64.exp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/utils/build/temp.win-amd64-3.5/Release/bbox.cp35-win_amd64.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/utils/build/temp.win-amd64-3.5/Release/bbox.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/utils/build/temp.win-amd64-3.5/Release/cython_nms.cp35-win_amd64.exp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/utils/build/temp.win-amd64-3.5/Release/cython_nms.cp35-win_amd64.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/utils/build/temp.win-amd64-3.5/Release/cython_nms.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/utils/cython_nms.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/utils/cython_nms.cp35-win_amd64.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/utils/cython_nms.pyx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/utils/gpu_nms.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/utils/gpu_nms.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/utils/gpu_nms.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/utils/gpu_nms.pyx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/utils/make.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/utils/nms_kernel.cu" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/utils/setup.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/utils/setup_new.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/lib_ctpn/utils/timer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctpn/ocr.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/input/0.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/input/1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/input/2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/input/3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/input/4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/input/5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/output/boundary.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/output/compo.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/output/ctpn.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/output/gradient.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/output/merged.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/output/merged.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/output/ocr.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/output/uied.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/p1_labeled.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/uied.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/label.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_select.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_single.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/merge.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uied/.idea/integration-v2.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uied/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uied/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uied/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uied/lib_uied/MODEL_CNN.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uied/lib_uied/file_utils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uied/lib_uied/ip_detection.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uied/lib_uied/ip_detection_utils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uied/lib_uied/ip_draw.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uied/lib_uied/ip_preprocessing.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uied/lib_uied/ip_segment.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uied/lib_uied/ocr_classify_text.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uied/ui.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/UIED/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/Block/26.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/Block/27.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/Block/28.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/Compo/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/Compo/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/Compo/11.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/Compo/12.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/Compo/13.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/Compo/14.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/Compo/15.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/Compo/16.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/Compo/17.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/Compo/18.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/Compo/19.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/Compo/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/Compo/20.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/Compo/21.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/Compo/22.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/Compo/23.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/Compo/24.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/Compo/25.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/Compo/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/Compo/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/Compo/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/Compo/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/Compo/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/Compo/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/Compo/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/compo.json" beforeDir="false" afterPath="$PROJECT_DIR$/UIED/data/output/compo.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/ip/30800.json" beforeDir="false" afterPath="$PROJECT_DIR$/UIED/data/output/ip/30800.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/ip/30800_all.json" beforeDir="false" afterPath="$PROJECT_DIR$/UIED/data/output/ip/30800_all.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/ip/result.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/UIED/data/output/ip/result.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/ocr/result.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/UIED/data/output/ocr/result.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/result.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/UIED/data/output/result.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/detect_compo/ip_region_proposal.py" beforeDir="false" afterPath="$PROJECT_DIR$/UIED/detect_compo/ip_region_proposal.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/detect_compo/lib_ip/Bbox.py" beforeDir="false" afterPath="$PROJECT_DIR$/UIED/detect_compo/lib_ip/Bbox.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/detect_compo/lib_ip/Block.py" beforeDir="false" afterPath="$PROJECT_DIR$/UIED/detect_compo/lib_ip/Block.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/detect_compo/lib_ip/Component.py" beforeDir="false" afterPath="$PROJECT_DIR$/UIED/detect_compo/lib_ip/Component.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/detect_compo/lib_ip/block_division.py" beforeDir="false" afterPath="$PROJECT_DIR$/UIED/detect_compo/lib_ip/block_division.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/detect_compo/lib_ip/ip_detection.py" beforeDir="false" afterPath="$PROJECT_DIR$/UIED/detect_compo/lib_ip/ip_detection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/detect_text_east/lib_east/eval.py" beforeDir="false" afterPath="$PROJECT_DIR$/UIED/detect_text_east/lib_east/eval.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/detect_text_east/lib_east/icdar.py" beforeDir="false" afterPath="$PROJECT_DIR$/UIED/detect_text_east/lib_east/icdar.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/detect_text_east/lib_east/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/UIED/detect_text_east/lib_east/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/detect_text_east/ocr_east.py" beforeDir="false" afterPath="$PROJECT_DIR$/UIED/detect_text_east/ocr_east.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/run_single.py" beforeDir="false" afterPath="$PROJECT_DIR$/UIED/run_single.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/utils/util_merge.py" beforeDir="false" afterPath="$PROJECT_DIR$/UIED/utils/util_merge.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +65,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/UIED" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-11" />
@@ -139,17 +74,20 @@
     <option name="height" value="1043" />
   </component>
   <component name="ProjectId" id="1f4DqOlerYNnLpHE3Gs4SamXiqu" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
-  <component name="RunManager" selected="Python.main_single">
+  <component name="RunManager" selected="Python.run_single">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="UI2CODE" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -216,6 +154,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="run_single" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="UI2CODE" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/UIED" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/UIED/run_single.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="UI2CODE" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -243,9 +203,11 @@
       <item itemvalue="Python.main_single" />
       <item itemvalue="Python.main_txt" />
       <item itemvalue="Python.test" />
+      <item itemvalue="Python.run_single" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.run_single" />
         <item itemvalue="Python.main_single" />
         <item itemvalue="Python.main_txt" />
         <item itemvalue="Python.test" />
@@ -264,13 +226,33 @@
       <option name="presentableId" value="Default" />
       <updated>1574384262965</updated>
       <workItem from="1595468662747" duration="837000" />
+      <workItem from="1595470203304" duration="1606000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
   </component>
+  <component name="WindowStateProjectService">
+    <state width="1877" height="283" key="GridCell.Tab.0.bottom" timestamp="1595471750336">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="283" key="GridCell.Tab.0.bottom/1920.0.1280.693/3840.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1595471750336" />
+    <state width="1877" height="283" key="GridCell.Tab.0.center" timestamp="1595471750336">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="283" key="GridCell.Tab.0.center/1920.0.1280.693/3840.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1595471750336" />
+    <state width="1877" height="283" key="GridCell.Tab.0.left" timestamp="1595471750335">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="283" key="GridCell.Tab.0.left/1920.0.1280.693/3840.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1595471750335" />
+    <state width="1877" height="283" key="GridCell.Tab.0.right" timestamp="1595471750336">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="283" key="GridCell.Tab.0.right/1920.0.1280.693/3840.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1595471750336" />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/UI2CODE$main_single.coverage" NAME="main_single Coverage Results" MODIFIED="1595468735301" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/UI2CODE$run_single.coverage" NAME="run_single Coverage Results" MODIFIED="1595471750322" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/UIED" />
   </component>
 </project>
