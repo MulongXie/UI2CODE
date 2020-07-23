@@ -1,5 +1,4 @@
 from os.path import join as pjoin
-import ip_region_proposal as ip
 import cv2
 import os
 
@@ -16,25 +15,26 @@ def resize_height_by_longest_edge(img_path, resize_length=800):
 if __name__ == '__main__':
 
     # set input image path
-    input_path_img = 'data/input/30800.jpg'
+    input_path_img = 'data/input/9.jpg'
     output_root = 'data/output'
 
     resized_height = resize_height_by_longest_edge(input_path_img)
 
     is_ip = True
-    is_clf = False
-    is_ocr = False
-    is_merge = False
+    is_clf = True
+    is_ocr = True
+    is_merge = True
 
     if is_ocr:
+        import detect_text_east.ocr_east as ocr
+        import detect_text_east.lib_east.eval as eval
         os.makedirs(pjoin(output_root, 'ocr'), exist_ok=True)
-        import ocr_east as ocr
-        import lib_east.eval as eval
         models = eval.load()
         ocr.east(input_path_img, output_root, models,
                  resize_by_height=resized_height, show=False)
 
     if is_ip:
+        import detect_compo.ip_region_proposal as ip
         os.makedirs(pjoin(output_root, 'ip'), exist_ok=True)
         # switch of the classification func
         classifier = None
