@@ -1,0 +1,206 @@
+[INFO  - 2020-07-11T02:12:48.755Z] GhostDriver - Main - running on port 52561
+[INFO  - 2020-07-11T02:12:53.152Z] Session [06f52090-c31c-11ea-9974-6dc5b4b258ba] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2020-07-11T02:12:53.153Z] Session [06f52090-c31c-11ea-9974-6dc5b4b258ba] - page.customHeaders:  - {}
+[INFO  - 2020-07-11T02:12:53.153Z] Session [06f52090-c31c-11ea-9974-6dc5b4b258ba] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-10-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2020-07-11T02:12:53.153Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 06f52090-c31c-11ea-9974-6dc5b4b258ba
+[ERROR - 2020-07-11T02:12:53.164Z] RouterReqHand - _handle.error - {"name":"Missing Command Parameter","message":"{\"headers\":{\"Accept\":\"application/json\",\"Accept-Encoding\":\"identity\",\"Content-Length\":\"72\",\"Content-Type\":\"application/json;charset=UTF-8\",\"Host\":\"127.0.0.1:52561\",\"User-Agent\":\"selenium/3.141.0 (python windows)\"},\"httpVersion\":\"1.1\",\"method\":\"POST\",\"post\":\"{\\\"sessionId\\\": \\\"06f52090-c31c-11ea-9974-6dc5b4b258ba\\\", \\\"pageLoad\\\": 40000}\",\"url\":\"/timeouts\",\"urlParsed\":{\"anchor\":\"\",\"query\":\"\",\"file\":\"timeouts\",\"directory\":\"/\",\"path\":\"/timeouts\",\"relative\":\"/timeouts\",\"port\":\"\",\"host\":\"\",\"password\":\"\",\"user\":\"\",\"userInfo\":\"\",\"authority\":\"\",\"protocol\":\"\",\"source\":\"/timeouts\",\"queryKey\":{},\"chunks\":[\"timeouts\"]},\"urlOriginal\":\"/session/06f52090-c31c-11ea-9974-6dc5b4b258ba/timeouts\"}","line":546,"sourceURL":"phantomjs://code/session_request_handler.js","stack":"_postTimeout@phantomjs://code/session_request_handler.js:546:73\n_handle@phantomjs://code/session_request_handler.js:148:25\n_reroute@phantomjs://code/request_handler.js:61:20\n_handle@phantomjs://code/router_request_handler.js:78:46"}
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2020-07-11T02:12:54.713Z] Session [06f52090-c31c-11ea-9974-6dc5b4b258ba] - page.onError - msg: TypeError: undefined is not a constructor (evaluating 'c.prepend(i)')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2020-07-11T02:12:54.713Z] Session [06f52090-c31c-11ea-9974-6dc5b4b258ba] - page.onError - stack:
+  renderAd (https://static.bbc.co.uk/bbcdotcom/4.4.0/script/dist/bbcdotcom.js:6)
+  exports (https://static.bbc.co.uk/bbcdotcom/4.4.0/script/dist/bbcdotcom.js:7)
+  slotAsync (https://static.bbc.co.uk/bbcdotcom/4.4.0/script/dist/bbcdotcom.js:7)
+  (anonymous function) (https://www.bbc.com/:694)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2020-07-11T02:12:54.733Z] Session [06f52090-c31c-11ea-9974-6dc5b4b258ba] - page.onError - msg: TypeError: undefined is not a constructor (evaluating 'c.prepend(i)')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2020-07-11T02:12:54.733Z] Session [06f52090-c31c-11ea-9974-6dc5b4b258ba] - page.onError - stack:
+  renderAd (https://static.bbc.co.uk/bbcdotcom/4.4.0/script/dist/bbcdotcom.js:6)
+  exports (https://static.bbc.co.uk/bbcdotcom/4.4.0/script/dist/bbcdotcom.js:7)
+  slotAsync (https://static.bbc.co.uk/bbcdotcom/4.4.0/script/dist/bbcdotcom.js:7)
+  (anonymous function) (https://www.bbc.com/:890)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2020-07-11T02:12:54.767Z] Session [06f52090-c31c-11ea-9974-6dc5b4b258ba] - page.onError - msg: TypeError: undefined is not a constructor (evaluating 'c.prepend(i)')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2020-07-11T02:12:54.767Z] Session [06f52090-c31c-11ea-9974-6dc5b4b258ba] - page.onError - stack:
+  renderAd (https://static.bbc.co.uk/bbcdotcom/4.4.0/script/dist/bbcdotcom.js:6)
+  exports (https://static.bbc.co.uk/bbcdotcom/4.4.0/script/dist/bbcdotcom.js:7)
+  slotAsync (https://static.bbc.co.uk/bbcdotcom/4.4.0/script/dist/bbcdotcom.js:7)
+  (anonymous function) (https://www.bbc.com/:1128)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2020-07-11T02:12:54.791Z] Session [06f52090-c31c-11ea-9974-6dc5b4b258ba] - page.onError - msg: TypeError: undefined is not a constructor (evaluating 'c.prepend(i)')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2020-07-11T02:12:54.791Z] Session [06f52090-c31c-11ea-9974-6dc5b4b258ba] - page.onError - stack:
+  renderAd (https://static.bbc.co.uk/bbcdotcom/4.4.0/script/dist/bbcdotcom.js:6)
+  exports (https://static.bbc.co.uk/bbcdotcom/4.4.0/script/dist/bbcdotcom.js:7)
+  slotAsync (https://static.bbc.co.uk/bbcdotcom/4.4.0/script/dist/bbcdotcom.js:7)
+  (anonymous function) (https://www.bbc.com/:1593)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2020-07-11T02:12:56.184Z] Session [06f52090-c31c-11ea-9974-6dc5b4b258ba] - page.onError - msg: ReferenceError: Can't find variable: WeakMap
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2020-07-11T02:12:56.184Z] Session [06f52090-c31c-11ea-9974-6dc5b4b258ba] - page.onError - stack:
+  (anonymous function) (https://cdn.permutive.com/e488cdb0-e7cb-4d91-9648-60d437d8e491-web.js:1)
+  (anonymous function) (https://cdn.permutive.com/e488cdb0-e7cb-4d91-9648-60d437d8e491-web.js:1)
+  n (https://cdn.permutive.com/e488cdb0-e7cb-4d91-9648-60d437d8e491-web.js:1)
+  (anonymous function) (https://cdn.permutive.com/e488cdb0-e7cb-4d91-9648-60d437d8e491-web.js:1)
+  (anonymous function) (https://cdn.permutive.com/e488cdb0-e7cb-4d91-9648-60d437d8e491-web.js:1)
+  n (https://cdn.permutive.com/e488cdb0-e7cb-4d91-9648-60d437d8e491-web.js:1)
+  (anonymous function) (https://cdn.permutive.com/e488cdb0-e7cb-4d91-9648-60d437d8e491-web.js:1)
+  (anonymous function) (https://cdn.permutive.com/e488cdb0-e7cb-4d91-9648-60d437d8e491-web.js:1)
+  n (https://cdn.permutive.com/e488cdb0-e7cb-4d91-9648-60d437d8e491-web.js:1)
+  (anonymous function) (https://cdn.permutive.com/e488cdb0-e7cb-4d91-9648-60d437d8e491-web.js:1)
+  n (https://cdn.permutive.com/e488cdb0-e7cb-4d91-9648-60d437d8e491-web.js:1)
+  (anonymous function) (https://cdn.permutive.com/e488cdb0-e7cb-4d91-9648-60d437d8e491-web.js:1)
+  (anonymous function) (https://cdn.permutive.com/e488cdb0-e7cb-4d91-9648-60d437d8e491-web.js:1)
+  n (https://cdn.permutive.com/e488cdb0-e7cb-4d91-9648-60d437d8e491-web.js:1)
+  (anonymous function) (https://cdn.permutive.com/e488cdb0-e7cb-4d91-9648-60d437d8e491-web.js:1)
+  (anonymous function) (https://cdn.permutive.com/e488cdb0-e7cb-4d91-9648-60d437d8e491-web.js:1)
+  n (https://cdn.permutive.com/e488cdb0-e7cb-4d91-9648-60d437d8e491-web.js:1)
+  (anonymous function) (https://cdn.permutive.com/e488cdb0-e7cb-4d91-9648-60d437d8e491-web.js:1)
+  (anonymous function) (https://cdn.permutive.com/e488cdb0-e7cb-4d91-9648-60d437d8e491-web.js:1)
+  n (https://cdn.permutive.com/e488cdb0-e7cb-4d91-9648-60d437d8e491-web.js:1)
+  (anonymous function) (https://cdn.permutive.com/e488cdb0-e7cb-4d91-9648-60d437d8e491-web.js:1)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2020-07-11T02:13:42.392Z] Session [06f52090-c31c-11ea-9974-6dc5b4b258ba] - page.onError - msg: TypeError: undefined is not a constructor (evaluating 'new b')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2020-07-11T02:13:42.392Z] Session [06f52090-c31c-11ea-9974-6dc5b4b258ba] - page.onError - stack:
+  (anonymous function) (https://cdn.ampproject.org/rtv/012006300332000/amp4ads-v0.js:72)
+  (anonymous function) (https://cdn.ampproject.org/rtv/012006300332000/amp4ads-v0.js:72)
+
+  phantomjs://platform/console++.js:263 in error
+                                                                                                                                                                                                                                                                                                                                                                                                                                 [INFO  - 2020-07-11T02:32:48.750Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T02:37:48.759Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T02:42:48.764Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T02:47:48.765Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T02:52:48.772Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T02:57:48.776Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T03:02:48.776Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T03:07:48.779Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T03:12:48.777Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T03:17:48.777Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T03:22:48.778Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T03:27:48.778Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T03:32:48.778Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T03:37:48.779Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T03:42:48.791Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T03:47:48.792Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T03:52:48.792Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T03:57:48.792Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T04:02:48.793Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T04:07:48.806Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T04:12:48.806Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T04:17:48.806Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T04:22:48.807Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T04:27:48.807Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T04:32:48.811Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T04:37:48.811Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T04:42:48.812Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T04:47:48.812Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T04:52:48.812Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T04:57:48.812Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T05:02:48.813Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T05:07:48.813Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T05:12:48.813Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T05:17:48.813Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T05:22:48.814Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T05:27:48.822Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T05:32:48.822Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T05:37:48.822Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T05:42:48.823Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T05:47:48.823Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T05:52:48.823Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T05:57:48.823Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T06:02:48.824Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T06:07:48.824Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T06:12:48.824Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T06:17:48.824Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T06:22:48.824Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T06:27:48.824Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T06:32:48.825Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T06:37:48.825Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T06:42:48.826Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T06:47:48.839Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T06:52:48.841Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T06:57:48.840Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T07:02:48.840Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T07:07:48.852Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T07:12:48.852Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T07:17:48.852Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T07:22:48.854Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T07:27:48.855Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T07:32:48.855Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T07:37:48.855Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T07:42:48.855Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T07:47:48.855Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T07:52:48.858Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T07:57:48.858Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T08:02:48.858Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T08:07:48.859Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T08:12:48.859Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T08:17:48.859Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T08:22:48.869Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T08:27:48.869Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T08:32:48.870Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T08:37:48.870Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T08:42:48.873Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T08:47:48.873Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T08:52:48.881Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T08:57:48.882Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T09:02:48.883Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T09:07:48.891Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T09:12:48.889Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T09:17:48.890Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T09:22:48.890Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T09:27:48.890Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T09:32:48.890Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T09:37:48.890Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T09:42:48.891Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T09:47:48.900Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T09:52:48.904Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T09:57:48.905Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T10:02:48.904Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T13:04:36.510Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T22:02:25.972Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T22:07:25.258Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T22:12:25.264Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T22:17:25.267Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T22:22:25.273Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T22:27:25.274Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T22:32:25.275Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T22:37:25.274Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T22:42:25.275Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T22:47:25.287Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T22:52:25.303Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T22:57:25.304Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T23:02:25.304Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T23:07:25.311Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T23:12:25.312Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T23:17:25.327Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T23:22:25.327Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T23:27:25.327Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T23:32:25.332Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T23:37:25.345Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T23:42:25.352Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T23:47:25.356Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T23:52:25.366Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-11T23:57:25.378Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-12T00:02:25.381Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-12T00:07:25.390Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-12T00:12:25.399Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-12T00:17:25.401Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-12T00:22:25.407Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-12T00:27:25.407Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-07-12T00:32:25.416Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW

@@ -1,0 +1,45 @@
+[INFO  - 2020-07-12T09:41:05.601Z] GhostDriver - Main - running on port 58950
+[INFO  - 2020-07-12T09:41:09.870Z] Session [d110a590-c423-11ea-9cb0-c13d78069232] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2020-07-12T09:41:09.870Z] Session [d110a590-c423-11ea-9cb0-c13d78069232] - page.customHeaders:  - {}
+[INFO  - 2020-07-12T09:41:09.870Z] Session [d110a590-c423-11ea-9cb0-c13d78069232] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-10-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2020-07-12T09:41:09.870Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: d110a590-c423-11ea-9cb0-c13d78069232
+[ERROR - 2020-07-12T09:41:09.891Z] RouterReqHand - _handle.error - {"name":"Missing Command Parameter","message":"{\"headers\":{\"Accept\":\"application/json\",\"Accept-Encoding\":\"identity\",\"Content-Length\":\"72\",\"Content-Type\":\"application/json;charset=UTF-8\",\"Host\":\"127.0.0.1:58950\",\"User-Agent\":\"selenium/3.141.0 (python windows)\"},\"httpVersion\":\"1.1\",\"method\":\"POST\",\"post\":\"{\\\"pageLoad\\\": 50000, \\\"sessionId\\\": \\\"d110a590-c423-11ea-9cb0-c13d78069232\\\"}\",\"url\":\"/timeouts\",\"urlParsed\":{\"anchor\":\"\",\"query\":\"\",\"file\":\"timeouts\",\"directory\":\"/\",\"path\":\"/timeouts\",\"relative\":\"/timeouts\",\"port\":\"\",\"host\":\"\",\"password\":\"\",\"user\":\"\",\"userInfo\":\"\",\"authority\":\"\",\"protocol\":\"\",\"source\":\"/timeouts\",\"queryKey\":{},\"chunks\":[\"timeouts\"]},\"urlOriginal\":\"/session/d110a590-c423-11ea-9cb0-c13d78069232/timeouts\"}","line":546,"sourceURL":"phantomjs://code/session_request_handler.js","stack":"_postTimeout@phantomjs://code/session_request_handler.js:546:73\n_handle@phantomjs://code/session_request_handler.js:148:25\n_reroute@phantomjs://code/request_handler.js:61:20\n_handle@phantomjs://code/router_request_handler.js:78:46"}
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2020-07-12T09:41:10.502Z] Session [d110a590-c423-11ea-9cb0-c13d78069232] - page.onError - msg: TypeError: Attempting to configurable attribute of unconfigurable property.
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2020-07-12T09:41:10.502Z] Session [d110a590-c423-11ea-9cb0-c13d78069232] - page.onError - stack:
+  defineProperty (https://www.youtube.com/yts/jsbin/webcomponents-lite-noPatch-vflsvyn9v/webcomponents-lite-noPatch.js:150)
+  b (https://www.youtube.com/yts/jsbin/webcomponents-lite-noPatch-vflsvyn9v/webcomponents-lite-noPatch.js:150)
+  (anonymous function) (https://www.youtube.com/yts/jsbin/webcomponents-lite-noPatch-vflsvyn9v/webcomponents-lite-noPatch.js:152)
+  Ub (https://www.youtube.com/yts/jsbin/webcomponents-lite-noPatch-vflsvyn9v/webcomponents-lite-noPatch.js:125)
+  (anonymous function) (https://www.youtube.com/yts/jsbin/webcomponents-lite-noPatch-vflsvyn9v/webcomponents-lite-noPatch.js:127)
+  Nb (https://www.youtube.com/yts/jsbin/webcomponents-lite-noPatch-vflsvyn9v/webcomponents-lite-noPatch.js:124)
+  Qb (https://www.youtube.com/yts/jsbin/webcomponents-lite-noPatch-vflsvyn9v/webcomponents-lite-noPatch.js:124)
+  Xb (https://www.youtube.com/yts/jsbin/webcomponents-lite-noPatch-vflsvyn9v/webcomponents-lite-noPatch.js:127)
+  bc (https://www.youtube.com/yts/jsbin/webcomponents-lite-noPatch-vflsvyn9v/webcomponents-lite-noPatch.js:136)
+  I (https://www.youtube.com/yts/jsbin/webcomponents-lite-noPatch-vflsvyn9v/webcomponents-lite-noPatch.js:136)
+  lc (https://www.youtube.com/yts/jsbin/webcomponents-lite-noPatch-vflsvyn9v/webcomponents-lite-noPatch.js:153)
+  (anonymous function) (https://www.youtube.com/yts/jsbin/webcomponents-lite-noPatch-vflsvyn9v/webcomponents-lite-noPatch.js:153)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2020-07-12T09:41:11.561Z] Session [d110a590-c423-11ea-9cb0-c13d78069232] - page.onError - msg: TypeError: Attempting to configurable attribute of unconfigurable property.
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2020-07-12T09:41:11.561Z] Session [d110a590-c423-11ea-9cb0-c13d78069232] - page.onError - stack:
+  defineProperty (https://www.youtube.com/yts/jsbin/webcomponents-lite-noPatch-vflsvyn9v/webcomponents-lite-noPatch.js:150)
+  b (https://www.youtube.com/yts/jsbin/webcomponents-lite-noPatch-vflsvyn9v/webcomponents-lite-noPatch.js:150)
+  (anonymous function) (https://www.youtube.com/yts/jsbin/webcomponents-lite-noPatch-vflsvyn9v/webcomponents-lite-noPatch.js:152)
+  Ub (https://www.youtube.com/yts/jsbin/webcomponents-lite-noPatch-vflsvyn9v/webcomponents-lite-noPatch.js:125)
+  $b (https://www.youtube.com/yts/jsbin/webcomponents-lite-noPatch-vflsvyn9v/webcomponents-lite-noPatch.js:134)
+  createElement (https://www.youtube.com/yts/jsbin/webcomponents-lite-noPatch-vflsvyn9v/webcomponents-lite-noPatch.js:143)
+  loadJS (https://www.youtube.com/:951)
+  dispatchEvent (:0)
+  (anonymous function) (https://www.youtube.com/yts/jsbin/webcomponents-lite-noPatch-vflsvyn9v/webcomponents-lite-noPatch.js:32)
+  (anonymous function) (https://www.youtube.com/yts/jsbin/webcomponents-lite-noPatch-vflsvyn9v/webcomponents-lite-noPatch.js:17)
+  d (https://www.youtube.com/yts/jsbin/webcomponents-lite-noPatch-vflsvyn9v/webcomponents-lite-noPatch.js:17)
+  (anonymous function) (https://www.youtube.com/yts/jsbin/webcomponents-lite-noPatch-vflsvyn9v/webcomponents-lite-noPatch.js:17)
+  q (https://www.youtube.com/yts/jsbin/webcomponents-lite-noPatch-vflsvyn9v/webcomponents-lite-noPatch.js:17)
+
+  phantomjs://platform/console++.js:263 in error
