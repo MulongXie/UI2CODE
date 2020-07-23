@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2918ab5b-5438-425a-92ad-fcba5152d254" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UIED/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/UIED/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UIED/README.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/Block/26.jpg" beforeDir="false" />
@@ -33,6 +32,7 @@
       <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/Compo/7.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/Compo/8.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/Compo/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIED/data/output/clips/bkg.png" beforeDir="false" afterPath="$PROJECT_DIR$/UIED/data/output/clips/bkg.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UIED/data/output/compo.json" beforeDir="false" afterPath="$PROJECT_DIR$/UIED/data/output/compo.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UIED/data/output/ip/30800.json" beforeDir="false" afterPath="$PROJECT_DIR$/UIED/data/output/ip/30800.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UIED/data/output/ip/30800_all.json" beforeDir="false" afterPath="$PROJECT_DIR$/UIED/data/output/ip/30800_all.json" afterDir="false" />
@@ -226,7 +226,7 @@
       <option name="presentableId" value="Default" />
       <updated>1574384262965</updated>
       <workItem from="1595468662747" duration="837000" />
-      <workItem from="1595470203304" duration="1606000" />
+      <workItem from="1595470203304" duration="2250000" />
     </task>
     <servers />
   </component>
@@ -234,22 +234,22 @@
     <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1877" height="283" key="GridCell.Tab.0.bottom" timestamp="1595471750336">
+    <state width="1877" height="283" key="GridCell.Tab.0.bottom" timestamp="1595478029212">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="283" key="GridCell.Tab.0.bottom/1920.0.1280.693/3840.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1595471750336" />
-    <state width="1877" height="283" key="GridCell.Tab.0.center" timestamp="1595471750336">
+    <state width="1877" height="283" key="GridCell.Tab.0.bottom/1920.0.1280.693/3840.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1595478029212" />
+    <state width="1877" height="283" key="GridCell.Tab.0.center" timestamp="1595478029212">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="283" key="GridCell.Tab.0.center/1920.0.1280.693/3840.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1595471750336" />
-    <state width="1877" height="283" key="GridCell.Tab.0.left" timestamp="1595471750335">
+    <state width="1877" height="283" key="GridCell.Tab.0.center/1920.0.1280.693/3840.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1595478029212" />
+    <state width="1877" height="283" key="GridCell.Tab.0.left" timestamp="1595478029212">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="283" key="GridCell.Tab.0.left/1920.0.1280.693/3840.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1595471750335" />
-    <state width="1877" height="283" key="GridCell.Tab.0.right" timestamp="1595471750336">
+    <state width="1877" height="283" key="GridCell.Tab.0.left/1920.0.1280.693/3840.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1595478029212" />
+    <state width="1877" height="283" key="GridCell.Tab.0.right" timestamp="1595478029212">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="283" key="GridCell.Tab.0.right/1920.0.1280.693/3840.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1595471750336" />
+    <state width="1877" height="283" key="GridCell.Tab.0.right/1920.0.1280.693/3840.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1595478029212" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/UI2CODE$main_single.coverage" NAME="main_single Coverage Results" MODIFIED="1595468735301" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
