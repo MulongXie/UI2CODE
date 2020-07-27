@@ -14,7 +14,7 @@ from config.CONFIG import Config
 C = Config()
 
 
-def draw_bounding_box_class(org, corners, compo_class, color_map=C.COLOR, line=2, show=False, name='img'):
+def draw_bounding_box_class(org, corners, compo_class, color_map=C.COLOR, line=1, show=False, name='img'):
     board = org.copy()
 
     class_colors = {}
@@ -31,7 +31,7 @@ def draw_bounding_box_class(org, corners, compo_class, color_map=C.COLOR, line=2
     return board
 
 
-def draw_bounding_box(org, corners,  color=(0, 255, 0), line=3, show=False, name='board'):
+def draw_bounding_box(org, corners,  color=(0, 255, 0), line=1, show=False, name='board'):
     board = org.copy()
     for i in range(len(corners)):
         board = cv2.rectangle(board, (corners[i][0], corners[i][1]), (corners[i][2], corners[i][3]), color, line)
@@ -41,7 +41,7 @@ def draw_bounding_box(org, corners,  color=(0, 255, 0), line=3, show=False, name
     return board
 
 
-def draw_bounding_box_non_text(org, corners_compo, compos_class, org_shape=None, color=(0, 255, 0), line=2, show=False, name='non-text'):
+def draw_bounding_box_non_text(org, corners_compo, compos_class, org_shape=None, color=(0, 255, 0), line=1, show=False, name='non-text'):
     board = org.copy()
     for i, corner in enumerate(corners_compo):
         if compos_class[i] != 'TextView' or (corner[2] - corner[0]) / org_shape[1] > 0.9:
