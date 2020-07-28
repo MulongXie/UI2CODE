@@ -22,7 +22,7 @@ class Element:
         """
         return self.bbox.bbox_relation_nms(element_b.bbox)
 
-    def element_merge(self, element_b, new_element=True, new_category=None):
+    def element_merge(self, element_b, new_element=False, new_category=None):
         if not new_element:
             self.bbox = self.bbox.bbox_merge(element_b.bbox)
         else:

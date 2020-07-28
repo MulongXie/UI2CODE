@@ -141,8 +141,8 @@ def merge_redundant_corner(compos):
     for i in range(len(compos)):
         merged = False
         for j in range(len(new_compos)):
-            if compos[i].calc_iou(compos[j]) > 0.8:
-                new_compos[j] = compos[i].element_merge(compos[j], new_element=True, new_category=compos[j].category)
+            if compos[i].calc_iou(new_compos[j]) > 0.8:
+                new_compos[j].element_merge(compos[i], new_element=False)
                 merged = True
                 changed = True
                 break
