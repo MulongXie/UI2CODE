@@ -14,10 +14,10 @@ from config.CONFIG import Config
 C = Config()
 
 
-def draw_bounding_box_class(org, compos, color_map=C.COLOR, line=1, show=False, name='img'):
+def draw_bounding_box_class(org, compos, color_map=C.COLOR, line=2, show=False, name='img'):
     board = org.copy()
 
-    class_colors = {}
+    class_colors = color_map
     for compo in compos:
         if compo.category not in class_colors:
             class_colors[compo.category] = (rint(0,255), rint(0,255), rint(0,255))
@@ -32,7 +32,7 @@ def draw_bounding_box_class(org, compos, color_map=C.COLOR, line=1, show=False, 
     return board
 
 
-def draw_bounding_box(org, compos,  color=(0, 255, 0), line=1, show=False, name='board'):
+def draw_bounding_box(org, compos,  color=(0, 255, 0), line=2, show=False, name='board'):
     board = org.copy()
     for compo in compos:
         corner = compo.put_bbox()
@@ -43,7 +43,7 @@ def draw_bounding_box(org, compos,  color=(0, 255, 0), line=1, show=False, name=
     return board
 
 
-def draw_bounding_box_non_text(org, compos, org_shape=None, color=(0, 255, 0), line=1, show=False, name='non-text'):
+def draw_bounding_box_non_text(org, compos, org_shape=None, color=(0, 255, 0), line=2, show=False, name='non-text'):
     board = org.copy()
     for compo in compos:
         if compo.category != 'Text' or compo.width / org_shape[1] > 0.9:
@@ -135,26 +135,6 @@ def refine_text(org, corners_text, max_line_gap, min_word_length):
     return corners_text_refine
 
 
-def merge_redundant_corner(compos):
-    changed = False
-    new_compos = []
-    for i in range(len(compos)):
-        merged = False
-        for j in range(len(new_compos)):
-            if compos[i].calc_iou(new_compos[j]) > 0.8:
-                new_compos[j].element_merge(compos[i], new_element=False)
-                merged = True
-                changed = True
-                break
-        if not merged:
-            new_compos.append(compos[i])
-
-    if not changed:
-        return compos
-    else:
-        return merge_redundant_corner(new_compos)
-
-
 def dissemble_clip_img_fill(clip_root, org, compos, flag='most'):
 
     def average_pix_around(pad=6, offset=3):
@@ -215,3 +195,27 @@ def dissemble_clip_img_fill(clip_root, org, compos, flag='most'):
         cv2.rectangle(bkg, (col_min, row_min), (col_max, row_max), color, -1)
 
     cv2.imwrite(os.path.join(clip_root, 'bkg.png'), bkg)
+
+
+def is_same_alignment(compo_a, compo_b, max_gap, flag='line'):
+    (col_min_a, row_min_a, col_max_a, row_max_a) = compo_a.put_bbox()
+    (col_min_b, row_min_b, col_max_b, row_max_b) = compo_b.put_bbox()
+
+    col_min_s = max(col_min_a, col_min_b)
+    col_max_s = min(col_max_a, col_max_b)
+    row_min_s = max(row_min_a, row_min_b)
+    row_max_s = min(row_max_a, row_max_b)
+
+    if flag == 'line':
+        # on the same line
+        if row_min_s < row_max_s:
+            # close distance
+            if col_min_s < col_max_s or \
+                    (0 < col_min_b - col_max_a < max_gap) or (0 < col_min_a - col_max_b < max_gap):
+                return True
+    elif flag == 'paragraph':
+        if col_min_s < col_max_s:
+            if row_min_s < row_max_s or \
+                    (0 < row_min_b - row_max_a < max_gap) or (0 < row_min_a - row_max_b < max_gap):
+                return True
+    return False
