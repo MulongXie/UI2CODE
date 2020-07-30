@@ -83,3 +83,14 @@ class DF_Compos:
         cv2.imshow(name, board)
         cv2.waitKey()
         cv2.destroyAllWindows()
+
+    def group_by_clusters(self, cluster, show=True):
+        groups = self.compos_dataframe.groupby(cluster).groups
+        group_id = 0
+        for i in groups:
+            if len(groups[i]) > 1:
+                self.compos_dataframe.loc[list(groups[i]), 'group'] = group_id
+                group_id += 1
+
+        if show:
+            self.visualize_rcolor(attr='group')
