@@ -11,13 +11,19 @@ class DF_Compos:
     def __init__(self, json_file, img_file):
         self.json_file = json_file
         self.json_data = json.load(open(self.json_file))
-
         self.compos_json = self.json_data['compos']
         self.compos_dataframe = self.trans_as_df()
 
         self.img_file = img_file
         self.img = cv2.imread(self.img_file)
         self.img_shape = (self.compos_dataframe.iloc[0].width, self.compos_dataframe.iloc[0].height)
+
+    def reload_compos(self, json_file=None):
+        if json_file is None:
+            json_file = self.json_file
+        self.json_data = json.load(open(json_file))
+        self.compos_json = self.json_data['compos']
+        self.compos_dataframe = self.trans_as_df()
 
     def trans_as_df(self):
         df = pd.DataFrame(columns=['id', 'column_min', 'column_max', 'row_min', 'row_max',
@@ -30,7 +36,7 @@ class DF_Compos:
             df.loc[i] = compo
         return df
 
-    def select_category(self, categories):
+    def select_by_class(self, categories):
         df = self.compos_dataframe
         return df[df['class'].isin(categories)]
 
