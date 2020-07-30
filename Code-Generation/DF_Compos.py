@@ -36,27 +36,35 @@ class DF_Compos:
             df.loc[i] = compo
         return df
 
-    def select_by_class(self, categories):
+    def select_by_class(self, categories, replace=False):
         df = self.compos_dataframe
-        return df[df['class'].isin(categories)]
+        df = df[df['class'].isin(categories)]
+        if replace:
+            self.compos_dataframe = df
+        else:
+            return df
 
-    def DBSCAN_cluster_by_attr(self, attr, eps, min_samples=1, show=True):
+    def cluster_dbscan_by_attr(self, attr, eps, min_samples=1, show=True, show_method='line'):
         x = np.reshape(list(self.compos_dataframe[attr]), (-1, 1))
         clustering = DBSCAN(eps=eps, min_samples=min_samples).fit(x)
         tag = 'cluster_' + attr
         self.compos_dataframe[tag] = clustering.labels_
         if show:
-            self.visualize(tag)
-        return tag
+            if show_method == 'line':
+                self.visualize(tag, tag)
+            elif show_method == 'block':
+                self.visualize_block(tag, tag)
 
-    def DBSCAN_cluster_by_attrs(self, attrs, eps, min_samples=1, show=True):
+    def cluster_dbscan_by_attrs(self, attrs, eps, min_samples=1, show=True, show_method='line'):
         x = list(self.compos_dataframe[attrs].values)
         clustering = DBSCAN(eps=eps, min_samples=min_samples).fit(x)
         tag = 'cluster_' + '_'.join(attrs)
         self.compos_dataframe[tag] = clustering.labels_
         if show:
-            self.visualize(tag)
-        return tag
+            if show_method == 'line':
+                self.visualize(tag, tag)
+            elif show_method == 'block':
+                self.visualize_block(tag, tag)
 
     def visualize(self, attr='class', name='board'):
         img = cv2.resize(self.img, self.img_shape)
@@ -70,27 +78,40 @@ class DF_Compos:
         cv2.waitKey()
         cv2.destroyAllWindows()
 
-    def visualize_rcolor(self, attr='class', name='board'):
+    def visualize_block(self, attr='class', name='board'):
         colors = {}
         img = cv2.resize(self.img, self.img_shape)
         board = img.copy()
         for i in range(len(self.compos_dataframe)):
             compo = self.compos_dataframe.iloc[i]
-            if compo[attr] not in colors:
+            if compo[attr] == -1:
+                board = cv2.rectangle(board, (compo.column_min, compo.row_min), (compo.column_max, compo.row_max),
+                                      (rint(0, 255), rint(0, 255), rint(0, 255)), -1)
+                continue
+            elif compo[attr] not in colors:
                 colors[compo[attr]] = (rint(0, 255), rint(0, 255), rint(0, 255))
             board = cv2.rectangle(board, (compo.column_min, compo.row_min), (compo.column_max, compo.row_max),
-                                  colors[compo[attr]], -1)
+                                      colors[compo[attr]], -1)
         cv2.imshow(name, board)
         cv2.waitKey()
         cv2.destroyAllWindows()
 
-    def group_by_clusters(self, cluster, show=True):
+    def group_by_clusters(self, cluster, new_groups=True, show=True, show_method='block'):
+        compos = self.compos_dataframe
+        if 'group' not in compos.columns or new_groups:
+            self.compos_dataframe['group'] = -1
+            group_id = 0
+        else:
+            group_id = compos['group'].max()
+
         groups = self.compos_dataframe.groupby(cluster).groups
-        group_id = 0
         for i in groups:
             if len(groups[i]) > 1:
                 self.compos_dataframe.loc[list(groups[i]), 'group'] = group_id
                 group_id += 1
-
         if show:
-            self.visualize_rcolor(attr='group')
+            name = cluster if type(cluster) != list else '+'.join(cluster)
+            if show_method == 'line':
+                self.visualize(attr='group', name=name)
+            elif show_method == 'block':
+                self.visualize_block(attr='group', name=name)
