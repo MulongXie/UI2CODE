@@ -105,7 +105,7 @@ class DF_Compos:
             self.compos_dataframe['group'] = -1
             group_id = 0
         else:
-            group_id = compos['group'].max()
+            group_id = compos['group'].max() + 1
 
         groups = self.compos_dataframe.groupby(cluster).groups
         for i in groups:
@@ -132,7 +132,7 @@ class DF_Compos:
 
     def group_by_clusters_conflict(self, cluster, prev_cluster, show=True, show_method='block'):
         compos = self.compos_dataframe
-        group_id = compos['group'].max()
+        group_id = compos['group'].max() + 1
 
         groups = self.compos_dataframe.groupby(cluster).groups
         for i in groups:
