@@ -14,4 +14,4 @@ It comprises two major parts:
   * DOM tree construction
   * HTML + CSS generation
 
-![UI Components detection result](https://github.com/MulongXie/UI2CODE/blob/master/demo/demo.png)
+![UI Components detection result](https://github.com/MulongXie/UI2CODE/blob/master/Element-Detection/data/demo/demo.png)
