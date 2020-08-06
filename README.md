@@ -9,9 +9,10 @@ UI2CODE is a system converting the GUI image into cooresponding front-end code t
 It comprises two major parts: 
 * UI components detection: localize and classify all UI elements on the given image
   * Graphical components detection 
-  * Text recognition through CTPN 
+  * Text recognition through [EAST](https://github.com/argman/EAST) 
 * Code generation
+  * Repititive component recognition
   * DOM tree construction
   * HTML + CSS generation
 
-![UI Components detection result](https://github.com/MulongXie/UI2CODE/blob/master/demo/demo.png)
+![UI Components detection result](https://github.com/MulongXie/UI2CODE/blob/master/Element-Detection/data/demo/demo.png)
