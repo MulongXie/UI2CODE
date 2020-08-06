@@ -211,11 +211,11 @@ def is_same_alignment(compo_a, compo_b, max_gap, flag='line'):
         if row_min_s < row_max_s:
             # close distance
             if col_min_s < col_max_s or \
-                    (0 < col_min_b - col_max_a < max_gap) or (0 < col_min_a - col_max_b < max_gap):
+                    (0 <= col_min_b - col_max_a < max_gap) or (0 <= col_min_a - col_max_b < max_gap):
                 return True
     elif flag == 'paragraph':
         if col_min_s < col_max_s:
             if row_min_s < row_max_s or \
-                    (0 < row_min_b - row_max_a < max_gap) or (0 < row_min_a - row_max_b < max_gap):
+                    (0 <= row_min_b - row_max_a < max_gap) or (0 <= row_min_a - row_max_b < max_gap):
                 return True
     return False
