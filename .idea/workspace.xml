@@ -3,38 +3,47 @@
   <component name="ChangeListManager">
     <list default="true" id="2918ab5b-5438-425a-92ad-fcba5152d254" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code-Generation/Repetition-Recog-NonText.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Code-Generation/Repetition-Recog-NonText.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code-Generation/Repetition-Recog-Text.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Code-Generation/Repetition-Recog-Text.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code-Generation/compo.json" beforeDir="false" afterPath="$PROJECT_DIR$/Code-Generation/compo.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Element-Detection/cnn/CNN.py" beforeDir="false" afterPath="$PROJECT_DIR$/Element-Detection/cnn/CNN.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Element-Detection/config/CONFIG.py" beforeDir="false" afterPath="$PROJECT_DIR$/Element-Detection/config/CONFIG.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Element-Detection/data/demo/demo.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/Background/0.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Element-Detection/data/output/clips/Background/0.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/ImageButton/13.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/ImageButton/8.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/ImageView/10.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/ImageView/11.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/ImageView/12.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/ImageView/15.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Element-Detection/data/output/clips/ImageView/15.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/ImageView/16.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Element-Detection/data/output/clips/ImageView/16.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/ImageView/18.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/ImageView/2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/ImageView/20.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/ImageView/22.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Element-Detection/data/output/clips/ImageView/22.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/ImageView/23.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Element-Detection/data/output/clips/ImageView/23.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/ImageView/3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/ImageView/4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/ImageView/7.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Element-Detection/data/output/clips/ImageView/7.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/SeekBar/1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/TextView/0.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/TextView/14.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/TextView/17.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Element-Detection/data/output/clips/TextView/17.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/TextView/19.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/TextView/21.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Element-Detection/data/output/clips/TextView/21.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/TextView/24.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/TextView/5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/TextView/6.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Element-Detection/data/output/clips/TextView/6.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/TextView/9.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Element-Detection/data/output/clips/TextView/9.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/Compo/11.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Element-Detection/data/output/clips/Compo/11.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/Compo/12.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/Compo/14.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/Compo/15.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/Compo/16.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/Compo/21.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/Compo/22.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/Compo/23.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/Compo/24.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/Compo/25.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/Compo/3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Element-Detection/data/output/clips/Compo/3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/Compo/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/Compo/9.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Element-Detection/data/output/clips/Compo/9.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/Text/0.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/Text/1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Element-Detection/data/output/clips/Text/1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/Text/10.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Element-Detection/data/output/clips/Text/10.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/Text/13.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/Text/17.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/Text/18.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/Text/19.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/Text/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/Text/20.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/Text/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/Text/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/Text/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/Text/8.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Element-Detection/data/output/clips/Text/8.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/clips/bkg.png" beforeDir="false" afterPath="$PROJECT_DIR$/Element-Detection/data/output/clips/bkg.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/compo.json" beforeDir="false" afterPath="$PROJECT_DIR$/Element-Detection/data/output/compo.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/ip/result.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Element-Detection/data/output/ip/result.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/ocr/result.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Element-Detection/data/output/ocr/result.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Element-Detection/data/output/result.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Element-Detection/data/output/result.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Element-Detection/detect_compo/ip_region_proposal.py" beforeDir="false" afterPath="$PROJECT_DIR$/Element-Detection/detect_compo/ip_region_proposal.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Element-Detection/detect_compo/lib_ip/ip_detection.py" beforeDir="false" afterPath="$PROJECT_DIR$/Element-Detection/detect_compo/lib_ip/ip_detection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Element-Detection/merge.py" beforeDir="false" afterPath="$PROJECT_DIR$/Element-Detection/merge.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Element-Detection/run_single.py" beforeDir="false" afterPath="$PROJECT_DIR$/Element-Detection/run_single.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,12 +61,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-11" />
-    <option name="y" value="-11" />
-    <option name="width" value="1943" />
-    <option name="height" value="1043" />
-  </component>
+  <component name="JupyterTrust" id="2ce0fe3c-0081-4dca-a6a6-b1219d650764" />
   <component name="ProjectId" id="1f4DqOlerYNnLpHE3Gs4SamXiqu" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -71,12 +75,18 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../UIED-WebAPP/backend/uied/detect_compo/ip_region_proposal.py" />
+    <property name="last_opened_file_path" value="E:/Temp/UI2CODE" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
-    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/../UIED-WebAPP/backend/uied/detect_compo/ip_region_proposal.py" />
+    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/../UIED/merge.py" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\git_file\github\doing\UI2CODE\Element-Detection\data\input" />
+    </key>
   </component>
   <component name="RunManager" selected="Python.run_single (1)">
-    <configuration name="main_single" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="alignment_recognition_text" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="UI2CODE" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -84,12 +94,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Code-Generation" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main_single.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Code-Generation/alignment_recognition_text.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -98,7 +108,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="main_txt" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="alignment_recognizition" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="UI2CODE" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -106,12 +116,34 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Code-Generation" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main_txt.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Code-Generation/alignment_recognizition.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="merge" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="UI2CODE" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Element-Detection" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Element-Detection/merge.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -142,7 +174,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="run_single" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="test (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="UI2CODE" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -150,34 +182,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/UIED" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Element-Detection" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/UIED/run_single.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="UI2CODE" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Element-Detection/test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -187,19 +197,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.main_single" />
-      <item itemvalue="Python.main_txt" />
-      <item itemvalue="Python.test" />
-      <item itemvalue="Python.run_single" />
       <item itemvalue="Python.run_single (1)" />
+      <item itemvalue="Python.test (1)" />
+      <item itemvalue="Python.merge" />
+      <item itemvalue="Python.alignment_recognizition" />
+      <item itemvalue="Python.alignment_recognition_text" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.run_single (1)" />
-        <item itemvalue="Python.run_single" />
-        <item itemvalue="Python.main_single" />
-        <item itemvalue="Python.main_txt" />
-        <item itemvalue="Python.test" />
+        <item itemvalue="Python.test (1)" />
+        <item itemvalue="Python.alignment_recognition_text" />
+        <item itemvalue="Python.alignment_recognizition" />
+        <item itemvalue="Python.merge" />
       </list>
     </recent_temporary>
   </component>
@@ -216,7 +226,13 @@
       <workItem from="1595468662747" duration="837000" />
       <workItem from="1595470203304" duration="2250000" />
       <workItem from="1595478058522" duration="62000" />
-      <workItem from="1595481953798" duration="4983000" />
+      <workItem from="1595481953798" duration="22926000" />
+      <workItem from="1595719509363" duration="3396000" />
+      <workItem from="1595810199961" duration="97360000" />
+      <workItem from="1596328887937" duration="8266000" />
+      <workItem from="1596414677704" duration="3614000" />
+      <workItem from="1596499313352" duration="11000" />
+      <workItem from="1596685656561" duration="2727000" />
     </task>
     <servers />
   </component>
@@ -224,38 +240,72 @@
     <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="-318" y="219" width="1736" height="856" key="DiffContextDialog" timestamp="1595488421953">
+    <state x="3881" y="166" width="1736" height="733" maximized="true" key="DiffContextDialog" timestamp="1596418246675">
+      <screen x="3840" y="0" width="1280" height="984" />
+    </state>
+    <state x="154" y="49" width="1736" height="856" key="DiffContextDialog/1920.-64.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1596088123965" />
+    <state x="3881" y="166" width="1736" height="733" maximized="true" key="DiffContextDialog/1920.0.1280.693/3840.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1596418246675" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1596692259489">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="-318" y="219" width="1736" height="856" key="DiffContextDialog/1920.0.1280.693/3840.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1595488421953" />
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1595488393743">
+    <state x="740" y="275" key="FileChooserDialogImpl/1920.-64.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1595723141021" />
+    <state x="740" y="275" key="FileChooserDialogImpl/1920.0.1280.693/0.0.1920.1040/3840.0.1280.984@0.0.1920.1040" timestamp="1596692259489" />
+    <state x="740" y="275" key="FileChooserDialogImpl/1920.0.1280.693/3840.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1596499322353" />
+    <state width="1877" height="149" key="GridCell.Tab.0.bottom" timestamp="1596692261288">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/1920.0.1280.693/3840.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1595488393743" />
-    <state width="1877" height="283" key="GridCell.Tab.0.bottom" timestamp="1595488187550">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
+    <state width="1237" height="149" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1596147195797" />
+    <state width="1877" height="348" key="GridCell.Tab.0.bottom/1920.-64.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1596195616170" />
+    <state width="1237" height="149" key="GridCell.Tab.0.bottom/1920.-64.1280.693/0.0.1920.1040@1920.-64.1280.693" timestamp="1596158703232" />
+    <state width="1877" height="149" key="GridCell.Tab.0.bottom/1920.0.1280.693/0.0.1920.1040/3840.0.1280.984@0.0.1920.1040" timestamp="1596692261288" />
     <state width="1877" height="283" key="GridCell.Tab.0.bottom/1920.0.1280.693/3840.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1595488187550" />
-    <state width="1877" height="283" key="GridCell.Tab.0.center" timestamp="1595488187549">
+    <state width="1237" height="167" key="GridCell.Tab.0.bottom/1920.0.1280.693/3840.0.1280.984/0.0.1920.1040@1920.0.1280.693" timestamp="1595824666543" />
+    <state width="1877" height="149" key="GridCell.Tab.0.center" timestamp="1596692261288">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1237" height="149" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1596147195795" />
+    <state width="1877" height="348" key="GridCell.Tab.0.center/1920.-64.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1596195616170" />
+    <state width="1237" height="149" key="GridCell.Tab.0.center/1920.-64.1280.693/0.0.1920.1040@1920.-64.1280.693" timestamp="1596158703230" />
+    <state width="1877" height="149" key="GridCell.Tab.0.center/1920.0.1280.693/0.0.1920.1040/3840.0.1280.984@0.0.1920.1040" timestamp="1596692261288" />
     <state width="1877" height="283" key="GridCell.Tab.0.center/1920.0.1280.693/3840.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1595488187549" />
-    <state width="1877" height="283" key="GridCell.Tab.0.left" timestamp="1595488187549">
+    <state width="1237" height="167" key="GridCell.Tab.0.center/1920.0.1280.693/3840.0.1280.984/0.0.1920.1040@1920.0.1280.693" timestamp="1595824666543" />
+    <state width="1877" height="149" key="GridCell.Tab.0.left" timestamp="1596692261288">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1237" height="149" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1596147195794" />
+    <state width="1877" height="348" key="GridCell.Tab.0.left/1920.-64.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1596195616170" />
+    <state width="1237" height="149" key="GridCell.Tab.0.left/1920.-64.1280.693/0.0.1920.1040@1920.-64.1280.693" timestamp="1596158703228" />
+    <state width="1877" height="149" key="GridCell.Tab.0.left/1920.0.1280.693/0.0.1920.1040/3840.0.1280.984@0.0.1920.1040" timestamp="1596692261288" />
     <state width="1877" height="283" key="GridCell.Tab.0.left/1920.0.1280.693/3840.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1595488187549" />
-    <state width="1877" height="283" key="GridCell.Tab.0.right" timestamp="1595488187550">
+    <state width="1237" height="167" key="GridCell.Tab.0.left/1920.0.1280.693/3840.0.1280.984/0.0.1920.1040@1920.0.1280.693" timestamp="1595824666543" />
+    <state width="1877" height="149" key="GridCell.Tab.0.right" timestamp="1596692261288">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1237" height="149" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1596147195796" />
+    <state width="1877" height="348" key="GridCell.Tab.0.right/1920.-64.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1596195616170" />
+    <state width="1237" height="149" key="GridCell.Tab.0.right/1920.-64.1280.693/0.0.1920.1040@1920.-64.1280.693" timestamp="1596158703231" />
+    <state width="1877" height="149" key="GridCell.Tab.0.right/1920.0.1280.693/0.0.1920.1040/3840.0.1280.984@0.0.1920.1040" timestamp="1596692261288" />
     <state width="1877" height="283" key="GridCell.Tab.0.right/1920.0.1280.693/3840.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1595488187550" />
+    <state width="1237" height="167" key="GridCell.Tab.0.right/1920.0.1280.693/3840.0.1280.984/0.0.1920.1040@1920.0.1280.693" timestamp="1595824666543" />
     <state x="461" y="165" key="SettingsEditor" timestamp="1595482381018">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="165" key="SettingsEditor/1920.0.1280.693/3840.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1595482381018" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1595901186716">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/1920.0.1280.693/0.0.1920.1040/3840.0.1280.984@0.0.1920.1040" timestamp="1595901186716" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/UI2CODE$run_single__1_.coverage" NAME="run_single (1) Coverage Results" MODIFIED="1595488187539" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Element-Detection" />
+    <SUITE FILE_PATH="coverage/UI2CODE$run_single__1_.coverage" NAME="run_single (1) Coverage Results" MODIFIED="1596687815345" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Element-Detection" />
+    <SUITE FILE_PATH="coverage/UI2CODE$merge.coverage" NAME="merge Coverage Results" MODIFIED="1596014128234" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Element-Detection" />
+    <SUITE FILE_PATH="coverage/UI2CODE$test.coverage" NAME="test Coverage Results" MODIFIED="1595646467720" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/UI2CODE$alignment_recognition_text.coverage" NAME="alignment_recognition_text Coverage Results" MODIFIED="1596151479862" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Code-Generation" />
     <SUITE FILE_PATH="coverage/UI2CODE$main_single.coverage" NAME="main_single Coverage Results" MODIFIED="1595468735301" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/UI2CODE$run_single.coverage" NAME="run_single Coverage Results" MODIFIED="1595471750322" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/UIED" />
+    <SUITE FILE_PATH="coverage/UI2CODE$ip_region_proposal.coverage" NAME="ip_region_proposal Coverage Results" MODIFIED="1595660992489" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Element-Detection/detect_compo" />
+    <SUITE FILE_PATH="coverage/UI2CODE$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1596189401169" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Element-Detection" />
+    <SUITE FILE_PATH="coverage/UI2CODE$Repition_recognizer.coverage" NAME="Repition_recognizer Coverage Results" MODIFIED="1595822580951" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Code-Generation" />
+    <SUITE FILE_PATH="coverage/UI2CODE$alignment_recognizition.coverage" NAME="alignment_recognizition Coverage Results" MODIFIED="1596147167501" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Code-Generation" />
   </component>
 </project>
