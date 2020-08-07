@@ -9,21 +9,23 @@ from config.CONFIG_UIED import Config
 C = Config()
 
 
-def merge_intersected_corner(compos, org):
+def merge_intersected_corner(compos, org, max_gap=(0, 0)):
     changed = False
-    new_compos= []
+    new_compos = []
     Compo.compos_update(compos, org.shape)
     for i in range(len(compos)):
         merged = False
+        cur_compo = compos[i]
         for j in range(len(new_compos)):
-            relation = compos[i].compo_relation(new_compos[j])
-            if relation == 2 or relation == -1:
-                # draw.draw_bounding_box(org, [compos[i], new_compos[j]], name='b-merge', show=True)
-                new_compos[j].compo_merge(compos[i])
+            relation = cur_compo.compo_relation(new_compos[j], max_gap)
+            # draw.draw_bounding_box(org, [cur_compo, new_compos[j]], name='b-merge', show=True)
+            if relation != 0:
+                new_compos[j].compo_merge(cur_compo)
+                cur_compo = new_compos[j]
                 # draw.draw_bounding_box(org, [new_compos[j]], name='a-merge', show=True)
                 merged = True
                 changed = True
-                break
+                # break
         if not merged:
             new_compos.append(compos[i])
 
@@ -282,7 +284,7 @@ def compo_filter(compos, min_area):
     for compo in compos:
         if compo.height * compo.width < min_area:
             continue
-        if compo.width / compo.height > 25 or compo.height / compo.height > 20:
+        if compo.width / compo.height > 25 or compo.height / compo.width > 15:
             continue
         compos_new.append(compo)
     return compos_new
