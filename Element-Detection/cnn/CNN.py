@@ -63,7 +63,7 @@ class CNN:
             self.model_path = 'E:/Mulong/Model/rico_compos/cnn-rico-1.h5'
             self.class_map = ['Button', 'CheckBox', 'Chronometer', 'EditText', 'ImageButton', 'ImageView',
                               'ProgressBar', 'RadioButton', 'RatingBar', 'SeekBar', 'Spinner', 'Switch',
-                              'ToggleButton', 'VideoView', 'TextView']  # ele-14
+                              'ToggleButton', 'VideoView', 'Text']  # ele-14
             self.image_shape = (64, 64, 3)
         elif classifier_type == 'Image':
             self.model_path = 'E:/Mulong/Model/rico_compos/cnn-image-1.h5'
