@@ -1,6 +1,6 @@
 # UI2CODE - A Computer Vision Based Reverse Engineering of Graphical User Interface
 
-> This project is still ongoing, while the UI element detection part is useable and can be download in [this repo](https://github.com/MulongXie/UIED.git). Besides, I implemented a web app of GUI element detection based on our algorithm, you are welcome to have a try http://www.uied.online.
+> This project is still ongoing, while the UI element detection part is useable and can be download in [this repo of UIED](https://github.com/MulongXie/UIED.git). Besides, I implemented a web app of GUI element detection based on our algorithm, you are welcome to have a try http://www.uied.online.
 
 ## What is it?
 
