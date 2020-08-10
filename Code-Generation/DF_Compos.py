@@ -1,7 +1,7 @@
 import json
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
+import copy
 import cv2
 from random import randint as rint
 from sklearn.cluster import DBSCAN
@@ -17,6 +17,9 @@ class DF_Compos:
         self.img_file = img_file
         self.img = cv2.imread(self.img_file)
         self.img_shape = (self.compos_dataframe.iloc[0].width, self.compos_dataframe.iloc[0].height)
+
+    def copy(self):
+        return copy.deepcopy(self)
 
     def reload_compos(self, json_file=None):
         if json_file is None:
