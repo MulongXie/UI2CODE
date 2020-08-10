@@ -26,10 +26,34 @@ def match_two_groups(g1, g2, max_pos_bias):
                 if abs(c1.row_min - c2.row_min) < max_pos_bias:
                     match_num += 1
                     break
-
     if match_num >= min(len(g1), len(g2)):
         return True
     return False
+
+
+def pair_matching(groups1, groups2):
+    pairs = []
+    mark = np.full(len(groups2), False)
+    for i, g1 in enumerate(groups1):
+        for j, g2 in enumerate(groups2):
+            if g1.alignment == g2.alignment and abs(g1.compos_number - g2.compos_number) <= 2:
+                if match_two_groups(g1, g2, 10):
+                    pairs.append([g1, g2])
+                    print('Pair:', g1.id, g2.id)
+                    mark[j] = True
+                    break
+    return pairs
+
+
+def pair_visualization(pairs, img, img_shape, show_method='line'):
+    if show_method == 'line':
+        for pair in pairs:
+            board = draw.visualize(img, pair[0].compos_dataframe, img_shape, show=False)
+            draw.visualize(board, pair[1].compos_dataframe)
+    elif show_method == 'block':
+        for pair in pairs:
+            board = draw.visualize_block(img, pair[0].compos_dataframe, img_shape, show=False)
+            draw.visualize_block(board, pair[1].compos_dataframe)
 
 
 class Group:
