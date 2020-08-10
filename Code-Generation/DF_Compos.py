@@ -6,6 +6,9 @@ import cv2
 from random import randint as rint
 from sklearn.cluster import DBSCAN
 
+from Group import Group
+import draw
+
 
 class DF_Compos:
     def __init__(self, json_file, img_file):
@@ -70,7 +73,8 @@ class DF_Compos:
             elif show_method == 'block':
                 self.visualize_block(tag, tag)
 
-    def group_by_clusters(self, cluster, new_groups=True, show=True, show_method='block'):
+    def group_by_clusters(self, cluster, alignment,
+                          new_groups=True, show=True, show_method='block'):
         compos = self.compos_dataframe
         if 'group' not in compos.columns or new_groups:
             self.compos_dataframe['group'] = -1
@@ -82,6 +86,7 @@ class DF_Compos:
         for i in groups:
             if len(groups[i]) > 1:
                 self.compos_dataframe.loc[list(groups[i]), 'group'] = group_id
+                self.compos_dataframe.loc[list(groups[i]), 'alignment'] = alignment
                 group_id += 1
         if show:
             name = cluster if type(cluster) != list else '+'.join(cluster)
@@ -101,7 +106,8 @@ class DF_Compos:
             return 1
         return 2
 
-    def group_by_clusters_conflict(self, cluster, prev_cluster, show=True, show_method='block'):
+    def group_by_clusters_conflict(self, cluster, prev_cluster, alignment,
+                                   show=True, show_method='block'):
         compos = self.compos_dataframe
         group_id = compos['group'].max() + 1
 
@@ -112,16 +118,17 @@ class DF_Compos:
                 for j in list(groups[i]):
                     if compos.loc[j, 'group'] == -1:
                         compos.loc[j, 'group'] = group_id
+                        compos.loc[j, 'alignment'] = alignment
                     # conflict raised if a component can be grouped into multiple groups
                     # then double check it by distance to the mean area of the groups
                     else:
                         # keep in the previous group if the it is the only member in a new group
                         if member_num <= 1:
                             continue
-
                         # close to the current cluster
                         if self.close_distance_to_cluster_mean_area(j, cluster, prev_cluster) == 1:
                             compos.loc[j, 'group'] = group_id
+                            compos.loc[j, 'alignment'] = alignment
                         else:
                             member_num -= 1
                 group_id += 1
@@ -133,33 +140,24 @@ class DF_Compos:
                 self.visualize_block(attr='group', name=name)
 
     def visualize(self, attr='class', name='board'):
-        img = cv2.resize(self.img, self.img_shape)
-        board = img.copy()
-        for i in range(len(self.compos_dataframe)):
-            compo = self.compos_dataframe.iloc[i]
-            board = cv2.rectangle(board, (compo.column_min, compo.row_min), (compo.column_max, compo.row_max), (255, 0, 0))
-            board = cv2.putText(board, str(compo[attr]), (compo.column_min + 5, compo.row_min + 20),
-                                cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255), 1)
-        cv2.imshow(name, board)
-        cv2.waitKey()
-        cv2.destroyAllWindows()
+        draw.visualize(self.img, self.compos_dataframe, self.img_shape, attr, name)
 
     def visualize_block(self, attr='class', name='board'):
-        colors = {}
-        img = cv2.resize(self.img, self.img_shape)
-        board = img.copy()
-        for i in range(len(self.compos_dataframe)):
-            compo = self.compos_dataframe.iloc[i]
-            if compo[attr] == -1:
-                board = cv2.rectangle(board, (compo.column_min, compo.row_min), (compo.column_max, compo.row_max),
-                                      (rint(0, 255), rint(0, 255), rint(0, 255)), -1)
+        draw.visualize_block(self.img, self.compos_dataframe, self.img_shape, attr, name)
+
+    def cvt_groups(self, group_name, group_category):
+        compos = self.compos_dataframe
+        groups = []
+
+        g = compos.groupby(group_name).groups
+
+        for i in g:
+            if i == -1 or len(g[i]) <= 1:
                 continue
-            elif compo[attr] not in colors:
-                colors[compo[attr]] = (rint(0, 255), rint(0, 255), rint(0, 255))
-            board = cv2.rectangle(board, (compo.column_min, compo.row_min), (compo.column_max, compo.row_max),
-                                      colors[compo[attr]], -1)
-            board = cv2.putText(board, str(compo[attr]), (compo.column_min + 5, compo.row_min + 10),
-                                cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255), 1)
-        cv2.imshow(name, board)
-        cv2.waitKey()
-        cv2.destroyAllWindows()
+            g_comp_ids = g[i]
+            g_comp_df = compos.loc[g_comp_ids]
+            alignment = g_comp_df.iloc[0].alignment
+
+            group = Group(i, group_category, alignment, g_comp_ids, g_comp_df)
+            groups.append(group)
+        return groups
