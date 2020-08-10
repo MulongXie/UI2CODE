@@ -5,9 +5,9 @@ def recog_repetition_nontext(compos, show=True):
     compos_cp = compos.copy()
     compos_cp.select_by_class(['Compo', 'Background'], replace=True)
 
-    compos_cp.cluster_dbscan_by_attr('center_column', eps=5, show=show, show_method='line')
-    compos_cp.cluster_dbscan_by_attr('center_row', eps=5, show=show, show_method='line')
-    compos_cp.cluster_dbscan_by_attr('area', eps=200, show=show, show_method='line')
+    compos_cp.cluster_dbscan_by_attr('center_column', eps=5, show=show, show_method='block')
+    compos_cp.cluster_dbscan_by_attr('center_row', eps=5, show=show, show_method='block')
+    compos_cp.cluster_dbscan_by_attr('area', eps=200, show=show, show_method='block')
 
     compos_cp.group_by_clusters(cluster=['cluster_area', 'cluster_center_column'], show=show, new_groups=True)
     compos_cp.group_by_clusters(cluster=['cluster_area', 'cluster_center_row'], show=show, new_groups=False, show_method='block')

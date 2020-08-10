@@ -32,6 +32,7 @@ class DF_Compos:
         df = pd.DataFrame(columns=['id', 'column_min', 'column_max', 'row_min', 'row_max',
                                    'center', 'center_column', 'center_row', 'height', 'width', 'area', 'class'])
         for i, compo in enumerate(self.compos_json):
+            compo['id'] = i
             compo['area'] = compo['height'] * compo['width']
             compo['center'] = ((compo['column_min'] + compo['column_max']) / 2, (compo['row_min'] + compo['row_max']) / 2)
             compo['center_column'] = compo['center'][0]
@@ -157,7 +158,7 @@ class DF_Compos:
                 colors[compo[attr]] = (rint(0, 255), rint(0, 255), rint(0, 255))
             board = cv2.rectangle(board, (compo.column_min, compo.row_min), (compo.column_max, compo.row_max),
                                       colors[compo[attr]], -1)
-            board = cv2.putText(board, str(compo[attr]), (compo.column_min + 5, compo.row_min + 20),
+            board = cv2.putText(board, str(compo[attr]), (compo.column_min + 5, compo.row_min + 10),
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255), 1)
         cv2.imshow(name, board)
         cv2.waitKey()
