@@ -66,39 +66,6 @@ class DF_Compos:
             elif show_method == 'block':
                 self.visualize_block(tag, tag)
 
-    def visualize(self, attr='class', name='board'):
-        img = cv2.resize(self.img, self.img_shape)
-        board = img.copy()
-        for i in range(len(self.compos_dataframe)):
-            compo = self.compos_dataframe.iloc[i]
-            board = cv2.rectangle(board, (compo.column_min, compo.row_min), (compo.column_max, compo.row_max), (255, 0, 0))
-            board = cv2.putText(board, str(compo[attr]), (compo.column_min + 5, compo.row_min + 20),
-                                cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255), 1)
-        cv2.imshow(name, board)
-        cv2.waitKey()
-        cv2.destroyAllWindows()
-
-    def visualize_block(self, attr='class', name='board'):
-        colors = {}
-        img = cv2.resize(self.img, self.img_shape)
-        board = img.copy()
-        for i in range(len(self.compos_dataframe)):
-            compo = self.compos_dataframe.iloc[i]
-            if compo[attr] == -1:
-                board = cv2.rectangle(board, (compo.column_min, compo.row_min), (compo.column_max, compo.row_max),
-                                      (rint(0, 255), rint(0, 255), rint(0, 255)), -1)
-                continue
-            elif compo[attr] not in colors:
-                colors[compo[attr]] = (rint(0, 255), rint(0, 255), rint(0, 255))
-            board = cv2.rectangle(board, (compo.column_min, compo.row_min), (compo.column_max, compo.row_max),
-                                      colors[compo[attr]], -1)
-            board = cv2.putText(board, str(compo[attr]), (compo.column_min + 5, compo.row_min + 20),
-                                cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255), 1)
-
-        cv2.imshow(name, board)
-        cv2.waitKey()
-        cv2.destroyAllWindows()
-
     def group_by_clusters(self, cluster, new_groups=True, show=True, show_method='block'):
         compos = self.compos_dataframe
         if 'group' not in compos.columns or new_groups:
@@ -154,10 +121,41 @@ class DF_Compos:
                         else:
                             member_num -= 1
                 group_id += 1
-
         if show:
             name = cluster if type(cluster) != list else '+'.join(cluster)
             if show_method == 'line':
                 self.visualize(attr='group', name=name)
             elif show_method == 'block':
                 self.visualize_block(attr='group', name=name)
+
+    def visualize(self, attr='class', name='board'):
+        img = cv2.resize(self.img, self.img_shape)
+        board = img.copy()
+        for i in range(len(self.compos_dataframe)):
+            compo = self.compos_dataframe.iloc[i]
+            board = cv2.rectangle(board, (compo.column_min, compo.row_min), (compo.column_max, compo.row_max), (255, 0, 0))
+            board = cv2.putText(board, str(compo[attr]), (compo.column_min + 5, compo.row_min + 20),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255), 1)
+        cv2.imshow(name, board)
+        cv2.waitKey()
+        cv2.destroyAllWindows()
+
+    def visualize_block(self, attr='class', name='board'):
+        colors = {}
+        img = cv2.resize(self.img, self.img_shape)
+        board = img.copy()
+        for i in range(len(self.compos_dataframe)):
+            compo = self.compos_dataframe.iloc[i]
+            if compo[attr] == -1:
+                board = cv2.rectangle(board, (compo.column_min, compo.row_min), (compo.column_max, compo.row_max),
+                                      (rint(0, 255), rint(0, 255), rint(0, 255)), -1)
+                continue
+            elif compo[attr] not in colors:
+                colors[compo[attr]] = (rint(0, 255), rint(0, 255), rint(0, 255))
+            board = cv2.rectangle(board, (compo.column_min, compo.row_min), (compo.column_max, compo.row_max),
+                                      colors[compo[attr]], -1)
+            board = cv2.putText(board, str(compo[attr]), (compo.column_min + 5, compo.row_min + 20),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255), 1)
+        cv2.imshow(name, board)
+        cv2.waitKey()
+        cv2.destroyAllWindows()
