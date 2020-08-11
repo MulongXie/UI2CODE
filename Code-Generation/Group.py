@@ -33,27 +33,32 @@ def match_two_groups(g1, g2, max_pos_bias):
 
 
 def pair_matching_between_multi_groups(groups1, groups2):
-    pairs = []
+    pairs = {}
     pair_id = 0
-    mark = np.full(len(groups2), False)
     for i, g1 in enumerate(groups1):
         for j, g2 in enumerate(groups2):
             if g1.alignment == g2.alignment and abs(g1.compos_number - g2.compos_number) <= 2:
                 if match_two_groups(g1, g2, 10):
-                    pairs.append([g1, g2])
-                    g1.compos_dataframe['pair'] = pair_id
-                    g2.compos_dataframe['pair'] = pair_id
-                    print('Pair:', g1.id, g2.id)
-                    mark[j] = True
-                    pair_id += 1
-                    break
+                    if 'pair' not in g1.compos_dataframe.columns:
+                        # hasn't paired yet, creat a new pair
+                        pair_id += 1
+                        g1.compos_dataframe['pair'] = pair_id
+                        g2.compos_dataframe['pair'] = pair_id
+                        pairs[pair_id] = [g1, g2]
+                    else:
+                        # existing pair
+                        g2.compos_dataframe['pair'] = pair_id
+                        pairs[g1.compos_dataframe.iloc[0]['pair']].append(g2)
     return pairs
 
 
-def pair_matching_within_groups(groups):
+def pair_matching_within_groups(groups, new_pairs=True):
     pairs = {}
     pair_id = 0
-    # mark = np.full(len(groups), False)
+    if new_pairs:
+        for group in groups:
+            if 'pair' in group.compos_dataframe.columns:
+                group.compos_dataframe.drop('pair', axis=1, inplace=True)
     for i, g1 in enumerate(groups):
         for j in range(i + 1, len(groups)):
             g2 = groups[j]
