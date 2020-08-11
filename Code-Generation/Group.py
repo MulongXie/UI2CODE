@@ -1,4 +1,5 @@
 import pandas as pd
+import cv2
 import numpy as np
 
 import draw
@@ -60,10 +61,10 @@ def pair_matching_within_groups(groups):
                 if match_two_groups(g1, g2, 10):
                     if 'pair' not in g1.compos_dataframe.columns:
                         # hasn't paired yet, creat a new pair
+                        pair_id += 1
                         g1.compos_dataframe['pair'] = pair_id
                         g2.compos_dataframe['pair'] = pair_id
                         pairs[pair_id] = [g1, g2]
-                        pair_id += 1
                     else:
                         # existing pair
                         g2.compos_dataframe['pair'] = pair_id
@@ -76,13 +77,16 @@ def pair_visualization(pairs, img, img_shape, show_method='line'):
     if show_method == 'line':
         for id in pairs:
             pair = pairs[id]
-            board = draw.visualize(board, pair[0].compos_dataframe, img_shape, attr='pair', show=False)
-            board = draw.visualize(board, pair[1].compos_dataframe, attr='pair')
+            for p in pair:
+                board = draw.visualize(board, p.compos_dataframe, img_shape, attr='pair', show=False)
     elif show_method == 'block':
         for id in pairs:
             pair = pairs[id]
-            board = draw.visualize_block(board, pair[0].compos_dataframe, img_shape, attr='pair', show=False)
-            board = draw.visualize_block(board, pair[1].compos_dataframe, attr='pair')
+            for p in pair:
+                board = draw.visualize_block(board, p.compos_dataframe, img_shape, attr='pair', show=False)
+    cv2.imshow('pairs', board)
+    cv2.waitKey()
+    cv2.destroyAllWindows()
 
 
 class Group:
