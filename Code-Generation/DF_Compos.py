@@ -146,7 +146,7 @@ class DF_Compos:
         draw.visualize_block(self.img, self.compos_dataframe, self.img_shape, attr, name)
 
     def cvt_groups(self, group_name, group_category):
-        compos = self.compos_dataframe
+        compos = self.compos_dataframe.drop(list(self.compos_dataframe.filter(like='cluster')), axis=1)
         groups = []
 
         g = compos.groupby(group_name).groups
