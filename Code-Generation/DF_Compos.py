@@ -148,16 +148,18 @@ class DF_Compos:
     def cvt_groups(self, group_name, group_category):
         compos = self.compos_dataframe.drop(list(self.compos_dataframe.filter(like='cluster')), axis=1)
         groups = []
-
+        no_groups = pd.DataFrame()
         g = compos.groupby(group_name).groups
 
         for i in g:
             if i == -1 or len(g[i]) <= 1:
+                no_groups = no_groups.append(compos.loc[g[i]])
                 continue
             g_comp_ids = g[i]
             g_comp_df = compos.loc[g_comp_ids]
             alignment = g_comp_df.iloc[0].alignment
-
             group = Group(i, group_category, alignment, g_comp_ids, g_comp_df)
             groups.append(group)
-        return groups
+
+        no_groups = no_groups.drop(list(no_groups.filter(like='group')), axis=1)
+        return groups, no_groups

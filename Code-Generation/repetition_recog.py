@@ -19,7 +19,7 @@ def recog_repetition_nontext(compos, show=True):
 
 def recog_repetition_text(compos, show=True):
     compos_cp = compos.copy()
-    compos_cp.select_by_class(['Text', 'Background'], replace=True)
+    compos_cp.select_by_class(['Text'], replace=True)
 
     compos_cp.cluster_dbscan_by_attr('row_min', 5, show=show, show_method='line')
     compos_cp.cluster_dbscan_by_attr('column_min', 5, show=show, show_method='line')
