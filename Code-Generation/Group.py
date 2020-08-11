@@ -50,36 +50,37 @@ def pair_matching_between_multi_groups(groups1, groups2):
 
 
 def pair_matching_within_groups(groups):
-    pairs = []
+    pairs = {}
     pair_id = 0
-    mark = np.full(len(groups), False)
+    # mark = np.full(len(groups), False)
     for i, g1 in enumerate(groups):
-        if mark[i]:
-            continue
         for j in range(i + 1, len(groups)):
-            if mark[j]:
-                continue
             g2 = groups[j]
             if g1.alignment == g2.alignment and abs(g1.compos_number - g2.compos_number) <= 2:
                 if match_two_groups(g1, g2, 10):
-                    pairs.append([g1, g2])
-                    g1.compos_dataframe['pair'] = pair_id
-                    g2.compos_dataframe['pair'] = pair_id
-                    print('Pair', g1.id, g2.id)
-                    mark[j] = True
-                    pair_id += 1
-                    break
+                    if 'pair' not in g1.compos_dataframe.columns:
+                        # hasn't paired yet, creat a new pair
+                        g1.compos_dataframe['pair'] = pair_id
+                        g2.compos_dataframe['pair'] = pair_id
+                        pairs[pair_id] = [g1, g2]
+                        pair_id += 1
+                    else:
+                        # existing pair
+                        g2.compos_dataframe['pair'] = pair_id
+                        pairs[g1.compos_dataframe.iloc[0]['pair']].append(g2)
     return pairs
 
 
 def pair_visualization(pairs, img, img_shape, show_method='line'):
     board = img.copy()
     if show_method == 'line':
-        for pair in pairs:
+        for id in pairs:
+            pair = pairs[id]
             board = draw.visualize(board, pair[0].compos_dataframe, img_shape, attr='pair', show=False)
             board = draw.visualize(board, pair[1].compos_dataframe, attr='pair')
     elif show_method == 'block':
-        for pair in pairs:
+        for id in pairs:
+            pair = pairs[id]
             board = draw.visualize_block(board, pair[0].compos_dataframe, img_shape, attr='pair', show=False)
             board = draw.visualize_block(board, pair[1].compos_dataframe, attr='pair')
 
