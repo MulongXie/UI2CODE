@@ -44,12 +44,13 @@ def pair_matching_between_multi_groups(groups1, groups2):
                         # hasn't paired yet, creat a new pair
                         pair_id += 1
                         g1.compos_dataframe['pair'] = pair_id
-                        g2.compos_dataframe['pair'] = pair_id
+                        g1.compos_dataframe['pair'].astype(int)
                         pairs[pair_id] = [g1, g2]
                     else:
                         # existing pair
-                        g2.compos_dataframe['pair'] = pair_id
                         pairs[g1.compos_dataframe.iloc[0]['pair']].append(g2)
+                    g2.compos_dataframe['pair'] = pair_id
+                    g2.compos_dataframe['pair'].astype(int)
     return pairs
 
 
@@ -70,15 +71,16 @@ def pair_matching_within_groups(groups, new_pairs=True):
                         # hasn't paired yet, creat a new pair
                         pair_id += 1
                         g1.compos_dataframe['pair'] = pair_id
-                        g2.compos_dataframe['pair'] = pair_id
+                        g1.compos_dataframe['pair'].astype(int)
                         pairs[pair_id] = [g1, g2]
                         mark[i] = True
                         mark[j] = True
                     else:
                         # existing pair
-                        g2.compos_dataframe['pair'] = pair_id
                         pairs[g1.compos_dataframe.iloc[0]['pair']].append(g2)
                         mark[j] = True
+                    g2.compos_dataframe['pair'] = pair_id
+                    g2.compos_dataframe['pair'].astype(int)
     no_pairs = []
     for i in range(len(mark)):
         if not mark[i]:
@@ -111,5 +113,7 @@ def pair_cvt_df(pairs):
         for group in pair:
             df = df.append(group.compos_dataframe, sort=False)
     df = df.sort_index()
+    df[list(df.filter(like='group'))] = df[list(df.filter(like='group'))].fillna(-1).astype(int)
+    df['pair'] = df['pair'].fillna(-1).astype(int)
     return df
 

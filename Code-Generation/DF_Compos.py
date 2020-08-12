@@ -56,6 +56,7 @@ class DF_Compos:
         clustering = DBSCAN(eps=eps, min_samples=min_samples).fit(x)
         tag = 'cluster_' + attr
         self.compos_dataframe[tag] = clustering.labels_
+        self.compos_dataframe[tag].astype(int)
         if show:
             if show_method == 'line':
                 self.visualize(tag, tag)
@@ -67,6 +68,7 @@ class DF_Compos:
         clustering = DBSCAN(eps=eps, min_samples=min_samples).fit(x)
         tag = 'cluster_' + '_'.join(attrs)
         self.compos_dataframe[tag] = clustering.labels_
+        self.compos_dataframe[tag].astype(int)
         if show:
             if show_method == 'line':
                 self.visualize(tag, tag)
@@ -88,6 +90,8 @@ class DF_Compos:
                 self.compos_dataframe.loc[list(groups[i]), 'group'] = group_id
                 self.compos_dataframe.loc[list(groups[i]), 'alignment'] = alignment
                 group_id += 1
+        self.compos_dataframe['group'].astype(int)
+
         if show:
             name = cluster if type(cluster) != list else '+'.join(cluster)
             if show_method == 'line':
@@ -132,6 +136,8 @@ class DF_Compos:
                         else:
                             member_num -= 1
                 group_id += 1
+        self.compos_dataframe['group'].astype(int)
+
         if show:
             name = cluster if type(cluster) != list else '+'.join(cluster)
             if show_method == 'line':
