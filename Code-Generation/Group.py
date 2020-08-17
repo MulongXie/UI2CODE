@@ -13,7 +13,7 @@ def groups_cvt_df(groups):
     df = pd.DataFrame()
     for group in groups:
         df = df.append(group.compos_dataframe, sort=False)
-    df = df.sort_index()
+    # df = df.sort_index()
     return df
 
 

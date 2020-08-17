@@ -9,26 +9,27 @@ from Group import *
 def match_two_groups(g1, g2, max_pos_bias):
     assert g1.alignment == g2.alignment
     alignment = g1.alignment
-    g1 = g1.compos_dataframe
-    g2 = g2.compos_dataframe
+    df1 = g1.compos_dataframe
+    df2 = g2.compos_dataframe
     match_num = 0
-    if alignment == 'h':
-        for i in range(len(g1)):
-            c1 = g1.iloc[i]
-            for j in range(len(g2)):
-                c2 = g2.iloc[j]
+    # change = False
+    for i in range(len(df1)):
+        c1 = df1.iloc[i]
+        for j in range(len(df2)):
+            c2 = df2.iloc[j]
+            if alignment == 'h':
                 if abs(c1.column_min - c2.column_min) < max_pos_bias:
                     match_num += 1
                     break
-    elif alignment == 'v':
-        for i in range(len(g1)):
-            c1 = g1.iloc[i]
-            for j in range(len(g2)):
-                c2 = g2.iloc[j]
+            elif alignment == 'v':
                 if abs(c1.row_min - c2.row_min) < max_pos_bias:
                     match_num += 1
                     break
-    if match_num >= min(len(g1), len(g2)):
+
+    # g1.compos_dataframe.loc[c1['id'], 'pair_to'] = c2['id']
+    # g2.compos_dataframe.loc[c2['id'], 'pair_to'] = c1['id']
+    # change = True
+    if match_num >= min(len(df1), len(df2)):
         return True
     return False
 
@@ -112,7 +113,7 @@ def pair_cvt_df(pairs):
         pair = pairs[i]
         for group in pair:
             df = df.append(group.compos_dataframe, sort=False)
-    df = df.sort_index()
+    # df = df.sort_index()
     df[list(df.filter(like='group'))] = df[list(df.filter(like='group'))].fillna(-1).astype(int)
     df['pair'] = df['pair'].fillna(-1).astype(int)
     return df
