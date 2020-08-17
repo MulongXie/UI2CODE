@@ -12,24 +12,26 @@ def match_two_groups(g1, g2, max_pos_bias):
     df1 = g1.compos_dataframe
     df2 = g2.compos_dataframe
     match_num = 0
-    # change = False
+    pairs = {}
     for i in range(len(df1)):
         c1 = df1.iloc[i]
         for j in range(len(df2)):
             c2 = df2.iloc[j]
             if alignment == 'h':
                 if abs(c1.column_min - c2.column_min) < max_pos_bias:
+                    pairs[c1['id']] = c2['id']
                     match_num += 1
                     break
             elif alignment == 'v':
                 if abs(c1.row_min - c2.row_min) < max_pos_bias:
+                    pairs[c1['id']] = c2['id']
                     match_num += 1
                     break
-
-    # g1.compos_dataframe.loc[c1['id'], 'pair_to'] = c2['id']
-    # g2.compos_dataframe.loc[c2['id'], 'pair_to'] = c1['id']
-    # change = True
     if match_num >= min(len(df1), len(df2)):
+        # print(pairs)
+        for i in pairs:
+            g1.compos_dataframe.loc[i, 'pair_to'] = pairs[i]
+            g2.compos_dataframe.loc[pairs[i], 'pair_to'] = i
         return True
     return False
 
