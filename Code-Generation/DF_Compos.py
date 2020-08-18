@@ -7,6 +7,7 @@ from random import randint as rint
 from sklearn.cluster import DBSCAN
 
 from Group import Group
+import repetition_recog as rep
 import draw
 
 
@@ -50,6 +51,51 @@ class DF_Compos:
             self.compos_dataframe = df
         else:
             return df
+
+    def visualize(self, attr='class', name='board'):
+        draw.visualize(self.img, self.compos_dataframe, self.img_shape, attr, name)
+
+    def visualize_block(self, attr='class', name='board'):
+        draw.visualize_block(self.img, self.compos_dataframe, self.img_shape, attr, name)
+
+    def cvt_groups(self, group_name, group_category):
+        compos = self.compos_dataframe.drop(list(self.compos_dataframe.filter(like='cluster')), axis=1)
+        groups = []
+        no_groups = pd.DataFrame()
+        g = compos.groupby(group_name).groups
+
+        for i in g:
+            if i == -1 or len(g[i]) <= 1:
+                no_groups = no_groups.append(compos.loc[g[i]])
+                continue
+            g_comp_ids = g[i]
+            g_comp_df = compos.loc[g_comp_ids]
+            alignment = g_comp_df.iloc[0].alignment
+            group = Group(i, group_category, alignment, g_comp_ids, g_comp_df)
+            groups.append(group)
+
+        no_groups = no_groups.drop(list(no_groups.filter(like='group')), axis=1)
+        return groups, no_groups
+
+    '''
+    ******************************
+    *** Repetition Recognition ***
+    ******************************
+    '''
+    def repetitive_group_recognition(self, show=False, clean_attrs=True):
+        df_nontext = rep.recog_repetition_nontext(self, show)
+        df_text = rep.recog_repetition_text(self, show)
+        df = self.compos_dataframe
+
+        df = df.merge(df_nontext, how='left')
+        df.loc[df['alignment'].isna(), 'alignment'] = df_text['alignment']
+        df = df.merge(df_text, how='left')
+
+        if clean_attrs:
+            df = df.drop(list(df.filter(like='cluster')), axis=1)
+            df = df.fillna(-1)
+            df[list(df.filter(like='group'))] = df[list(df.filter(like='group'))].astype(int)
+        self.compos_dataframe = df
 
     def cluster_dbscan_by_attr(self, attr, eps, min_samples=1, show=True, show_method='line'):
         x = np.reshape(list(self.compos_dataframe[attr]), (-1, 1))
@@ -144,28 +190,3 @@ class DF_Compos:
                 self.visualize(attr='group', name=name)
             elif show_method == 'block':
                 self.visualize_block(attr='group', name=name)
-
-    def visualize(self, attr='class', name='board'):
-        draw.visualize(self.img, self.compos_dataframe, self.img_shape, attr, name)
-
-    def visualize_block(self, attr='class', name='board'):
-        draw.visualize_block(self.img, self.compos_dataframe, self.img_shape, attr, name)
-
-    def cvt_groups(self, group_name, group_category):
-        compos = self.compos_dataframe.drop(list(self.compos_dataframe.filter(like='cluster')), axis=1)
-        groups = []
-        no_groups = pd.DataFrame()
-        g = compos.groupby(group_name).groups
-
-        for i in g:
-            if i == -1 or len(g[i]) <= 1:
-                no_groups = no_groups.append(compos.loc[g[i]])
-                continue
-            g_comp_ids = g[i]
-            g_comp_df = compos.loc[g_comp_ids]
-            alignment = g_comp_df.iloc[0].alignment
-            group = Group(i, group_category, alignment, g_comp_ids, g_comp_df)
-            groups.append(group)
-
-        no_groups = no_groups.drop(list(no_groups.filter(like='group')), axis=1)
-        return groups, no_groups

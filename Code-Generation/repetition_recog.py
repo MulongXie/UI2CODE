@@ -1,7 +1,4 @@
-from DF_Compos import DF_Compos
-
-
-def recog_repetition_nontext(compos, show=True):
+def recog_repetition_nontext(compos, show=True, inplace=True):
     compos_cp = compos.copy()
     compos_cp.select_by_class(['Compo', 'Background'], replace=True)
 
@@ -11,13 +8,14 @@ def recog_repetition_nontext(compos, show=True):
 
     compos_cp.group_by_clusters(cluster=['cluster_area', 'cluster_center_column'], alignment='v', show=show, new_groups=True)
     compos_cp.group_by_clusters(cluster=['cluster_area', 'cluster_center_row'], alignment='h', show=show, new_groups=False, show_method='block')
-
     compos_cp.compos_dataframe.rename({'group':'group_nontext'}, axis=1, inplace=True)
 
-    return compos_cp
+    df = compos_cp.compos_dataframe
+    df = df.drop(columns=['cluster_area', 'cluster_center_column', 'cluster_center_row'])
+    return df
 
 
-def recog_repetition_text(compos, show=True):
+def recog_repetition_text(compos, show=True, inplace=True):
     compos_cp = compos.copy()
     compos_cp.select_by_class(['Text'], replace=True)
 
@@ -29,7 +27,9 @@ def recog_repetition_text(compos, show=True):
 
     compos_cp.compos_dataframe.rename({'group':'group_text'}, axis=1, inplace=True)
 
-    return compos_cp
+    df = compos_cp.compos_dataframe
+    df = df.drop(columns=['cluster_column_min', 'cluster_row_min'])
+    return df
 
 
 
