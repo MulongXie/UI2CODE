@@ -10,6 +10,7 @@ from Group import Group
 import repetition_recog as rep
 import draw
 import pairing
+import List
 
 
 class DF_Compos:
@@ -204,5 +205,23 @@ class DF_Compos:
         df_all[list(df_all.filter(like='group'))] = df_all[list(df_all.filter(like='group'))].fillna(-1).astype(int)
         df_all['pair'] = df_all['pair'].fillna(-1).astype(int)
         df_all['pair_to'] = df_all['pair_to'].fillna(-1).astype(int)
-
         self.compos_dataframe = df_all
+
+    '''
+    ******************************
+    ******* List Partition *******
+    ******************************
+    '''
+    def list_item_partition(self):
+        groups = self.compos_dataframe.groupby("pair").groups
+        listed_compos = pd.DataFrame()
+        for i in groups:
+            if i == -1:
+                continue
+            group = groups[i]
+            pairing_compos = self.compos_dataframe.loc[list(group)]
+            List.gather_list_items(pairing_compos)
+            listed_compos = listed_compos.append(pairing_compos)
+
+        self.compos_dataframe = self.compos_dataframe.merge(listed_compos, how='left')
+        self.compos_dataframe['list'] = self.compos_dataframe['list'].fillna(-1).astype(int)
