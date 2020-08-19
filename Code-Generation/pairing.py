@@ -7,16 +7,14 @@ from Group import *
 
 
 def match_two_groups(g1, g2, max_pos_bias):
-    assert g1.alignment == g2.alignment
-    alignment = g1.alignment
-    df1 = g1.compos_dataframe
-    df2 = g2.compos_dataframe
+    assert g1.iloc[0]['alignment'] == g2.iloc[0]['alignment']
+    alignment = g1.iloc[0]['alignment']
     match_num = 0
     pairs = {}
-    for i in range(len(df1)):
-        c1 = df1.iloc[i]
-        for j in range(len(df2)):
-            c2 = df2.iloc[j]
+    for i in range(len(g1)):
+        c1 = g1.iloc[i]
+        for j in range(len(g2)):
+            c2 = g2.iloc[j]
             if alignment == 'h':
                 if abs(c1.column_min - c2.column_min) < max_pos_bias:
                     pairs[c1['id']] = c2['id']
@@ -27,11 +25,11 @@ def match_two_groups(g1, g2, max_pos_bias):
                     pairs[c1['id']] = c2['id']
                     match_num += 1
                     break
-    if match_num >= min(len(df1), len(df2)):
+    if match_num >= min(len(g1), len(g2)):
         # print(pairs)
         for i in pairs:
-            g1.compos_dataframe.loc[i, 'pair_to'] = pairs[i]
-            g2.compos_dataframe.loc[pairs[i], 'pair_to'] = i
+            g1.loc[i, 'pair_to'] = pairs[i]
+            g2.loc[pairs[i], 'pair_to'] = i
         return True
     return False
 
@@ -63,33 +61,44 @@ def pair_matching_within_groups(groups, new_pairs=True):
     mark = np.full(len(groups), False)
     if new_pairs:
         for group in groups:
-            if 'pair' in group.compos_dataframe.columns:
-                group.compos_dataframe.drop('pair', axis=1, inplace=True)
+            if 'pair' in group.columns:
+                group.drop('pair', axis=1, inplace=True)
     for i, g1 in enumerate(groups):
+        alignment1 = g1.iloc[0]['alignment']
         for j in range(i + 1, len(groups)):
             g2 = groups[j]
-            if g1.alignment == g2.alignment and abs(g1.compos_number - g2.compos_number) <= 2:
+            alignment2 = g2.iloc[0]['alignment']
+            if alignment1 == alignment2 and abs(len(g1) - len(g2)) <= 2:
                 if match_two_groups(g1, g2, 10):
                     if not mark[i]:
                         # hasn't paired yet, creat a new pair
                         pair_id += 1
-                        g1.compos_dataframe['pair'] = pair_id
-                        g1.compos_dataframe['pair'].astype(int)
+                        g1['pair'] = pair_id
                         pairs[pair_id] = [g1, g2]
                         mark[i] = True
                         mark[j] = True
                     else:
                         # existing pair
-                        pairs[g1.compos_dataframe.iloc[0]['pair']].append(g2)
+                        pairs[g1.iloc[0]['pair']].append(g2)
                         mark[j] = True
-                    g2.compos_dataframe['pair'] = pair_id
-                    g2.compos_dataframe['pair'].astype(int)
-    no_pairs = []
-    for i in range(len(mark)):
-        if not mark[i]:
-            no_pairs.append(groups[i])
+                    g2['pair'] = pair_id
 
-    return pairs, no_pairs
+    # no_pairs = None
+    # for i in range(len(mark)):
+    #     if not mark[i]:
+    #         if no_pairs is None:
+    #             no_pairs = groups[i]
+    #         else:
+    #             no_pairs = no_pairs.append(groups[i], sort=False)
+
+    merged_pairs = None
+    for i in pairs:
+        for group in pairs[i]:
+            if merged_pairs is None:
+                merged_pairs = group
+            else:
+                merged_pairs = merged_pairs.append(group, sort=False)
+    return merged_pairs
 
 
 def pair_visualization(pairs, img, img_shape, show_method='line'):
@@ -109,14 +118,13 @@ def pair_visualization(pairs, img, img_shape, show_method='line'):
     cv2.destroyAllWindows()
 
 
-def pair_cvt_df(pairs):
-    df = pd.DataFrame()
-    for i in pairs:
-        pair = pairs[i]
-        for group in pair:
-            df = df.append(group.compos_dataframe, sort=False)
-    # df = df.sort_index()
-    df[list(df.filter(like='group'))] = df[list(df.filter(like='group'))].fillna(-1).astype(int)
-    df['pair'] = df['pair'].fillna(-1).astype(int)
-    return df
-
+# def pair_cvt_df(pairs):
+#     df = pd.DataFrame()
+#     for i in pairs:
+#         pair = pairs[i]
+#         for group in pair:
+#             df = df.append(group.compos_dataframe, sort=False)
+#     # df = df.sort_index()
+#     df[list(df.filter(like='group'))] = df[list(df.filter(like='group'))].fillna(-1).astype(int)
+#     df['pair'] = df['pair'].fillna(-1).astype(int)
+#     return df

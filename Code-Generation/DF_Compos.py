@@ -9,6 +9,7 @@ from sklearn.cluster import DBSCAN
 from Group import Group
 import repetition_recog as rep
 import draw
+import pairing
 
 
 class DF_Compos:
@@ -52,30 +53,14 @@ class DF_Compos:
         else:
             return df
 
-    def visualize(self, attr='class', name='board'):
-        draw.visualize(self.img, self.compos_dataframe, self.img_shape, attr, name)
+    def visualize(self, gather_attr='class', name='board'):
+        draw.visualize(self.img, self.compos_dataframe, self.img_shape, gather_attr, name)
 
-    def visualize_block(self, attr='class', name='board'):
-        draw.visualize_block(self.img, self.compos_dataframe, self.img_shape, attr, name)
+    def visualize_block(self, gather_attr='class', name='board'):
+        draw.visualize_block(self.img, self.compos_dataframe, self.img_shape, gather_attr, name)
 
-    def cvt_groups(self, group_name, group_category):
-        compos = self.compos_dataframe.drop(list(self.compos_dataframe.filter(like='cluster')), axis=1)
-        groups = []
-        no_groups = pd.DataFrame()
-        g = compos.groupby(group_name).groups
-
-        for i in g:
-            if i == -1 or len(g[i]) <= 1:
-                no_groups = no_groups.append(compos.loc[g[i]])
-                continue
-            g_comp_ids = g[i]
-            g_comp_df = compos.loc[g_comp_ids]
-            alignment = g_comp_df.iloc[0].alignment
-            group = Group(i, group_category, alignment, g_comp_ids, g_comp_df)
-            groups.append(group)
-
-        no_groups = no_groups.drop(list(no_groups.filter(like='group')), axis=1)
-        return groups, no_groups
+    def to_csv(self, file):
+        self.compos_dataframe.to_csv(file)
 
     '''
     ******************************
@@ -141,9 +126,9 @@ class DF_Compos:
         if show:
             name = cluster if type(cluster) != list else '+'.join(cluster)
             if show_method == 'line':
-                self.visualize(attr='group', name=name)
+                self.visualize(gather_attr='group', name=name)
             elif show_method == 'block':
-                self.visualize_block(attr='group', name=name)
+                self.visualize_block(gather_attr='group', name=name)
 
     def close_distance_to_cluster_mean_area(self, compo_index, cluster1, cluster2):
         compos = self.compos_dataframe
@@ -156,8 +141,7 @@ class DF_Compos:
             return 1
         return 2
 
-    def group_by_clusters_conflict(self, cluster, prev_cluster, alignment,
-                                   show=True, show_method='block'):
+    def group_by_clusters_conflict(self, cluster, prev_cluster, alignment, show=True, show_method='block'):
         compos = self.compos_dataframe
         group_id = compos['group'].max() + 1
 
@@ -187,6 +171,38 @@ class DF_Compos:
         if show:
             name = cluster if type(cluster) != list else '+'.join(cluster)
             if show_method == 'line':
-                self.visualize(attr='group', name=name)
+                self.visualize(gather_attr='group', name=name)
             elif show_method == 'block':
-                self.visualize_block(attr='group', name=name)
+                self.visualize_block(gather_attr='group', name=name)
+
+    '''
+    ******************************
+    ******** Pair groups *********
+    ******************************
+    '''
+    def split_groups(self, group_name):
+        compos = self.compos_dataframe
+        groups = []
+        g = compos.groupby(group_name).groups
+        for i in g:
+            if i == -1 or len(g[i]) <= 1:
+                continue
+            groups.append(compos.loc[g[i]])
+        return groups
+
+    def pair_groups(self):
+        # gather by same groups
+        groups_nontext = self.split_groups('group_nontext')
+        groups_text = self.split_groups('group_text')
+        all_groups = groups_nontext + groups_text
+
+        # pairing between groups
+        pairs = pairing.pair_matching_within_groups(all_groups)
+
+        # combine together
+        df_all = self.compos_dataframe.merge(pairs, how='left')
+        df_all[list(df_all.filter(like='group'))] = df_all[list(df_all.filter(like='group'))].fillna(-1).astype(int)
+        df_all['pair'] = df_all['pair'].fillna(-1).astype(int)
+        df_all['pair_to'] = df_all['pair_to'].fillna(-1).astype(int)
+
+        self.compos_dataframe = df_all
