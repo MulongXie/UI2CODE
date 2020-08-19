@@ -6,11 +6,10 @@ import cv2
 from random import randint as rint
 from sklearn.cluster import DBSCAN
 
-from Group import Group
-import repetition_recog as rep
+import repetition_recognition as rep
 import draw
 import pairing
-import List
+import list_item_gethering as lst
 
 
 class DF_Compos:
@@ -220,7 +219,7 @@ class DF_Compos:
                 continue
             group = groups[i]
             pairing_compos = self.compos_dataframe.loc[list(group)]
-            List.gather_list_items(pairing_compos)
+            lst.gather_list_items(pairing_compos)
             listed_compos = listed_compos.append(pairing_compos)
 
         self.compos_dataframe = self.compos_dataframe.merge(listed_compos, how='left')

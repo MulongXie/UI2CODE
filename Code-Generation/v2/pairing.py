@@ -3,7 +3,6 @@ import cv2
 import numpy as np
 
 import draw
-from Group import *
 
 
 def match_two_groups(g1, g2, max_pos_bias):

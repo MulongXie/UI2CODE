@@ -1,3 +1,4 @@
+
 def recog_repetition_nontext(compos, show=True, inplace=True):
     compos_cp = compos.copy()
     compos_cp.select_by_class(['Compo', 'Background'], replace=True)
