@@ -25,7 +25,6 @@ def match_two_groups(g1, g2, max_pos_bias):
                     match_num += 1
                     break
     if match_num >= min(len(g1), len(g2)):
-        # print(pairs)
         for i in pairs:
             g1.loc[i, 'pair_to'] = pairs[i]
             g2.loc[pairs[i], 'pair_to'] = i
@@ -81,14 +80,6 @@ def pair_matching_within_groups(groups, new_pairs=True):
                         pairs[g1.iloc[0]['pair']].append(g2)
                         mark[j] = True
                     g2['pair'] = pair_id
-
-    # no_pairs = None
-    # for i in range(len(mark)):
-    #     if not mark[i]:
-    #         if no_pairs is None:
-    #             no_pairs = groups[i]
-    #         else:
-    #             no_pairs = no_pairs.append(groups[i], sort=False)
 
     merged_pairs = None
     for i in pairs:

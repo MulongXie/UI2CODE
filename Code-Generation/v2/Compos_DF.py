@@ -12,7 +12,7 @@ import pairing
 import list_item_gethering as lst
 
 
-class DF_Compos:
+class ComposDF:
     def __init__(self, json_file, img_file):
         self.json_file = json_file
         self.json_data = json.load(open(self.json_file))
@@ -201,9 +201,17 @@ class DF_Compos:
 
         # combine together
         df_all = self.compos_dataframe.merge(pairs, how='left')
-        df_all[list(df_all.filter(like='group'))] = df_all[list(df_all.filter(like='group'))].fillna(-1).astype(int)
-        df_all['pair'] = df_all['pair'].fillna(-1).astype(int)
-        df_all['pair_to'] = df_all['pair_to'].fillna(-1).astype(int)
+
+        # add alignment between list items
+        df_all.rename({'alignment': 'alignment_list'}, axis=1, inplace=True)
+        df_all.loc[list(df_all[df_all['alignment_list'] == 'v']['id']), 'alignment_item'] = 'h'
+        df_all.loc[list(df_all[df_all['alignment_list'] == 'h']['id']), 'alignment_item'] = 'v'
+
+        # fill nan and change type
+        df_all = df_all.fillna(-1)
+        df_all[list(df_all.filter(like='group'))] = df_all[list(df_all.filter(like='group'))].astype(int)
+        df_all['pair'] = df_all['pair'].astype(int)
+        df_all['pair_to'] = df_all['pair_to'].astype(int)
         self.compos_dataframe = df_all
 
     '''
