@@ -4,12 +4,13 @@ from Compo_HTML import CompoHTML
 
 def gather_blocks(compos):
     blocks = []
-    groups = compos.groupby('pair').groups
+    groups = compos.groupby('group').groups
     for i in groups:
-        if i == -1:
+        if i == -1 or len(groups[i]) == 1:
             continue
         block_compos = compos.loc[groups[i]]
-        block_compos.rename({"pair": "block"}, axis=1, inplace=True)
+        block_compos.rename({"pair": "list"}, axis=1, inplace=True)
+        block_compos.rename({"group": "block"}, axis=1, inplace=True)
         block = Block(i, block_compos)
         blocks.append(block)
     return blocks
@@ -23,7 +24,7 @@ class Block:
         self.list_item_groups = []
 
     def group_list_items(self):
-        groups = self.compos_df.groupby('list').groups
+        groups = self.compos_df.groupby('list_item').groups
         for i in groups:
             if i == -1:
                 continue
@@ -43,3 +44,6 @@ class Block:
                     self.compos_html.append(CompoHTML(item, margin_left=int(item['column_min'] - list_item.iloc[i - 1]['column_max'])))
                 if alignment == 'v':
                     self.compos_html.append(CompoHTML(item, margin_top=int(item['row_min'] - list_item.iloc[i - 1]['row_max'])))
+
+    def generate_class_css(self):
+        pass
