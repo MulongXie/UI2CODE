@@ -27,8 +27,8 @@ def gather_list_items(compos):
             list_items[compo['id']] = [compo, compo_paird]
             item_ids[compo['id']] = [compo['id'], compo['pair_to']]
 
-            compos.loc[compo['id'], 'list'] = compo['id']
-            compos.loc[compo['pair_to'], 'list'] = compo['id']
+            compos.loc[compo['id'], 'list_item'] = compo['id']
+            compos.loc[compo['pair_to'], 'list_item'] = compo['id']
             mark += [compo['id'], compo['pair_to']]
 
         elif compo['id'] in mark and compo['pair_to'] not in mark:
@@ -36,7 +36,7 @@ def gather_list_items(compos):
             list_items[index].append(compos.loc[compo['pair_to']])
             item_ids[index].append(compo['pair_to'])
 
-            compos.loc[compo['pair_to'], 'list'] = index
+            compos.loc[compo['pair_to'], 'list_item'] = index
             mark.append(compo['pair_to'])
 
         elif compo['id'] not in mark and compo['pair_to'] in mark:
@@ -44,8 +44,8 @@ def gather_list_items(compos):
             list_items[index].append(compos.loc[compo['id']])
             item_ids[index].append(compo['id'])
 
-            compos.loc[compo['id'], 'list'] = index
+            compos.loc[compo['id'], 'list_item'] = index
             mark.append(compo['id'])
 
-    compos['list'] = compos['list'].astype(int)
+    compos['list_item'] = compos['list_item'].astype(int)
     return list_items

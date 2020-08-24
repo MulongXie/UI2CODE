@@ -79,7 +79,14 @@ class ComposDF:
         if clean_attrs:
             df = df.drop(list(df.filter(like='cluster')), axis=1)
             df = df.fillna(-1)
-            df[list(df.filter(like='group'))] = df[list(df.filter(like='group'))].astype(int)
+
+            for i in range(len(df)):
+                if df.iloc[i]['group_nontext'] != -1:
+                    df.loc[i, 'group'] = 'nt-' + str(int(df.iloc[i]['group_nontext']))
+                elif df.iloc[i]['group_text'] != -1:
+                    df.loc[i, 'group'] = 't-' + str(int(df.iloc[i]['group_text']))
+
+            # df[list(df.filter(like='group'))] = df[list(df.filter(like='group'))].astype(int)
         self.compos_dataframe = df
 
     def cluster_dbscan_by_attr(self, attr, eps, min_samples=1, show=True, show_method='line'):
@@ -195,6 +202,7 @@ class ComposDF:
         groups_nontext = self.split_groups('group_nontext')
         groups_text = self.split_groups('group_text')
         all_groups = groups_nontext + groups_text
+        # all_groups = self.split_groups('group')
 
         # pairing between groups
         pairs = pairing.pair_matching_within_groups(all_groups)
@@ -206,10 +214,11 @@ class ComposDF:
         df_all.rename({'alignment': 'alignment_list'}, axis=1, inplace=True)
         df_all.loc[list(df_all[df_all['alignment_list'] == 'v']['id']), 'alignment_item'] = 'h'
         df_all.loc[list(df_all[df_all['alignment_list'] == 'h']['id']), 'alignment_item'] = 'v'
+        df_all = df_all.drop(columns=['group_nontext', 'group_text'])
 
         # fill nan and change type
         df_all = df_all.fillna(-1)
-        df_all[list(df_all.filter(like='group'))] = df_all[list(df_all.filter(like='group'))].astype(int)
+        # df_all[list(df_all.filter(like='group'))] = df_all[list(df_all.filter(like='group'))].astype(int)
         df_all['pair'] = df_all['pair'].astype(int)
         df_all['pair_to'] = df_all['pair_to'].astype(int)
         self.compos_dataframe = df_all
@@ -231,4 +240,4 @@ class ComposDF:
             listed_compos = listed_compos.append(pairing_compos)
 
         self.compos_dataframe = self.compos_dataframe.merge(listed_compos, how='left')
-        self.compos_dataframe['list'] = self.compos_dataframe['list'].fillna(-1).astype(int)
+        self.compos_dataframe['list_item'] = self.compos_dataframe['list_item'].fillna(-1).astype(int)
