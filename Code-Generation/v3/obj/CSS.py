@@ -13,7 +13,7 @@ class CSS:
         css = json.dumps(self.attrs, indent=4)
         css = css.replace('_', '-')
         css = css.replace(',', ';')
-        self.css = self.name + css
+        self.css = self.name + css + '\n'
 
     def add_attrs(self, attrs):
         self.attrs.update(attrs)
