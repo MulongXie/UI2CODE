@@ -7,7 +7,7 @@ class CompoHTML:
         self.compo_df = compo_df
         self.attrs = kwargs
 
-        self.html_class = None
+        self.class_name = None
         self.html_id = None
         self.tag = None
         self.content = None
@@ -43,8 +43,8 @@ class CompoHTML:
         html = "<" + self.tag
         if self.html_id is not None:
             html += " \"id=" + self.html_id + "\""
-        if self.html_class is not None:
-            html += " \"class=" + self.html_class + "\""
+        if self.class_name is not None:
+            html += " \"class=" + self.class_name + "\""
         html += ">"
 
         # body

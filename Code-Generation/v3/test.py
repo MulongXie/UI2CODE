@@ -1,4 +1,7 @@
-l = [('t-7', 499, 591), ('nt-4', 460, 493), ('t-6', 120, 591)]
+s = '''<div "class=nt-4">
+</div>
+<div "class=t-7">
+</div>
+'''
 
-l = sorted(l, key=lambda x: x[1], reverse=True)
-print(l)
+print(s.replace('\n', '\n\t'))

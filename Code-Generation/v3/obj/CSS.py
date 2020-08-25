@@ -5,6 +5,7 @@ class CSS:
     def __init__(self, name, **kwargs):
         self.name = name
         self.attrs = kwargs
+
         self.css = None
         self.generate_css()
 
@@ -13,3 +14,7 @@ class CSS:
         css = css.replace('_', '-')
         css = css.replace(',', ';')
         self.css = self.name + css
+
+    def add_attrs(self, attrs):
+        self.attrs.update(attrs)
+        self.generate_css()

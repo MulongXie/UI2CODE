@@ -229,15 +229,16 @@ class ComposDF:
     ******************************
     '''
     def list_item_partition(self):
-        groups = self.compos_dataframe.groupby("pair").groups
+        compos = self.compos_dataframe
+        groups = compos.groupby("pair").groups
         listed_compos = pd.DataFrame()
         for i in groups:
             if i == -1:
                 continue
             group = groups[i]
-            pairing_compos = self.compos_dataframe.loc[list(group)]
-            lst.gather_list_items(pairing_compos)
-            listed_compos = listed_compos.append(pairing_compos)
+            paired_compos = self.compos_dataframe.loc[list(group)]
+            lst.gather_list_items(paired_compos)
+            listed_compos = listed_compos.append(paired_compos)
 
         self.compos_dataframe = self.compos_dataframe.merge(listed_compos, how='left')
         self.compos_dataframe['list_item'] = self.compos_dataframe['list_item'].fillna(-1).astype(int)
