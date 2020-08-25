@@ -6,10 +6,10 @@ import cv2
 from random import randint as rint
 from sklearn.cluster import DBSCAN
 
-import repetition_recognition as rep
-import draw
-import pairing
-import list_item_gethering as lst
+import lib.repetition_recognition as rep
+import lib.draw as draw
+import lib.pairing as pairing
+import lib.list_item_gethering as lst
 
 
 class ComposDF:

@@ -1,4 +1,5 @@
 import pandas as pd
+from obj.CSS import CSS
 
 
 def gather_lists(compos):
@@ -25,13 +26,31 @@ class List:
         self.list_type = list_type
         self.list_alignment = list_alignment
 
-    def group_layout(self):
-        groups = self.compos_df.groupby('group').groups
+    def get_groups_layouts(self):
+        compos = self.compos_df
+        groups = compos.groupby('group').groups
         layouts = []
-        for i in groups:
-            layouts.append((i, self.compos_df.loc[groups[i], 'column_min'].min()))
-        print(layouts)
+        if self.list_alignment == 'v':
+            for i in groups:
+                layouts.append((i, compos.loc[groups[i], 'column_min'].min(), compos.loc[groups[i], 'column_max'].max()))
+        elif self.list_alignment == 'h':
+            for i in groups:
+                layouts.append(
+                    (i, compos.loc[groups[i], 'row_min'].min(), compos.loc[groups[i], 'row_max'].max()))
+        layouts = sorted(layouts, key=lambda k: k[1])
+        return layouts
 
-    def generate_item_css(self):
+    def generate_element_css(self):
+        pass
+
+    def generate_list_css(self):
+        css = {}
         if self.list_type == 'multiple':
-            pass
+            groups_layouts = self.get_groups_layouts()
+            if self.list_alignment == 'v':
+                for i in range(1, len(groups_layouts)):
+                    css[groups_layouts[i][0]] = CSS('.' + groups_layouts[i][0], margin_left=str(int(groups_layouts[i][1] - groups_layouts[i - 1][2])))
+            if self.list_alignment == 'h':
+                for i in range(1, len(groups_layouts)):
+                    css[groups_layouts[i][0]] = CSS('.' + groups_layouts[i][0], margin_top=str(int(groups_layouts[i][1] - groups_layouts[i - 1][2])))
+        return css

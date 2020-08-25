@@ -1,5 +1,5 @@
 import pandas as pd
-from Compo_HTML import CompoHTML
+from obj.Compo_HTML import CompoHTML
 
 
 def gather_blocks(compos):

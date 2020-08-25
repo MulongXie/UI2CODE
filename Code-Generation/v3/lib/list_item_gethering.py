@@ -1,5 +1,4 @@
 import pandas as pd
-import draw
 
 
 def search_list_item_by_compoid(item_ids, compo_id):
