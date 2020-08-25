@@ -1,6 +1,7 @@
 import pandas as pd
 from obj.CSS import CSS
 from obj.HTML import HTML
+import lib.draw as draw
 
 
 def gather_lists(compos):
@@ -17,7 +18,6 @@ def gather_lists(compos):
         if i == -1 or len(groups[i]) == 1:
             continue
         lists.append(List(compos.loc[groups[i]], 'single', compos.loc[groups[i][0]]['alignment_list']))
-        compos = compos.drop(list(groups[i]))
     return lists
 
 
@@ -27,7 +27,13 @@ class List:
         self.list_type = list_type
         self.list_alignment = list_alignment
 
+        self.list_html = None
+        self.list_css = None
+
     def get_groups_layouts(self):
+        '''
+        :return: ‘left and right for vertical list groups / top and bottom for horizontal groups’
+        '''
         compos = self.compos_df
         groups = compos.groupby('group').groups
         layouts = []
@@ -63,19 +69,28 @@ class List:
         return css
 
     def generate_list_html(self):
-        tags = {'Compo': 'div', 'Text':'div'}
+        tags = {'Compo': 'div', 'Text': 'div'}
         if self.list_type == 'multiple':
             groups = self.compos_df.groupby('list_item').groups
-            list_item = ''
+            list_item_html = ''
             for i in groups:
                 list_items = self.compos_df.loc[groups[i]]
-                elements = ''
+                elements_html = ''
                 for j in range(len(list_items)):
                     item = list_items.iloc[j]
                     # html of elements
-                    elements += HTML(tag=tags[item['class']], class_name=item['group']).html
+                    elements_html += HTML(tag=tags[item['class']], class_name=item['group']).html
                 # html of list_items
-                list_item += HTML(tag='li', children=elements).html
-            list_html = HTML(tag='ul', children=list_item)
-            
+                list_item_html += HTML(tag='li', children=elements_html).html
+            list_html = HTML(tag='ul', children=list_item_html)
+
+        else:
+            list_item_html = ''
+            for i in range(len(self.compos_df)):
+                item = self.compos_df.iloc[i]
+                elements_html = HTML(tag=tags[item['class']], class_name=item['group']).html
+                list_item_html += HTML(tag='li', children=elements_html).html
+            list_html = HTML(tag='ul', children=list_item_html)
+
+        self.list_html = list_html
         return list_html
