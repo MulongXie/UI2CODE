@@ -21,9 +21,9 @@ class HTML:
         # start
         html = "<" + self.tag
         if self.id is not None:
-            html += " \"id=" + self.id + "\""
+            html += " id=\"" + self.id + "\""
         if self.class_name is not None:
-            html += " \"class=" + self.class_name + "\""
+            html += " class=\"" + self.class_name + "\""
         html += ">\n"
 
         # body
