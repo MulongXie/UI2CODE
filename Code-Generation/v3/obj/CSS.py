@@ -10,10 +10,11 @@ class CSS:
         self.generate_css()
 
     def generate_css(self):
-        css = json.dumps(self.attrs, indent=4)
+        css = '{\n'
+        for a in self.attrs:
+            css += '\t' + a + ': ' + self.attrs[a] + ';\n'
         css = css.replace('_', '-')
-        css = css.replace(',', ';')
-        self.css = self.name + css + '\n'
+        self.css = self.name + css + '}\n'
 
     def add_attrs(self, attrs):
         self.attrs.update(attrs)
