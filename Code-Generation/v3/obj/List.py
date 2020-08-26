@@ -38,7 +38,7 @@ class List:
 
     def get_groups_layouts(self):
         '''
-        :return: [(group name, left/top, right/bottom, compo class)]
+        :return: [(group name, left/top, right/bottom, width, height, compo class)]
         ‘left and right for vertical list groups / top and bottom for horizontal groups’
         '''
         compos = self.compos_df
@@ -46,10 +46,16 @@ class List:
         layouts = []
         if self.list_alignment == 'v':
             for i in groups:
-                layouts.append((i, compos.loc[groups[i], 'column_min'].min(), compos.loc[groups[i], 'column_max'].max(), compos.loc[groups[i][0], 'class']))
+                layouts.append((i, compos.loc[groups[i], 'column_min'].min(), compos.loc[groups[i], 'column_max'].max(),
+                                str(int(compos.loc[groups[i], 'width'].mean())) + 'px',
+                                str(int(compos.loc[groups[i], 'height'].mean())) + 'px',
+                                compos.loc[groups[i][0], 'class']))
         elif self.list_alignment == 'h':
             for i in groups:
-                layouts.append((i, compos.loc[groups[i], 'row_min'].min(), compos.loc[groups[i], 'row_max'].max(), compos.loc[groups[i][0], 'class']))
+                layouts.append((i, compos.loc[groups[i], 'row_min'].min(), compos.loc[groups[i], 'row_max'].max(),
+                                str(int(compos.loc[groups[i], 'width'].mean())) + 'px',
+                                str(int(compos.loc[groups[i], 'height'].mean())) + 'px',
+                                compos.loc[groups[i][0], 'class']))
         layouts = sorted(layouts, key=lambda k: k[1])
         return layouts
 
@@ -58,17 +64,24 @@ class List:
         backgrounds = {'Compo': 'grey', 'Text':'green'}
         if self.list_type == 'multiple':
             groups_layouts = self.get_groups_layouts()
-            css += CSS('.' + groups_layouts[0][0], background=backgrounds[groups_layouts[0][3]]).css
+            css += CSS('.' + groups_layouts[0][0],
+                       width=groups_layouts[0][3],
+                       height=groups_layouts[0][4],
+                       background=backgrounds[groups_layouts[0][5]]).css
             if self.list_alignment == 'v':
                 for i in range(1, len(groups_layouts)):
                     css += CSS('.' + groups_layouts[i][0],
                                margin_left=str(int(groups_layouts[i][1] - groups_layouts[i - 1][2])) + 'px',
-                               background=backgrounds[groups_layouts[i][3]]).css
+                               width=groups_layouts[i][3],
+                               height=groups_layouts[i][4],
+                               background=backgrounds[groups_layouts[i][5]]).css
             if self.list_alignment == 'h':
                 for i in range(1, len(groups_layouts)):
                     css += CSS('.' + groups_layouts[i][0],
                                margin_top=str(int(groups_layouts[i][1] - groups_layouts[i - 1][2])) + 'px',
-                               background=backgrounds[groups_layouts[i][3]]).css
+                               width=groups_layouts[i][3],
+                               height=groups_layouts[i][4],
+                               background=backgrounds[groups_layouts[i][5]]).css
         self.list_css = css
 
     def generate_list_html(self):

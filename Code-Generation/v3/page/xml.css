@@ -1,32 +1,50 @@
 .nt-4{
 	background: grey;
+	height: 33px;
+	width: 33px;
 }
 .t-7{
-	background: green;
 	margin-left: 6px;
+	background: green;
+	height: 24px;
+	width: 83px;
 }
 .nt-5{
 	background: grey;
+	height: 58px;
+	width: 103px;
 }
 .t-8{
-	background: green;
 	margin-left: 10px;
+	background: green;
+	height: 40px;
+	width: 249px;
 }
 .t-1{
 	background: green;
+	height: 6px;
+	width: 14px;
 }
 .nt-8{
 	background: grey;
+	height: 17px;
 	margin-top: 5px;
+	width: 18px;
 }
 .nt-7{
 	background: grey;
+	height: 5px;
 	margin-top: -5px;
+	width: 15px;
 }
 .nt-9{
 	background: grey;
+	height: 37px;
+	width: 78px;
 }
 .t-2{
 	background: green;
+	height: 13px;
 	margin-top: 1px;
+	width: 73px;
 }
