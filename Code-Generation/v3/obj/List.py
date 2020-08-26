@@ -61,27 +61,19 @@ class List:
 
     def generate_list_css(self):
         css = ''
-        backgrounds = {'Compo': 'grey', 'Text':'green'}
+        backgrounds = {'Compo': 'grey', 'Text': 'green'}
         if self.list_type == 'multiple':
             groups_layouts = self.get_groups_layouts()
-            css += CSS('.' + groups_layouts[0][0],
-                       width=groups_layouts[0][3],
-                       height=groups_layouts[0][4],
-                       background=backgrounds[groups_layouts[0][5]]).css
-            if self.list_alignment == 'v':
-                for i in range(1, len(groups_layouts)):
-                    css += CSS('.' + groups_layouts[i][0],
-                               margin_left=str(int(groups_layouts[i][1] - groups_layouts[i - 1][2])) + 'px',
-                               width=groups_layouts[i][3],
-                               height=groups_layouts[i][4],
-                               background=backgrounds[groups_layouts[i][5]]).css
-            if self.list_alignment == 'h':
-                for i in range(1, len(groups_layouts)):
-                    css += CSS('.' + groups_layouts[i][0],
-                               margin_top=str(int(groups_layouts[i][1] - groups_layouts[i - 1][2])) + 'px',
-                               width=groups_layouts[i][3],
-                               height=groups_layouts[i][4],
-                               background=backgrounds[groups_layouts[i][5]]).css
+            for i in range(0, len(groups_layouts)):
+                c = CSS('.' + groups_layouts[i][0],
+                        width=groups_layouts[i][3],
+                        height=groups_layouts[i][4],
+                        background=backgrounds[groups_layouts[i][5]])
+                if i > 0 and self.list_alignment == 'v':
+                    c.add_attrs(margin_left=str(int(groups_layouts[i][1] - groups_layouts[i - 1][2])) + 'px')
+                if i > 0 and self.list_alignment == 'h':
+                    c.add_attrs(margin_top=str(int(groups_layouts[i][1] - groups_layouts[i - 1][2])) + 'px')
+                css += c.css
         self.list_css = css
 
     def generate_list_html(self):

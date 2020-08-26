@@ -16,6 +16,6 @@ class CSS:
         css = css.replace('_', '-')
         self.css = self.name + css + '}\n'
 
-    def add_attrs(self, attrs):
+    def add_attrs(self, **attrs):
         self.attrs.update(attrs)
         self.generate_css()

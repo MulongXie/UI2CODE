@@ -1,50 +1,50 @@
 .nt-4{
+	width: 33px;
 	background: grey;
 	height: 33px;
-	width: 33px;
 }
 .t-7{
-	margin-left: 6px;
-	background: green;
-	height: 24px;
 	width: 83px;
+	background: green;
+	margin-left: 6px;
+	height: 24px;
 }
 .nt-5{
+	width: 103px;
 	background: grey;
 	height: 58px;
-	width: 103px;
 }
 .t-8{
-	margin-left: 10px;
-	background: green;
-	height: 40px;
 	width: 249px;
+	background: green;
+	margin-left: 10px;
+	height: 40px;
 }
 .t-1{
+	width: 14px;
 	background: green;
 	height: 6px;
-	width: 14px;
 }
 .nt-8{
-	background: grey;
-	height: 17px;
-	margin-top: 5px;
 	width: 18px;
+	background: grey;
+	margin-top: 5px;
+	height: 17px;
 }
 .nt-7{
-	background: grey;
-	height: 5px;
-	margin-top: -5px;
 	width: 15px;
+	background: grey;
+	margin-top: -5px;
+	height: 5px;
 }
 .nt-9{
+	width: 78px;
 	background: grey;
 	height: 37px;
-	width: 78px;
 }
 .t-2{
-	background: green;
-	height: 13px;
-	margin-top: 1px;
 	width: 73px;
+	background: green;
+	margin-top: 1px;
+	height: 13px;
 }
