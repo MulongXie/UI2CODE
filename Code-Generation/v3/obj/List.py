@@ -21,6 +21,12 @@ def gather_lists(compos):
     return lists
 
 
+def generate_lists_html_css(lists):
+    for li in lists:
+        li.generate_list_html()
+        li.generate_list_css()
+
+
 class List:
     def __init__(self, compos_df, list_type, list_alignment):
         self.compos_df = compos_df

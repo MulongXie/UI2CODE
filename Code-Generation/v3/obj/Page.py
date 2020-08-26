@@ -1,38 +1,53 @@
 
 class Page:
-    def __init__(self, compos_html, compos_css, title='Title'):
-        self.compos_html = compos_html
-        self.compos_css = compos_css
-        self.title = title
+    def __init__(self, compos_html=None, compos_css=None, title='Title'):
+        if compos_html is None:
+            self.compos_html = []
+        else:
+            self.compos_html = compos_html if type(compos_html) is list else [compos_html]
+        if compos_css is None:
+            self.compos_css = []
+        else:
+            self.compos_css = compos_css if type(compos_css) is list else [compos_css]
 
+        self.title = title
         self.html_header = None
         self.html_body = None
-        self.html_end = "</body></html>"
+        self.html_end = "</body>\n</html>"
 
-        self.page_html = None
-        self.page_css = None
-
-    def assembly_html_body(self):
-        body = "<body>"
-        if type(self.compos_html) is list:
-            for html in self.compos_html:
-                body += html
-        else:
-            body += self.compos_html
-
-    def add_compo_html(self, compos_html):
-        if type(compos_html) is list:
-            for html in compos_html:
-                self.html_body += html
-        else:
-            self.html_body += compos_html
+        self.page_html = ''
+        self.page_css = ''
         self.generate_page_html()
+        self.generate_page_css()
 
     def generate_page_html(self):
-        self.html_header = "<!DOCTYPE html>\n<html>\n<head><title>" + self.title + "</title></head>"
+        # header
+        self.html_header = "<!DOCTYPE html>\n<html>\n<head>\n\t<title>" + self.title + "</title>\n</head>\n"
+        # body
+        self.html_body = "<body>\n"
+        for html in self.compos_html:
+            self.html_body += html
+        # assembly
         self.page_html = self.html_header + self.html_body + self.html_end
 
     def generate_page_css(self):
-        if type(self.compos_css) is list:
-            for css in self.compos_css:
+        self.page_css = ''
+        for css in self.compos_css:
+            self.page_css += css
 
+    def add_compo_html(self, compos_html):
+        compos_html = compos_html if type(compos_html) is list else [compos_html]
+        self.compos_html += compos_html
+        for html in compos_html:
+            self.html_body += html
+        self.page_html = self.html_header + self.html_body + self.html_end
+
+    def add_compo_css(self, compo_css):
+        compo_css = compo_css if type(compo_css) is list else [compo_css]
+        self.compos_css += compo_css
+        for css in compo_css:
+            self.page_css += css
+
+    def add_compo(self, compo_html, compo_css):
+        self.add_compo_html(compo_html)
+        self.add_compo_css(compo_css)
