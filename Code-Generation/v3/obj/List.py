@@ -24,7 +24,9 @@ def gather_lists(compos):
 def generate_lists_html_css(lists):
     for li in lists:
         li.generate_html_list()
-        li.generate_css_list()
+
+        li.generate_css_by_element()
+        li.generate_css_by_item_group()
 
 
 class List:
@@ -32,7 +34,10 @@ class List:
         self.compos_df = compos_df
         self.list_type = list_type
         self.list_alignment = list_alignment
+        self.list_items = []
 
+        # self.compos_html = {}
+        self.compos_css = {}
         self.list_html = None
         self.list_css = None
 
@@ -52,7 +57,6 @@ class List:
                 # html of list_items
                 list_item_html += HTML(tag='li', children=elements_html).html
             list_html = HTML(tag='ul', children=list_item_html).html
-
         elif self.list_type == 'single':
             list_item_html = ''
             for i in range(len(self.compos_df)):
@@ -62,38 +66,71 @@ class List:
             list_html = HTML(tag='ul', children=list_item_html).html
         self.list_html = list_html
 
-    def sort_item_groups(self):
+    def generate_css_by_element(self):
         '''
-        :return: [(group name, compo ids in the group, left/top)]
-        ‘left and right for vertical list groups / top and bottom for horizontal groups’
+        css is defined by class, which same as group name in compo_df
         '''
         compos = self.compos_df
         groups = compos.groupby('group').groups
-        sorted_groups = []
-        if self.list_alignment == 'v':
-            for i in groups:
-                sorted_groups.append((i, groups[i], compos.loc[groups[i], 'column_min'].min()))
-        elif self.list_alignment == 'h':
-            for i in groups:
-                sorted_groups.append((i, groups[i], compos.loc[groups[i], 'row_min'].min()))
-        sorted_groups = sorted(sorted_groups, key=lambda k: k[2])
-        return sorted_groups
-
-    def generate_css_list(self):
-        compos = self.compos_df
         css = ''
         backgrounds = {'Compo': 'grey', 'Text': 'green'}
+        for i in groups:
+            c = CSS('.' + i,
+                    width=str(int(compos.loc[groups[i], 'width'].mean())) + 'px',
+                    height=str(int(compos.loc[groups[i], 'height'].mean())) + 'px',
+                    background=backgrounds[compos.loc[groups[i][0], 'class']])
+            self.compos_css['.' + i] = c
+            css += c.css
+        self.list_css = css
+
+    def generate_css_by_item_group(self):
+        compos = self.compos_df
+        def sort_item_groups():
+            '''
+            from left to right for vertical list groups / from top to bottom for horizontal groups
+            :return: [(group name, compo ids in the group, left/top)]
+            '''
+            groups = compos.groupby('group').groups
+            s_groups = []
+            if self.list_alignment == 'v':
+                for i in groups:
+                    s_groups.append((i, groups[i], compos.loc[groups[i], 'column_min'].min()))
+            elif self.list_alignment == 'h':
+                for i in groups:
+                    s_groups.append((i, groups[i], compos.loc[groups[i], 'row_min'].min()))
+            s_groups = sorted(s_groups, key=lambda k: k[2])
+            return s_groups
+
+        css = ''
         if self.list_type == 'multiple':
-            sorted_groups = self.sort_item_groups()
+            sorted_groups = sort_item_groups()
             ids = [s[1] for s in sorted_groups]
             for i in range(0, len(sorted_groups)):
-                c = CSS('.' + sorted_groups[i][0],
-                        width=str(int(compos.loc[ids[i], 'width'].mean())) + 'px',
-                        height=str(int(compos.loc[ids[i], 'height'].mean())) + 'px',
-                        background=backgrounds[compos.loc[ids[i][0], 'class']])
+                name = '.' + sorted_groups[i][0]
                 if i > 0 and self.list_alignment == 'v':
-                    c.add_attrs(margin_left=str(int(compos.loc[ids[i], 'column_min'].min() - compos.loc[ids[i-1], 'column_max'].max())) + 'px')
+                    self.compos_css[name].add_attrs(margin_left=str(int(compos.loc[ids[i], 'column_min'].min() - compos.loc[ids[i-1], 'column_max'].max())) + 'px')
                 if i > 0 and self.list_alignment == 'h':
-                    c.add_attrs(margin_top=str(int(compos.loc[ids[i], 'row_min'].min() - compos.loc[ids[i-1], 'row_max'].max())) + 'px')
-                css += c.css
+                    self.compos_css[name].add_attrs(margin_top=str(int(compos.loc[ids[i], 'row_min'].min() - compos.loc[ids[i-1], 'row_max'].max())) + 'px')
+                css += self.compos_css[name].css
         self.list_css = css
+
+    def generate_css_by_list_item(self):
+        compos = self.compos_df
+        def sort_list_item():
+            '''
+            from top to bottom for vertical list groups / from left to right for horizontal groups
+            :return: [(group name, compo ids in the group, left/top)]
+            '''
+            groups = compos.groupby('list_item').groups
+            s_groups = []
+            if self.list_alignment == 'v':
+                for i in groups:
+                    s_groups.append((i, groups[i], compos.loc[groups[i], 'row_min'].min()))
+            elif self.list_alignment == 'h':
+                for i in groups:
+                    s_groups.append((i, groups[i], compos.loc[groups[i], 'column_min'].min()))
+            s_groups = sorted(s_groups, key=lambda k: k[2])
+            return s_groups
+
+        if self.list_type == 'multiple':
+            pass
