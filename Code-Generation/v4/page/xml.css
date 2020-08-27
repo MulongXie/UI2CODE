@@ -1,70 +1,90 @@
 .nt-4{
-	background: grey;
 	height: 33px;
+	float: left;
+	background: grey;
 	width: 33px;
 }
 .t-7{
-	background: green;
 	margin-left: 6px;
 	height: 24px;
+	float: left;
+	background: green;
 	width: 83px;
 }
+.li-0{
+	height: 33px;
+	margin-top: 6px;
+}
 .t-8{
-	background: green;
 	margin-left: 10px;
 	height: 40px;
+	float: left;
+	background: green;
 	width: 249px;
 }
 .nt-5{
-	background: grey;
 	height: 58px;
+	float: left;
+	background: grey;
 	width: 103px;
 }
-.nt-8{
-	background: grey;
-	height: 17px;
-	width: 18px;
-	margin-top: 5px;
+.li-1{
+	height: 59px;
+	margin-top: 10px;
 }
 .t-1{
-	background: green;
 	height: 6px;
+	background: green;
 	width: 14px;
 }
 .nt-7{
-	background: grey;
 	height: 5px;
-	width: 15px;
 	margin-top: -5px;
-}
-.nt-9{
 	background: grey;
-	height: 37px;
-	width: 78px;
+	width: 15px;
+}
+.nt-8{
+	height: 17px;
+	margin-top: 5px;
+	background: grey;
+	width: 18px;
+}
+.li-2{
+	height: 24px;
+	margin-top: 20px;
 }
 .t-2{
-	background: green;
 	height: 13px;
-	width: 73px;
 	margin-top: 1px;
-}
-.t-0{
 	background: green;
-	height: 6px;
-	width: 26px;
+	width: 73px;
+}
+.nt-9{
+	height: 37px;
+	background: grey;
+	width: 78px;
+}
+.li-3{
+	height: 37px;
+	margin-top: 4px;
+}
+.t-6{
+	height: 13px;
+	background: green;
+	width: 76px;
 }
 .nt-6{
-	background: grey;
 	height: 11px;
+	background: grey;
 	width: 34px;
 }
 .nt-3{
-	background: grey;
 	height: 8px;
+	background: grey;
 	width: 7px;
 }
-.t-6{
+.t-0{
+	height: 6px;
 	background: green;
-	height: 13px;
-	width: 76px;
+	width: 26px;
 }
