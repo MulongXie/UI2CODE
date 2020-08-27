@@ -33,7 +33,7 @@ def generate_lists_html_css(lists):
 
         li.generate_css_by_element_group()
         li.generate_css_by_item_group()
-        li.generate_css_by_list_item()
+        li.generate_css_list_item()
 
 
 class List:
@@ -131,17 +131,19 @@ class List:
         if self.list_type == 'multiple':
             sorted_groups = sort_item_groups()
             ids = [s[1] for s in sorted_groups]
-            for i in range(1, len(sorted_groups)):
-                name = '.' + sorted_groups[i][0]
-                if self.list_alignment == 'v':
-                    self.compos_css[name].add_attrs(margin_left=str(int(compos.loc[ids[i], 'column_min'].min() - compos.loc[ids[i-1], 'column_max'].max())) + 'px')
-                if self.list_alignment == 'h':
-                    self.compos_css[name].add_attrs(margin_top=str(int(compos.loc[ids[i], 'row_min'].min() - compos.loc[ids[i-1], 'row_max'].max())) + 'px')
+            if self.list_alignment == 'v':
+                self.compos_css['.' + sorted_groups[0][0]].add_attrs(float='left')
+                for i in range(1, len(sorted_groups)):
+                    self.compos_css['.' + sorted_groups[i][0]].add_attrs(margin_left=str(int(compos.loc[ids[i], 'column_min'].min() - compos.loc[ids[i-1], 'column_max'].max())) + 'px',
+                                                                         float='left')
+            if self.list_alignment == 'h':
+                for i in range(1, len(sorted_groups)):
+                    self.compos_css['.' + sorted_groups[i][0]].add_attrs(margin_top=str(int(compos.loc[ids[i], 'row_min'].min() - compos.loc[ids[i-1], 'row_max'].max())) + 'px')
         self.css_script = ''
         for i in self.compos_css:
             self.css_script += self.compos_css[i].css
 
-    def generate_css_by_list_item(self):
+    def generate_css_list_item(self):
         def sort_list_item():
             '''
             from top to bottom for vertical list groups / from left to right for horizontal groups
@@ -164,7 +166,9 @@ class List:
             gaps = []
             for i in range(1, len(sorted_groups)):
                 gaps.append(sorted_groups[i][2] - sorted_groups[i-1][3])
-            margin_top = int(np.mean(gaps))
-            name = 'li-' + str(self.list_id)
-            self.compos_css[name] = CSS('.' + name, margin_top=str(margin_top) + 'px')
+            margin_top = int(min(gaps))
+            height = int(max([compos.loc[g[1], 'height'].max() for g in sorted_groups]))
+
+            name = '.li-' + str(self.list_id)
+            self.compos_css[name] = CSS(name, margin_top=str(margin_top) + 'px', height=str(height) + 'px')
             self.css_script += self.compos_css[name].css
