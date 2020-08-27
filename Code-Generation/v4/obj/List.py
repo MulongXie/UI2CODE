@@ -1,4 +1,6 @@
 import pandas as pd
+import numpy as np
+
 from obj.CSS import CSS
 from obj.HTML import HTML
 from obj.Compo_HTML import CompoHTML
@@ -29,9 +31,9 @@ def generate_lists_html_css(lists):
     for li in lists:
         li.generate_html_list()
 
-        li.generate_css_by_element()
+        li.generate_css_by_element_group()
         li.generate_css_by_item_group()
-        # li.generate_css_by_list_item()
+        li.generate_css_by_list_item()
 
 
 class List:
@@ -72,7 +74,7 @@ class List:
 
                 # html of list-items
                 li_id = 'li-' + '-'.join(sorted(items_id))
-                self.compos_html[li_id] = CompoHTML(compo_id=li_id, html_tag='li', children=items)
+                self.compos_html[li_id] = CompoHTML(compo_id=li_id, html_tag='li', children=items, html_class_name='li-' + str(self.list_id))
                 lis.append(self.compos_html[li_id])
 
         elif self.list_type == 'single':
@@ -81,10 +83,10 @@ class List:
                 compo_id = item['id']
                 self.compos_html[compo_id] = CompoHTML(compo_id=compo_id, html_tag=tag_map[item['class']], html_class_name=item['group'])
                 li_id = 'li-' + str(compo_id)
-                self.compos_html[li_id] = CompoHTML(compo_id=li_id, html_tag='li', children=self.compos_html[compo_id])
+                self.compos_html[li_id] = CompoHTML(compo_id=li_id, html_tag='li', children=self.compos_html[compo_id], html_class_name='li-' + str(self.list_id))
                 lis.append(self.compos_html[li_id])
 
-        self.list_html = CompoHTML(compo_id='ul-' + str(self.list_id), html_tag='ul', children=lis)
+        self.list_html = CompoHTML(compo_id='ul-' + str(self.list_id), html_tag='ul', children=lis, html_id='ul-' + str(self.list_id))
         self.html_script = self.list_html.html_script
 
     '''
@@ -92,7 +94,7 @@ class List:
     ******* CSS Generation *******
     ******************************
     '''
-    def generate_css_by_element(self):
+    def generate_css_by_element_group(self):
         '''
         css is defined by class, which same as group name in compo_df
         '''
@@ -143,37 +145,26 @@ class List:
         def sort_list_item():
             '''
             from top to bottom for vertical list groups / from left to right for horizontal groups
-            :return: [(group name, compo ids in the group, left/top)]
+            :return: [(group name, compo ids in the group, top/left, bottom/right)]
             '''
             groups = compos.groupby('list_item').groups
             s_groups = []
             if self.list_alignment == 'v':
                 for i in groups:
-                    s_groups.append((compos.loc[groups[i][0], 'group'], groups[i], compos.loc[groups[i], 'row_min'].min()))
+                    s_groups.append((compos.loc[groups[i][0], 'group'], groups[i], compos.loc[groups[i], 'row_min'].min(), compos.loc[groups[i], 'row_max'].max()))
             elif self.list_alignment == 'h':
                 for i in groups:
-                    s_groups.append((compos.loc[groups[i][0], 'group'], groups[i], compos.loc[groups[i], 'column_min'].min()))
+                    s_groups.append((compos.loc[groups[i][0], 'group'], groups[i], compos.loc[groups[i], 'column_min'].min(), compos.loc[groups[i], 'column_max'].max()))
             s_groups = sorted(s_groups, key=lambda k: k[2])
             return s_groups
 
         compos = self.compos_df
         if self.list_type == 'multiple':
             sorted_groups = sort_list_item()
-            ids = [s[1] for s in sorted_groups]
-            n1 = compos.loc[ids[0][0]]['group'].split('-')
-            n2 = compos.loc[ids[0][1]]['group'].split('-')
-            name = 'li-' + n1[1] + '-' + n2[1] if n1[0] == 't' else 'li-' + n2[1] + '-' + n1[1]
-            print(name)
-            # if self.list_alignment == 'v':
-            #     self.compos_css[name].add_attrs(margin_top=str(int(compos.loc[ids[1], 'row_min'].min() - compos.loc[ids[0], 'row_max'].max())) + 'px')
-            # if self.list_alignment == 'h':
-            #     self.compos_css[name].add_attrs(margin_left=str(int(compos.loc[ids[1], 'column_min'].min() - compos.loc[ids[0], 'column_max'].max())) + 'px')
-
-        #     name = '.' + sorted_groups[i][0]
-        #     if self.list_alignment == 'v':
-        #         self.compos_css[name].add_attrs(margin_top=str(int(compos.loc[ids[i], 'row_min'].min() - compos.loc[ids[i - 1], 'row_max'].max())) + 'px')
-        #     if self.list_alignment == 'h':
-        #         self.compos_css[name].add_attrs(margin_left=str(int(compos.loc[ids[i], 'column_min'].min() - compos.loc[ids[i-1], 'column_max'].max())) + 'px')
-        # self.list_css = ''
-        # for i in self.compos_css:
-        #     self.list_css += self.compos_css[i].css
+            gaps = []
+            for i in range(1, len(sorted_groups)):
+                gaps.append(sorted_groups[i][2] - sorted_groups[i-1][3])
+            margin_top = int(np.mean(gaps))
+            name = 'li-' + str(self.list_id)
+            self.compos_css[name] = CSS('.' + name, margin_top=str(margin_top) + 'px')
+            self.css_script += self.compos_css[name].css
