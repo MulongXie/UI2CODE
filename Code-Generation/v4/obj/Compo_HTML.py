@@ -26,6 +26,8 @@ class CompoHTML:
 
     def init_html(self):
         self.html = HTML(tag=self.html_tag, id=self.html_id, class_name=self.html_class_name)
+        if type(self.children) is not list:
+            self.children = [self.children]
         for child in self.children:
             self.html.add_child(child.html_script)
         self.html_script = self.html.html_script
