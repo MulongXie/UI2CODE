@@ -1,23 +1,27 @@
 import pandas as pd
 from obj.CSS import CSS
 from obj.HTML import HTML
+from obj.Compo_HTML import CompoHTML
 import lib.draw as draw
 
 
 def gather_lists(compos):
     lists = []
     groups = compos.groupby('pair').groups
+    list_id = 0
     for i in groups:
         if i == -1 or len(groups[i]) == 1:
             continue
-        lists.append(List(compos.loc[groups[i]], 'multiple', compos.loc[groups[i][0]]['alignment_list']))
+        lists.append(List(list_id, compos.loc[groups[i]], 'multiple', compos.loc[groups[i][0]]['alignment_list']))
+        list_id += 1
         compos = compos.drop(list(groups[i]))
 
     groups = compos.groupby('group').groups
     for i in groups:
         if i == -1 or len(groups[i]) == 1:
             continue
-        lists.append(List(compos.loc[groups[i]], 'single', compos.loc[groups[i][0]]['alignment_list']))
+        lists.append(List(list_id, compos.loc[groups[i]], 'single', compos.loc[groups[i][0]]['alignment_list']))
+        list_id += 1
     return lists
 
 
@@ -25,22 +29,25 @@ def generate_lists_html_css(lists):
     for li in lists:
         li.generate_html_list()
 
-        li.generate_css_by_element()
-        li.generate_css_by_item_group()
-        li.generate_css_by_list_item()
+        # li.generate_css_by_element()
+        # li.generate_css_by_item_group()
+        # li.generate_css_by_list_item()
 
 
 class List:
-    def __init__(self, compos_df, list_type, list_alignment):
+    def __init__(self, list_id, compos_df, list_type, list_alignment):
+        self.list_id = list_id
         self.compos_df = compos_df
-        self.list_type = list_type
-        self.list_alignment = list_alignment
-        self.list_items = []
 
-        # self.compos_html = {}
+        self.list_html = None                   # CompoHTML obj
+        self.list_type = list_type              # multiple: multiple elements in one list-item; single: one element in one list-item
+        self.list_alignment = list_alignment
+        self.li_number = 0
+
+        self.compos_html = {}
         self.compos_css = {}
-        self.list_html = ''
-        self.list_css = ''
+        self.html_script = ''
+        self.css_script = ''
 
     '''
     ******************************
@@ -48,29 +55,38 @@ class List:
     ******************************
     '''
     def generate_html_list(self):
-        list_html = ''
-        tags = {'Compo': 'div', 'Text': 'div'}
+        tag_map = {'Compo': 'div', 'Text': 'div', 'Block': 'div'}
+        lis = []
         if self.list_type == 'multiple':
             groups = self.compos_df.groupby('list_item').groups
-            list_item_html = ''
             for i in groups:
                 list_items = self.compos_df.loc[groups[i]]
-                elements_html = ''
+                items = []
                 for j in range(len(list_items)):
+                    # html of items
                     item = list_items.iloc[j]
-                    # html of elements
-                    elements_html += HTML(tag=tags[item['class']], class_name=item['group']).html
-                # html of list_items
-                list_item_html += HTML(tag='li', children=elements_html).html
-            list_html = HTML(tag='ul', children=list_item_html).html
+                    compo_id = item['id']
+                    self.compos_html[compo_id] = CompoHTML(compo_id=compo_id, html_tag=tag_map[item['class']], html_class_name=item['group'])
+                    items.append(self.compos_html[compo_id])
+
+                # html of list-items
+                compo_id = 'li-' + str(self.li_number)
+                self.li_number += 1
+                self.compos_html[compo_id] = CompoHTML(compo_id=compo_id, html_tag='li', children=items)
+                lis.append(self.compos_html[compo_id])
+
+            # html of list
+            self.list_html = CompoHTML(compo_id='ul-' + str(self.list_id), html_tag='ul', children=lis)
+
         elif self.list_type == 'single':
-            list_item_html = ''
             for i in range(len(self.compos_df)):
                 item = self.compos_df.iloc[i]
-                elements_html = HTML(tag=tags[item['class']], class_name=item['group']).html
-                list_item_html += HTML(tag='li', children=elements_html).html
-            list_html = HTML(tag='ul', children=list_item_html).html
-        self.list_html = list_html
+                compo_id = item['id']
+                self.compos_html[compo_id] = CompoHTML(compo_id=compo_id, html_tag=tag_map[item['class']], html_class_name=item['group'])
+                lis.append(self.compos_html[compo_id])
+
+        self.list_html = CompoHTML(compo_id='ul-' + str(self.list_id), html_tag='ul', children=lis)
+        self.html_script = self.list_html.html_script
 
     '''
     ******************************
