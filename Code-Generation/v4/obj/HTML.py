@@ -1,21 +1,21 @@
 
 class HTML:
-    def __init__(self, **kwargs):
+    def __init__(self, tag, **kwargs):
+        self.tag = tag
         self.attrs = kwargs
 
         self.class_name = self.init_by_input_attr('class_name')
         self.id = self.init_by_input_attr('id')
-        self.tag = self.init_by_input_attr('tag')
-        self.children = self.init_by_input_attr('children')
+        self.children = self.init_by_input_attr('children', '')  # html script
         self.close = True
 
-        self.html = None
+        self.html_script = None
         self.generate_html()
 
-    def init_by_input_attr(self, attr):
+    def init_by_input_attr(self, attr, non_exist_alt=None):
         if attr in self.attrs:
             return self.attrs[attr]
-        return None
+        return non_exist_alt
 
     def generate_html(self):
         # start
@@ -37,4 +37,11 @@ class HTML:
             html += "</" + self.tag + ">\n"
         else:
             html[-1] = '/>\n'
-        self.html = html
+        self.html_script = html
+
+    def add_child(self, child):
+        '''
+        :param child: string, html script
+        '''
+        self.children += child
+        self.generate_html()
