@@ -29,7 +29,7 @@ def generate_lists_html_css(lists):
     for li in lists:
         li.generate_html_list()
 
-        # li.generate_css_by_element()
+        li.generate_css_by_element()
         # li.generate_css_by_item_group()
         # li.generate_css_by_list_item()
 
@@ -44,8 +44,8 @@ class List:
         self.list_alignment = list_alignment
         self.li_number = 0
 
-        self.compos_html = {}
-        self.compos_css = {}
+        self.compos_html = {}                   # list of children CompoHTML objects
+        self.compos_css = {}                    # list of linked CSS objects
         self.html_script = ''
         self.css_script = ''
 
@@ -107,7 +107,7 @@ class List:
                     background=backgrounds[compos.loc[groups[i][0], 'class']])
             self.compos_css['.' + i] = c
         for i in self.compos_css:
-            self.list_css += self.compos_css[i].css
+            self.css_script += self.compos_css[i].css
 
     def generate_css_by_item_group(self):
         compos = self.compos_df
