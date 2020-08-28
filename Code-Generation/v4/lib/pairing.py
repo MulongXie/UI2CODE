@@ -6,8 +6,8 @@ import lib.draw as draw
 
 
 def match_two_groups(g1, g2, max_pos_bias):
-    assert g1.iloc[0]['alignment'] == g2.iloc[0]['alignment']
-    alignment = g1.iloc[0]['alignment']
+    assert g1.iloc[0]['alignment_same_group'] == g2.iloc[0]['alignment_same_group']
+    alignment = g1.iloc[0]['alignment_same_group']
     match_num = 0
     pairs = {}
     for i in range(len(g1)):
@@ -62,10 +62,10 @@ def pair_matching_within_groups(groups, new_pairs=True):
             if 'pair' in group.columns:
                 group.drop('pair', axis=1, inplace=True)
     for i, g1 in enumerate(groups):
-        alignment1 = g1.iloc[0]['alignment']
+        alignment1 = g1.iloc[0]['alignment_same_group']
         for j in range(i + 1, len(groups)):
             g2 = groups[j]
-            alignment2 = g2.iloc[0]['alignment']
+            alignment2 = g2.iloc[0]['alignment_same_group']
             if alignment1 == alignment2 and abs(len(g1) - len(g2)) <= 2:
                 if match_two_groups(g1, g2, 10):
                     if not mark[i]:

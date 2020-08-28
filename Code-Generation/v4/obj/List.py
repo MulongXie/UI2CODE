@@ -14,7 +14,7 @@ def gather_lists(compos):
     for i in groups:
         if i == -1 or len(groups[i]) == 1:
             continue
-        lists.append(List(list_id, compos.loc[groups[i]], 'multiple', compos.loc[groups[i][0]]['alignment_list']))
+        lists.append(List(list_id, compos.loc[groups[i]], 'multiple', compos.loc[groups[i][0]]['alignment_same_group']))
         list_id += 1
         compos = compos.drop(list(groups[i]))
 
@@ -22,7 +22,7 @@ def gather_lists(compos):
     for i in groups:
         if i == -1 or len(groups[i]) == 1:
             continue
-        lists.append(List(list_id, compos.loc[groups[i]], 'single', compos.loc[groups[i][0]]['alignment_list']))
+        lists.append(List(list_id, compos.loc[groups[i]], 'single', compos.loc[groups[i][0]]['alignment_same_group']))
         list_id += 1
     return lists
 
