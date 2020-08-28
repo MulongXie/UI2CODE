@@ -94,21 +94,25 @@ class List:
     ******* CSS Generation *******
     ******************************
     '''
+    def assembly_css(self):
+        self.css_script = ''
+        for i in self.compos_css:
+            self.css_script += self.compos_css[i].css
+
     def generate_css_by_element_group(self):
         '''
         css is defined by class, which same as group name in compo_df
         '''
+        self.compos_css['ul'] = CSS('ul', list_style='None')
         compos = self.compos_df
         groups = compos.groupby('group').groups
         backgrounds = {'Compo': 'grey', 'Text': 'green'}
         for i in groups:
-            c = CSS('.' + i,
-                    width=str(int(compos.loc[groups[i], 'width'].mean())) + 'px',
-                    height=str(int(compos.loc[groups[i], 'height'].mean())) + 'px',
-                    background=backgrounds[compos.loc[groups[i][0], 'class']])
-            self.compos_css['.' + i] = c
-        for i in self.compos_css:
-            self.css_script += self.compos_css[i].css
+            self.compos_css['.' + i] = CSS('.' + i,
+                                           width=str(int(compos.loc[groups[i], 'width'].mean())) + 'px',
+                                           height=str(int(compos.loc[groups[i], 'height'].mean())) + 'px',
+                                           background=backgrounds[compos.loc[groups[i][0], 'class']])
+        self.assembly_css()
 
     def generate_css_by_item_group(self):
         def sort_item_groups():
@@ -139,9 +143,7 @@ class List:
             if self.list_alignment == 'h':
                 for i in range(1, len(sorted_groups)):
                     self.compos_css['.' + sorted_groups[i][0]].add_attrs(margin_top=str(int(compos.loc[ids[i], 'row_min'].min() - compos.loc[ids[i-1], 'row_max'].max())) + 'px')
-        self.css_script = ''
-        for i in self.compos_css:
-            self.css_script += self.compos_css[i].css
+        self.assembly_css()
 
     def generate_css_list_item(self):
         def sort_list_item():
@@ -171,4 +173,4 @@ class List:
 
             name = '.li-' + str(self.list_id)
             self.compos_css[name] = CSS(name, margin_top=str(margin_top) + 'px', height=str(height) + 'px')
-            self.css_script += self.compos_css[name].css
+        self.assembly_css()

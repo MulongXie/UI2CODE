@@ -1,90 +1,114 @@
 .nt-4{
-	height: 33px;
-	float: left;
 	background: grey;
+	float: left;
+	height: 33px;
 	width: 33px;
 }
 .t-7{
-	margin-left: 6px;
-	height: 24px;
-	float: left;
 	background: green;
+	float: left;
+	height: 24px;
+	margin-left: 6px;
 	width: 83px;
 }
 .li-0{
-	height: 33px;
 	margin-top: 6px;
+	height: 33px;
+}
+ul{
+	list-style: None;
+}
+.li-1{
+	margin-top: 10px;
+	height: 59px;
 }
 .t-8{
-	margin-left: 10px;
-	height: 40px;
-	float: left;
 	background: green;
+	float: left;
+	height: 40px;
+	margin-left: 10px;
 	width: 249px;
 }
 .nt-5{
-	height: 58px;
-	float: left;
 	background: grey;
+	float: left;
+	height: 58px;
 	width: 103px;
 }
-.li-1{
-	height: 59px;
-	margin-top: 10px;
+ul{
+	list-style: None;
+}
+.nt-8{
+	background: grey;
+	height: 17px;
+	margin-top: 5px;
+	width: 18px;
 }
 .t-1{
-	height: 6px;
 	background: green;
+	height: 6px;
 	width: 14px;
 }
 .nt-7{
+	background: grey;
 	height: 5px;
 	margin-top: -5px;
-	background: grey;
 	width: 15px;
 }
-.nt-8{
-	height: 17px;
-	margin-top: 5px;
-	background: grey;
-	width: 18px;
-}
 .li-2{
-	height: 24px;
 	margin-top: 20px;
+	height: 24px;
+}
+ul{
+	list-style: None;
 }
 .t-2{
+	background: green;
 	height: 13px;
 	margin-top: 1px;
-	background: green;
 	width: 73px;
 }
 .nt-9{
-	height: 37px;
 	background: grey;
+	height: 37px;
 	width: 78px;
 }
 .li-3{
-	height: 37px;
 	margin-top: 4px;
+	height: 37px;
 }
-.t-6{
-	height: 13px;
-	background: green;
-	width: 76px;
+ul{
+	list-style: None;
 }
 .nt-6{
-	height: 11px;
 	background: grey;
+	height: 11px;
 	width: 34px;
 }
-.nt-3{
-	height: 8px;
-	background: grey;
-	width: 7px;
+ul{
+	list-style: None;
 }
 .t-0{
-	height: 6px;
 	background: green;
+	height: 6px;
 	width: 26px;
+}
+ul{
+	list-style: None;
+}
+.nt-3{
+	background: grey;
+	height: 8px;
+	width: 7px;
+}
+ul{
+	list-style: None;
+}
+.t-6{
+	background: green;
+	height: 13px;
+	width: 76px;
+}
+ul{
+	list-style: None;
 }
