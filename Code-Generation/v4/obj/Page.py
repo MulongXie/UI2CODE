@@ -8,11 +8,11 @@ class Page:
         self.css_file_name = css_file_name
 
         if compos_html is None:
-            self.compos_html = []
+            self.compos_html = []   # list of sting, HTML script
         else:
             self.compos_html = compos_html if type(compos_html) is list else [compos_html]
         if compos_css is None:
-            self.compos_css = []
+            self.compos_css = []    # list of css, CSS script
         else:
             self.compos_css = compos_css if type(compos_css) is list else [compos_css]
 

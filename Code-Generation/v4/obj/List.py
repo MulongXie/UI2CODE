@@ -7,7 +7,7 @@ from obj.Compo_HTML import CompoHTML
 import lib.draw as draw
 
 
-def gather_lists(compos):
+def gather_lists_by_pairing(compos):
     lists = []
     groups = compos.groupby('pair').groups
     list_id = 0

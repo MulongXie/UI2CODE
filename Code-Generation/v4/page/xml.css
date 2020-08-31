@@ -1,71 +1,71 @@
-.nt-4{
-	height: 33px;
-	background: grey;
-	width: 33px;
-	float: left;
-}
-.t-7{
-	float: left;
-	height: 24px;
-	background: green;
-	width: 83px;
-	margin-left: 6px;
-}
-ul{
-	list-style: None;
-}
 .li-0{
 	height: 33px;
 	margin-top: 6px;
 }
-.t-8{
+.t-7{
 	float: left;
-	height: 40px;
+	margin-left: 6px;
+	width: 83px;
 	background: green;
-	width: 249px;
-	margin-left: 10px;
+	height: 24px;
+}
+.nt-4{
+	float: left;
+	width: 33px;
+	background: grey;
+	height: 33px;
+}
+ul{
+	list-style: None;
 }
 .li-1{
 	height: 59px;
 	margin-top: 10px;
 }
-.nt-5{
-	height: 58px;
-	background: grey;
-	width: 103px;
+.t-8{
 	float: left;
+	margin-left: 10px;
+	width: 249px;
+	background: green;
+	height: 40px;
+}
+.nt-5{
+	float: left;
+	width: 103px;
+	background: grey;
+	height: 58px;
 }
 ul{
 	list-style: None;
 }
 .nt-7{
-	height: 5px;
-	background: grey;
 	width: 15px;
+	background: grey;
+	height: 5px;
 	margin-top: -5px;
 }
 .t-1{
-	height: 6px;
-	background: green;
 	width: 14px;
+	background: green;
+	height: 6px;
 }
 .nt-8{
-	height: 17px;
-	background: grey;
 	width: 18px;
+	background: grey;
+	height: 17px;
 	margin-top: 5px;
-}
-ul{
-	list-style: None;
 }
 .li-2{
 	height: 24px;
 	margin-top: 20px;
 }
+ul{
+	list-style: None;
+}
 .t-2{
-	height: 13px;
-	background: green;
 	width: 73px;
+	background: green;
+	height: 13px;
 	margin-top: 1px;
 }
 .li-3{
@@ -73,41 +73,41 @@ ul{
 	margin-top: 4px;
 }
 .nt-9{
-	height: 37px;
-	background: grey;
 	width: 78px;
-}
-ul{
-	list-style: None;
-}
-.t-0{
-	height: 6px;
-	background: green;
-	width: 26px;
-}
-ul{
-	list-style: None;
-}
-.nt-6{
-	height: 11px;
 	background: grey;
-	width: 34px;
-}
-ul{
-	list-style: None;
+	height: 37px;
 }
 ul{
 	list-style: None;
 }
 .t-6{
-	height: 13px;
-	background: green;
 	width: 76px;
+	background: green;
+	height: 13px;
+}
+ul{
+	list-style: None;
 }
 .nt-3{
-	height: 8px;
-	background: grey;
 	width: 7px;
+	background: grey;
+	height: 8px;
+}
+ul{
+	list-style: None;
+}
+.nt-6{
+	width: 34px;
+	background: grey;
+	height: 11px;
+}
+ul{
+	list-style: None;
+}
+.t-0{
+	width: 26px;
+	background: green;
+	height: 6px;
 }
 ul{
 	list-style: None;
