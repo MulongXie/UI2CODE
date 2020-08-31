@@ -6,6 +6,15 @@ from obj.CSS import CSS
 from obj.HTML import HTML
 
 
+def visualize_CompoHTMLs(compos_html, img, img_shape):
+    board = cv2.resize(img, img_shape)
+    for compo in compos_html:
+        board = compo.visualize(board, img_shape, show=False)
+    cv2.imshow('compos', board)
+    cv2.waitKey()
+    cv2.destroyWindow('compos')
+
+
 class CompoHTML:
     def __init__(self, compo_id, html_tag,
                  compo_df=None, html_id=None, html_class_name=None, children=None, parent=None, img=None, img_shape=None):
@@ -62,18 +71,21 @@ class CompoHTML:
         '''
         :param child: CompoHTML object
         '''
-        self.compo_df.append(child.compo_df)
         self.children.append(child)
         self.html.add_child(child.html_script)
         self.html_script = self.html.html_script
 
-    def visualize(self, img=None, img_shape=None, flag='line'):
+        self.compo_df.append(child.compo_df)
+        self.init_boundary()
+
+    def visualize(self, img=None, img_shape=None, flag='line', show=True):
         fill_type = {'line':2, 'block':-1}
         img = self.img if img is None else img
         img_shape = self.img_shape if img_shape is None else img_shape
         board = cv2.resize(img, img_shape)
         board = cv2.rectangle(board, (self.top, self.left), (self.bottom, self.right), (0,255,0), fill_type[flag])
-        cv2.imshow('compo', board)
-        cv2.waitKey()
-        cv2.destroyWindow('compo')
+        if show:
+            cv2.imshow('compo', board)
+            cv2.waitKey()
+            cv2.destroyWindow('compo')
         return board

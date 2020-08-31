@@ -6,9 +6,17 @@ from obj.HTML import HTML
 from obj.Compo_HTML import CompoHTML
 import lib.draw as draw
 
+tag_map = {'Compo': 'div', 'Text': 'div', 'Block': 'div'}
+
 
 def gather_lists_by_pairing(compos):
+    '''
+    :param compos: type of dataframe
+    :return: lists: [list_obj]
+             non_list_compos: [compoHTML]
+    '''
     lists = []
+    non_list_compos = []
     groups = compos.groupby('pair').groups
     list_id = 0
     for i in groups:
@@ -24,7 +32,13 @@ def gather_lists_by_pairing(compos):
             continue
         lists.append(List(list_id, compos.loc[groups[i]], 'single', compos.loc[groups[i][0]]['alignment_same_group']))
         list_id += 1
-    return lists
+        compos = compos.drop(list(groups[i]))
+
+    for i in range(len(compos)):
+        compo = compos.iloc[i]
+        compo_html = CompoHTML(compo_id=compo['id'], compo_df=compo, html_tag=tag_map[compo['class']], html_id=tag_map[compo['class']] + '-' + str(compo['id']))
+        non_list_compos.append(compo_html)
+    return lists, non_list_compos
 
 
 def generate_lists_html_css(lists):
@@ -56,7 +70,6 @@ class List:
     ******************************
     '''
     def generate_html_list(self):
-        tag_map = {'Compo': 'div', 'Text': 'div', 'Block': 'div'}
         lis = []
         if self.list_type == 'multiple':
             groups = self.compos_df.groupby('list_item').groups
