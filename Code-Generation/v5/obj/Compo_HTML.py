@@ -1,5 +1,6 @@
 import pandas as pd
 import json
+import cv2
 
 from obj.CSS import CSS
 from obj.HTML import HTML
@@ -7,7 +8,7 @@ from obj.HTML import HTML
 
 class CompoHTML:
     def __init__(self, compo_id, html_tag,
-                 compo_df=None, html_id=None, html_class_name=None, children=None, parent=None):
+                 compo_df=None, html_id=None, html_class_name=None, children=None, parent=None, img=None, img_shape=None):
         self.compo_df = compo_df
         self.compo_id = compo_id
 
@@ -31,6 +32,9 @@ class CompoHTML:
         self.html_script = ''   # sting
         self.css = []           # CSS objs, a compo may have multiple css styles through linking to multiple css classes
 
+        self.img = img
+        self.img_shape = img_shape
+
         self.init_html()
         self.init_boundary()
 
@@ -44,17 +48,32 @@ class CompoHTML:
 
     def init_boundary(self):
         compo = self.compo_df
-        self.top = compo['column_min']
-        self.left = compo['row_min']
-        self.bottom = compo['column_max']
-        self.right = compo['row_max']
-        self.width = compo['width']
-        self.height = compo['height']
+        self.top = compo['column_min'].min()
+        self.left = compo['row_min'].min()
+        self.bottom = compo['column_max'].max()
+        self.right = compo['row_max'].max()
+        self.width = self.right - self.left
+        self.height = self.bottom - self.top
+
+    def put_boundary(self):
+        return {'top': self.top, 'left': self.left, 'bottom': self.bottom, 'right': self.right, 'width': self.width, 'height': self.height}
 
     def add_child(self, child):
         '''
         :param child: CompoHTML object
         '''
+        self.compo_df.append(child.compo_df)
         self.children.append(child)
         self.html.add_child(child.html_script)
         self.html_script = self.html.html_script
+
+    def visualize(self, img=None, img_shape=None, flag='line'):
+        fill_type = {'line':2, 'block':-1}
+        img = self.img if img is None else img
+        img_shape = self.img_shape if img_shape is None else img_shape
+        board = cv2.resize(img, img_shape)
+        board = cv2.rectangle(board, (self.top, self.left), (self.bottom, self.right), (0,255,0), fill_type[flag])
+        cv2.imshow('compo', board)
+        cv2.waitKey()
+        cv2.destroyWindow('compo')
+        return board
