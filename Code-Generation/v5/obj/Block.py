@@ -16,6 +16,22 @@ def gather_blocks(compos):
     return blocks
 
 
+def slice_blocks(compos):
+    '''
+    :param compos: CompoHTML objects, including elements and lists
+    '''
+    lines = []
+    line = -1
+    for compo in compos:
+        if line < compo.top:
+            lines.append(compo.top)
+            line = compo.bottom
+            lines.append(line)
+        elif compo.top < line < compo.bottom:
+            line = compo.bottom
+            lines[-1] = line
+
+
 class Block:
     def __init__(self, block_id, compos_df, children=None, children_alignment=None):
         self.block_id = block_id
@@ -38,3 +54,4 @@ class Block:
         self.css_script = ''
 
     def identify_boundary(self):
+        pass

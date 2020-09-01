@@ -57,10 +57,10 @@ class CompoHTML:
 
     def init_boundary(self):
         compo = self.compo_df
-        self.top = compo['column_min'].min()
-        self.left = compo['row_min'].min()
-        self.bottom = compo['column_max'].max()
-        self.right = compo['row_max'].max()
+        self.top = compo['row_min'].min()
+        self.left = compo['column_min'].min()
+        self.bottom = compo['row_max'].max()
+        self.right = compo['column_max'].max()
         self.width = self.right - self.left
         self.height = self.bottom - self.top
 
@@ -83,7 +83,7 @@ class CompoHTML:
         img = self.img if img is None else img
         img_shape = self.img_shape if img_shape is None else img_shape
         board = cv2.resize(img, img_shape)
-        board = cv2.rectangle(board, (self.top, self.left), (self.bottom, self.right), (0,255,0), fill_type[flag])
+        board = cv2.rectangle(board, (self.left, self.top), (self.right, self.bottom), (0,255,0), fill_type[flag])
         if show:
             cv2.imshow('compo', board)
             cv2.waitKey()
