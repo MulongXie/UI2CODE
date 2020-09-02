@@ -9,7 +9,7 @@ import lib.draw as draw
 tag_map = {'Compo': 'div', 'Text': 'div', 'Block': 'div'}
 
 
-def gather_lists_by_pairing(compos):
+def gather_lists_by_pair_and_group(compos):
     '''
     :param compos: type of dataframe
     :return: lists: [list_obj]
