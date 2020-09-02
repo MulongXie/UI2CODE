@@ -2,6 +2,7 @@ import pandas as pd
 import cv2
 from obj.Compo_HTML import CompoHTML
 from obj.HTML import HTML
+from obj.CSS import CSS
 
 block_id = 0
 
@@ -18,6 +19,7 @@ def slice_blocks(compos_html, direction='v', is_slice_sub_block=True):
 
     dividers = []
     divider = -1
+    prev_divider = 0
     if direction == 'v':
         compos_html.sort(key=lambda x: x.top)
         for compo in compos_html:
@@ -25,9 +27,13 @@ def slice_blocks(compos_html, direction='v', is_slice_sub_block=True):
             if divider < compo.top:
                 dividers.append(compo.top)
                 divider = compo.bottom
+                prev_divider = compo.bottom
                 dividers.append(divider)
                 if len(block_compos) > 0:
-                    blocks.append(Block(block_id, block_compos, is_slice_sub_block))
+                    css_name = '#block-' + str(block_id)
+                    css = CSS(css_name, margin_top=str(int(compo.top - divider)))
+                    blocks.append(Block(id=block_id, compos=block_compos, is_slice_sub_block=is_slice_sub_block,
+                                        html_id='block-'+str(block_id), css={css_name: css}))
                     block_id += 1
                     block_compos = []
             # extend block
@@ -36,6 +42,13 @@ def slice_blocks(compos_html, direction='v', is_slice_sub_block=True):
                 dividers[-1] = divider
             block_compos.append(compo)
 
+        # collect left compos
+        if len(block_compos) > 0:
+            css_name = '#block-' + str(block_id)
+            css = CSS(css_name, margin_top=str(int(block_compos[0].top - prev_divider)))
+            blocks.append(Block(id=block_id, compos=block_compos, is_slice_sub_block=is_slice_sub_block,
+                                html_id='block-' + str(block_id), css={css_name: css}))
+
     elif direction == 'h':
         compos_html.sort(key=lambda x: x.left)
         for compo in compos_html:
@@ -43,9 +56,13 @@ def slice_blocks(compos_html, direction='v', is_slice_sub_block=True):
             if divider < compo.left:
                 dividers.append(compo.left)
                 divider = compo.right
+                prev_divider = compo.right
                 dividers.append(divider)
                 if len(block_compos) > 0:
-                    blocks.append(Block(block_id, block_compos, is_slice_sub_block))
+                    css_name = '#block-' + str(block_id)
+                    css = CSS(css_name, margin_left=str(int(compo.left - divider)), float='left')
+                    blocks.append(Block(id=block_id, compos=block_compos, is_slice_sub_block=is_slice_sub_block,
+                                        html_id='block-' + str(block_id), css={css_name: css}))
                     block_id += 1
                     block_compos = []
             # extend block
@@ -54,7 +71,13 @@ def slice_blocks(compos_html, direction='v', is_slice_sub_block=True):
                 dividers[-1] = divider
             block_compos.append(compo)
 
-    blocks.append(Block(block_id, block_compos, is_slice_sub_block))
+        # collect left compos
+        if len(block_compos) > 0:
+            css_name = '#block-' + str(block_id)
+            css = CSS(css_name, margin_left=str(int(block_compos[0].left - prev_divider)))
+            blocks.append(Block(id=block_id, compos=block_compos, is_slice_sub_block=is_slice_sub_block,
+                                html_id='block-' + str(block_id), css={css_name: css}))
+
     return blocks
 
 
@@ -69,7 +92,7 @@ def visualize_blocks(blocks, img, img_shape):
 
 class Block:
     def __init__(self, id, compos,
-                 is_slice_sub_block=True, html_tag=None, html_id=None, html_class_name=None):
+                 is_slice_sub_block=True, html_tag=None, html_id=None, html_class_name=None, css=None):
         self.block_id = id
         self.compos = compos                # list of CompoHTML objs
         self.block_obj = None               # CompoHTML obj
@@ -89,16 +112,18 @@ class Block:
         self.html_id = html_id
         self.html_class_name = html_class_name
         self.html_script = ''   # sting
-        self.css = {}           # CSS objs
+        self.css = css           # CSS objs
         self.css_script = ''    # string
 
         # only slice sub-block once
         if is_slice_sub_block:
             self.slice_sub_blocks()
 
+        if css is not None:
+            self.init_css()
+
         self.init_boundary()
         self.init_html()
-        self.init_css()
 
     def init_boundary(self):
         self.top = min(self.compos, key=lambda x: x.top).top
