@@ -89,7 +89,8 @@ class Block:
         self.html_id = html_id
         self.html_class_name = html_class_name
         self.html_script = ''   # sting
-        self.css = []           # CSS objs, a compo may have multiple css styles through linking to multiple css classes
+        self.css = {}           # CSS objs
+        self.css_script = ''    # string
 
         # only slice sub-block once
         if is_slice_sub_block:
@@ -97,6 +98,7 @@ class Block:
 
         self.init_boundary()
         self.init_html()
+        self.init_css()
 
     def init_boundary(self):
         self.top = min(self.compos, key=lambda x: x.top).top
@@ -116,6 +118,22 @@ class Block:
                 self.html.add_child(compo.html_script)
 
         self.html_script = self.html.html_script
+
+    def init_css(self):
+        if len(self.sub_blocks) > 1:
+            for sub_block in self.sub_blocks:
+                self.css.update(sub_block.css)
+        else:
+            for compo in self.compos:
+                self.css.update(compo.css)
+        self.css_script = self.css
+        self.assembly_css()
+
+    def assembly_css(self):
+        self.css_script = ''
+        for i in self.css:
+            self.css_script += self.css[i].css_script
+        # self.block_obj.css = self.css
 
     def slice_sub_blocks(self):
         '''

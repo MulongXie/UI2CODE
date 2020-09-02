@@ -6,7 +6,7 @@ class CSS:
         self.name = name
         self.attrs = kwargs
 
-        self.css = None
+        self.css_script = None
         self.generate_css()
 
     def generate_css(self):
@@ -14,7 +14,7 @@ class CSS:
         for a in self.attrs:
             css += '\t' + a + ': ' + self.attrs[a] + ';\n'
         css = css.replace('_', '-')
-        self.css = self.name + css + '}\n'
+        self.css_script = self.name + css + '}\n'
 
     def add_attrs(self, **attrs):
         self.attrs.update(attrs)

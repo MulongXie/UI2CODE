@@ -55,9 +55,9 @@ class List:
         self.list_id = list_id
         self.compos_df = compos_df
 
-        self.list_obj = None                   # CompoHTML obj
         self.list_type = list_type              # multiple: multiple elements in one list-item; single: one element in one list-item
         self.list_alignment = list_alignment
+        self.list_obj = None                   # CompoHTML obj
 
         self.compos_html = {}                   # list of children CompoHTML objects
         self.compos_css = {}                    # list of linked CSS objects
@@ -110,7 +110,8 @@ class List:
     def assembly_css(self):
         self.css_script = ''
         for i in self.compos_css:
-            self.css_script += self.compos_css[i].css
+            self.css_script += self.compos_css[i].css_script
+        self.list_obj.css = self.compos_css
 
     def generate_css_by_element_group(self):
         '''

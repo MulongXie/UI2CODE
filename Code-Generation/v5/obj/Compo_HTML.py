@@ -39,7 +39,7 @@ class CompoHTML:
         self.html_tag = html_tag
         self.html_tag_map = {'Compo': 'div', 'Text': 'div', 'Block': 'div'}
         self.html_script = ''   # sting
-        self.css = []           # CSS objs, a compo may have multiple css styles through linking to multiple css classes
+        self.css = {}           # CSS objs, a compo may have multiple css styles through linking to multiple css classes
 
         self.img = img
         self.img_shape = img_shape
