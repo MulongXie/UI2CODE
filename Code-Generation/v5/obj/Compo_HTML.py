@@ -33,11 +33,11 @@ class CompoHTML:
         self.height = None
 
         # html info
+        self.html = None        # HTML obj
         self.html_id = html_id
         self.html_class_name = html_class_name
         self.html_tag = html_tag
         self.html_tag_map = {'Compo': 'div', 'Text': 'div', 'Block': 'div'}
-        self.html = None        # HTML obj
         self.html_script = ''   # sting
         self.css = []           # CSS objs, a compo may have multiple css styles through linking to multiple css classes
 

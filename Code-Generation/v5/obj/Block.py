@@ -1,11 +1,12 @@
 import pandas as pd
 import cv2
 from obj.Compo_HTML import CompoHTML
+from obj.HTML import HTML
 
 block_id = 0
 
 
-def slice_blocks(compos_html, direction='v'):
+def slice_blocks(compos_html, direction='v', is_slice_sub_block=True):
     '''
     Vertically or horizontally scan compos
     :param compos_html: CompoHTML objects, including elements and lists
@@ -26,7 +27,7 @@ def slice_blocks(compos_html, direction='v'):
                 divider = compo.bottom
                 dividers.append(divider)
                 if len(block_compos) > 0:
-                    blocks.append(Block(block_id, block_compos))
+                    blocks.append(Block(block_id, block_compos, is_slice_sub_block))
                     block_id += 1
                     block_compos = []
             # extend block
@@ -44,7 +45,7 @@ def slice_blocks(compos_html, direction='v'):
                 divider = compo.right
                 dividers.append(divider)
                 if len(block_compos) > 0:
-                    blocks.append(Block(block_id, block_compos))
+                    blocks.append(Block(block_id, block_compos, is_slice_sub_block))
                     block_id += 1
                     block_compos = []
             # extend block
@@ -53,13 +54,8 @@ def slice_blocks(compos_html, direction='v'):
                 dividers[-1] = divider
             block_compos.append(compo)
 
-    blocks.append(Block(block_id, block_compos))
+    blocks.append(Block(block_id, block_compos, is_slice_sub_block))
     return blocks
-
-
-def blocks_slice_children(blocks):
-    for block in blocks:
-        block.slice_children_block()
 
 
 def visualize_blocks(blocks, img, img_shape):
@@ -72,12 +68,13 @@ def visualize_blocks(blocks, img, img_shape):
 
 
 class Block:
-    def __init__(self, block_id, compos):
-        self.block_id = block_id
+    def __init__(self, id, compos,
+                 is_slice_sub_block=True, html_tag=None, html_id=None, html_class_name=None):
+        self.block_id = id
         self.compos = compos                # list of CompoHTML objs
         self.block_obj = None               # CompoHTML obj
         self.block_img = None
-        self.block_children = []                  # list of Block objs
+        self.sub_blocks = []                  # list of Block objs
 
         self.top = None
         self.left = None
@@ -86,10 +83,20 @@ class Block:
         self.width = None
         self.height = None
 
-        self.html_script = ''
-        self.css_script = ''
+        # html info
+        self.html = None        # HTML obj
+        self.html_tag = 'div' if html_tag is None else html_tag
+        self.html_id = html_id
+        self.html_class_name = html_class_name
+        self.html_script = ''   # sting
+        self.css = []           # CSS objs, a compo may have multiple css styles through linking to multiple css classes
+
+        # only slice sub-block once
+        if is_slice_sub_block:
+            self.slice_sub_blocks()
 
         self.init_boundary()
+        self.init_html()
 
     def init_boundary(self):
         self.top = min(self.compos, key=lambda x: x.top).top
@@ -97,8 +104,24 @@ class Block:
         self.left = min(self.compos, key=lambda x: x.left).left
         self.right = max(self.compos, key=lambda x: x.right).right
 
-    def slice_children_block(self):
-        self.block_children = slice_blocks(self.compos, 'h')
+    def init_html(self):
+        self.html = HTML(tag=self.html_tag, id=self.html_id, class_name=self.html_class_name)
+
+        if len(self.sub_blocks) > 1:
+            # add compos of sub blocks
+            for sub_block in self.sub_blocks:
+                self.html.add_child(sub_block.html_script)
+        else:
+            for compo in self.compos:
+                self.html.add_child(compo.html_script)
+
+        self.html_script = self.html.html_script
+
+    def slice_sub_blocks(self):
+        '''
+        Horizontally slice the block into sub-blocks
+        '''
+        self.sub_blocks = slice_blocks(self.compos, 'h', is_slice_sub_block=False)
 
     def clip_block_img(self, org, show=False):
         self.block_img = org[self.top: self.bottom, self.left: self.right]
