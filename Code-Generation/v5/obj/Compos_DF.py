@@ -86,7 +86,7 @@ class ComposDF:
                 elif df.iloc[i]['group_text'] != -1:
                     df.loc[i, 'group'] = 't-' + str(int(df.iloc[i]['group_text']))
 
-        df.rename({'alignment': 'alignment_same_group'}, axis=1, inplace=True)
+        df.rename({'alignment': 'alignment_in_group'}, axis=1, inplace=True)
         self.compos_dataframe = df
 
     def cluster_dbscan_by_attr(self, attr, eps, min_samples=1, show=True, show_method='line'):

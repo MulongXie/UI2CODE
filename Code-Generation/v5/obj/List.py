@@ -22,7 +22,7 @@ def gather_lists_by_pair_and_group(compos):
     for i in groups:
         if i == -1 or len(groups[i]) == 1:
             continue
-        lists.append(List(list_id, compos.loc[groups[i]], 'multiple', compos.loc[groups[i][0]]['alignment_same_group']))
+        lists.append(List(list_id, compos.loc[groups[i]], 'multiple', compos.loc[groups[i][0]]['alignment_in_group']))
         list_id += 1
         compos = compos.drop(list(groups[i]))
 
@@ -30,7 +30,7 @@ def gather_lists_by_pair_and_group(compos):
     for i in groups:
         if i == -1 or len(groups[i]) == 1:
             continue
-        lists.append(List(list_id, compos.loc[groups[i]], 'single', compos.loc[groups[i][0]]['alignment_same_group']))
+        lists.append(List(list_id, compos.loc[groups[i]], 'single', compos.loc[groups[i][0]]['alignment_in_group']))
         list_id += 1
         compos = compos.drop(list(groups[i]))
 
@@ -117,7 +117,7 @@ class List:
         '''
         css is defined by class, which same as group name in compo_df
         '''
-        self.compos_css['ul'] = CSS('ul', list_style='None')
+        self.compos_css['ul'] = CSS('ul', list_style='None', padding_left='0')
         compos = self.compos_df
         groups = compos.groupby('group').groups
         backgrounds = {'Compo': 'grey', 'Text': 'green'}
