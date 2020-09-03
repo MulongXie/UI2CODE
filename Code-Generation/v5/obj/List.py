@@ -56,8 +56,8 @@ class List:
         self.compos_df = compos_df
 
         self.list_type = list_type              # multiple: multiple elements in one list-item; single: one element in one list-item
-        self.list_alignment = list_alignment
-        self.list_obj = None                   # CompoHTML obj
+        self.list_alignment = list_alignment    # same as alignment_in_group
+        self.list_obj = None                    # CompoHTML obj
 
         self.compos_html = {}                   # list of children CompoHTML objects
         self.compos_css = {}                    # list of linked CSS objects
@@ -115,9 +115,10 @@ class List:
 
     def generate_css_by_element_group(self):
         '''
+        set css style for each group
         css is defined by class, which same as group name in compo_df
         '''
-        self.compos_css['ul'] = CSS('ul', list_style='None', padding_left='0')
+        self.compos_css['ul'] = CSS('ul', list_style='None', padding_left='0', clear='left')
         compos = self.compos_df
         groups = compos.groupby('group').groups
         backgrounds = {'Compo': 'grey', 'Text': 'green'}
@@ -182,9 +183,16 @@ class List:
             gaps = []
             for i in range(1, len(sorted_groups)):
                 gaps.append(sorted_groups[i][2] - sorted_groups[i-1][3])
-            margin_top = int(min(gaps))
-            height = int(max([compos.loc[g[1], 'height'].max() for g in sorted_groups]))
 
+            # set css attrs
             name = '.li-' + str(self.list_id)
-            self.compos_css[name] = CSS(name, margin_top=str(margin_top) + 'px', height=str(height) + 'px')
+            margin = int(max(gaps))     # set the margin as the max gap among lis
+
+            if self.list_alignment == 'v':
+                height = max([compos.loc[g[1], 'height'].max() for g in sorted_groups])  # set the height of the li as the highest element
+                self.compos_css[name] = CSS(name, margin_top=str(margin) + 'px', height=str(height) + 'px')
+            elif self.list_alignment == 'h':
+                height = max([sum(compos.loc[g[1], 'height']) for g in sorted_groups])
+                self.compos_css[name] = CSS(name, margin_left=str(margin) + 'px', height=str(height) + 'px', float='left')
+
         self.assembly_css()
