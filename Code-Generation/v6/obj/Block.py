@@ -1,5 +1,7 @@
 import pandas as pd
 import cv2
+from random import randint as rint
+
 from obj.Compo_HTML import CompoHTML
 from obj.HTML import HTML
 from obj.CSS import CSS
@@ -7,9 +9,10 @@ from obj.CSS import CSS
 block_id = 0
 
 
-def slice_blocks(compos_html, direction='v', is_slice_sub_block=True):
+def slice_blocks(compos_html, direction='v'):
     '''
     Vertically or horizontally scan compos
+    :param direction: slice vertically or horizontally
     :param compos_html: CompoHTML objects, including elements and lists
     :return blocks: list of [block], block: list of [CompoHTML objects]
     '''
@@ -21,6 +24,8 @@ def slice_blocks(compos_html, direction='v', is_slice_sub_block=True):
     divider = -1
     prev_divider = 0
     if direction == 'v':
+        # reverse the direction of next slicing
+        direction = 'h'
         compos_html.sort(key=lambda x: x.top)
         for compo in compos_html:
             # new block
@@ -29,11 +34,17 @@ def slice_blocks(compos_html, direction='v', is_slice_sub_block=True):
                 dividers.append(compo.top)
                 divider = compo.bottom
                 dividers.append(divider)
+
+                margin = int(compo.top - prev_divider)
+                # a single compo is sliced out, which should not be counted as a block
+                if len(block_compos) == 1:
+                    print(block_compos[0].html_id)
+
                 if len(block_compos) > 0:
                     block_id += 1
                     css_name = '#block-' + str(block_id)
-                    css = CSS(css_name, margin_top=str(int(compo.top - prev_divider)) + 'px', clear='left', border="solid 2px black")
-                    blocks.append(Block(id=block_id, compos=block_compos, is_slice_sub_block=is_slice_sub_block,
+                    css = CSS(css_name, margin_top=str(margin) + 'px', clear='left', border="solid 2px black")
+                    blocks.append(Block(id=block_id, compos=block_compos, slice_sub_block_direction=direction,
                                         html_id='block-'+str(block_id), css={css_name: css}))
                     block_compos = []
             # extend block
@@ -43,14 +54,16 @@ def slice_blocks(compos_html, direction='v', is_slice_sub_block=True):
             block_compos.append(compo)
 
         # collect left compos
-        if len(block_compos) > 0:
+        if len(blocks) > 0 and len(block_compos) > 1:
             block_id += 1
             css_name = '#block-' + str(block_id)
             css = CSS(css_name, margin_top=str(int(block_compos[0].top - prev_divider)) + 'px', clear='left', border="solid 2px black")
-            blocks.append(Block(id=block_id, compos=block_compos, is_slice_sub_block=is_slice_sub_block,
+            blocks.append(Block(id=block_id, compos=block_compos, slice_sub_block_direction=direction,
                                 html_id='block-' + str(block_id), css={css_name: css}))
 
     elif direction == 'h':
+        # reverse the direction of next slicing
+        direction = 'v'
         compos_html.sort(key=lambda x: x.left)
         for compo in compos_html:
             # new block
@@ -59,11 +72,17 @@ def slice_blocks(compos_html, direction='v', is_slice_sub_block=True):
                 dividers.append(compo.left)
                 divider = compo.right
                 dividers.append(divider)
+
+                margin = int(compo.top - prev_divider)
+                # a single compo is sliced out, which should not be counted as a block
+                if len(block_compos) == 1:
+                    print(block_compos[0].html_id)
+
                 if len(block_compos) > 0:
                     block_id += 1
                     css_name = '#block-' + str(block_id)
-                    css = CSS(css_name, margin_left=str(int(compo.left - prev_divider)) + 'px', float='left', border="solid 2px black")
-                    blocks.append(Block(id=block_id, compos=block_compos, is_slice_sub_block=is_slice_sub_block,
+                    css = CSS(css_name, margin_left=str(margin) + 'px', float='left', border="solid 2px black")
+                    blocks.append(Block(id=block_id, compos=block_compos, slice_sub_block_direction=direction,
                                         html_id='block-' + str(block_id), css={css_name: css}))
                     block_compos = []
             # extend block
@@ -73,11 +92,11 @@ def slice_blocks(compos_html, direction='v', is_slice_sub_block=True):
             block_compos.append(compo)
 
         # collect left compos
-        if len(block_compos) > 0:
+        if len(blocks) > 0 and len(block_compos) > 1:
             block_id += 1
             css_name = '#block-' + str(block_id)
             css = CSS(css_name, margin_left=str(int(block_compos[0].left - prev_divider)) + 'px', float='left', border="solid 2px black")
-            blocks.append(Block(id=block_id, compos=block_compos, is_slice_sub_block=is_slice_sub_block,
+            blocks.append(Block(id=block_id, compos=block_compos, slice_sub_block_direction=direction,
                                 html_id='block-' + str(block_id), css={css_name: css}))
 
     return blocks
@@ -86,7 +105,7 @@ def slice_blocks(compos_html, direction='v', is_slice_sub_block=True):
 def visualize_blocks(blocks, img, img_shape):
     board = cv2.resize(img, img_shape)
     for block in blocks:
-        board = block.visualize(board, img_shape, show=False)
+        board = block.visualize_block(board, show=False)
     cv2.imshow('compos', board)
     cv2.waitKey()
     cv2.destroyWindow('compos')
@@ -94,7 +113,7 @@ def visualize_blocks(blocks, img, img_shape):
 
 class Block:
     def __init__(self, id, compos,
-                 is_slice_sub_block=True, html_tag=None, html_id=None, html_class_name=None, css=None):
+                 slice_sub_block_direction='h', html_tag=None, html_id=None, html_class_name=None, css=None):
         self.block_id = id
         self.compos = compos                # list of CompoHTML objs
         self.block_obj = None               # CompoHTML obj
@@ -118,8 +137,7 @@ class Block:
         self.css_script = ''    # string
 
         # only slice sub-block once
-        if is_slice_sub_block:
-            self.slice_sub_blocks()
+        self.slice_sub_blocks(slice_sub_block_direction)
 
         if css is not None:
             self.init_css()
@@ -162,11 +180,11 @@ class Block:
             self.css_script += self.css[i].css_script
         # self.block_obj.css = self.css
 
-    def slice_sub_blocks(self):
+    def slice_sub_blocks(self, slice_sub_block_direction):
         '''
         Horizontally slice the block into sub-blocks
         '''
-        self.sub_blocks = slice_blocks(self.compos, 'h', is_slice_sub_block=False)
+        self.sub_blocks = slice_blocks(self.compos, direction=slice_sub_block_direction)
 
     def clip_block_img(self, org, show=False):
         self.block_img = org[self.top: self.bottom, self.left: self.right]
@@ -178,13 +196,27 @@ class Block:
         cv2.waitKey()
         cv2.destroyWindow('block')
 
-    def visualize(self, img=None, img_shape=None, flag='line', show=True):
+    def visualize_block(self, img, flag='line', show=True, color=(0, 255, 0)):
         fill_type = {'line': 2, 'block': -1}
-        img_shape = img_shape
-        board = cv2.resize(img, img_shape)
-        board = cv2.rectangle(board, (self.left, self.top), (self.right, self.bottom), (0, 255, 0), fill_type[flag])
+        board = img.copy()
+        board = cv2.rectangle(board, (self.left, self.top), (self.right, self.bottom), color, fill_type[flag])
         if show:
             cv2.imshow('compo', board)
             cv2.waitKey()
             cv2.destroyWindow('compo')
         return board
+
+    def visualize_sub_blocks(self, img, flag='line', show=True):
+        fill_type = {'line': 2, 'block': -1}
+        color = (rint(0, 255), rint(0, 255), rint(0, 255))
+        board = img.copy()
+
+        for sub_block in self.sub_blocks:
+            print(sub_block)
+            board = sub_block.visualize_block(board, flag=flag, show=False)
+        #     sub_block.visualize_sub_blocks(img)
+
+        if show:
+            cv2.imshow('sub_blocks', board)
+            cv2.waitKey()
+            cv2.destroyWindow('sub_blocks')
