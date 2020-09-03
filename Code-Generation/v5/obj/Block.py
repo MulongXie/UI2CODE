@@ -25,16 +25,17 @@ def slice_blocks(compos_html, direction='v', is_slice_sub_block=True):
         for compo in compos_html:
             # new block
             if divider < compo.top:
+                prev_divider = divider
                 dividers.append(compo.top)
                 divider = compo.bottom
-                prev_divider = compo.bottom
                 dividers.append(divider)
                 if len(block_compos) > 0:
+                    print(prev_divider, compo.top)
+                    block_id += 1
                     css_name = '#block-' + str(block_id)
-                    css = CSS(css_name, margin_top=str(int(compo.top - divider)))
+                    css = CSS(css_name, margin_top=str(int(compo.top - prev_divider)) + 'px', border="solid 2px black")
                     blocks.append(Block(id=block_id, compos=block_compos, is_slice_sub_block=is_slice_sub_block,
                                         html_id='block-'+str(block_id), css={css_name: css}))
-                    block_id += 1
                     block_compos = []
             # extend block
             elif compo.top < divider < compo.bottom:
@@ -44,8 +45,9 @@ def slice_blocks(compos_html, direction='v', is_slice_sub_block=True):
 
         # collect left compos
         if len(block_compos) > 0:
+            block_id += 1
             css_name = '#block-' + str(block_id)
-            css = CSS(css_name, margin_top=str(int(block_compos[0].top - prev_divider)))
+            css = CSS(css_name, margin_top=str(int(block_compos[0].top - prev_divider)) + 'px', border="solid 2px black")
             blocks.append(Block(id=block_id, compos=block_compos, is_slice_sub_block=is_slice_sub_block,
                                 html_id='block-' + str(block_id), css={css_name: css}))
 
@@ -54,16 +56,16 @@ def slice_blocks(compos_html, direction='v', is_slice_sub_block=True):
         for compo in compos_html:
             # new block
             if divider < compo.left:
+                prev_divider = divider
                 dividers.append(compo.left)
                 divider = compo.right
-                prev_divider = compo.right
                 dividers.append(divider)
                 if len(block_compos) > 0:
+                    block_id += 1
                     css_name = '#block-' + str(block_id)
-                    css = CSS(css_name, margin_left=str(int(compo.left - divider)), float='left')
+                    css = CSS(css_name, margin_left=str(int(compo.left - prev_divider)) + 'px', float='left', border="solid 2px black")
                     blocks.append(Block(id=block_id, compos=block_compos, is_slice_sub_block=is_slice_sub_block,
                                         html_id='block-' + str(block_id), css={css_name: css}))
-                    block_id += 1
                     block_compos = []
             # extend block
             elif compo.left < divider < compo.right:
@@ -73,8 +75,9 @@ def slice_blocks(compos_html, direction='v', is_slice_sub_block=True):
 
         # collect left compos
         if len(block_compos) > 0:
+            block_id += 1
             css_name = '#block-' + str(block_id)
-            css = CSS(css_name, margin_left=str(int(block_compos[0].left - prev_divider)))
+            css = CSS(css_name, margin_left=str(int(block_compos[0].left - prev_divider)) + 'px', float='left', border="solid 2px black")
             blocks.append(Block(id=block_id, compos=block_compos, is_slice_sub_block=is_slice_sub_block,
                                 html_id='block-' + str(block_id), css={css_name: css}))
 
