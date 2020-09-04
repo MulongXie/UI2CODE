@@ -201,7 +201,7 @@ class List:
                 margin = 0
                 for i in range(1, len(compos)):
                     margin = max(margin, compos.iloc[i]['row_min'] - compos.iloc[i - 1]['row_max'])
-                self.compos_css[name] = CSS(name, margin_top=str(margin))
+                self.compos_css[name] = CSS(name, margin_top=str(margin) + 'px')
 
             elif self.list_alignment == 'h':
                 margin = 0

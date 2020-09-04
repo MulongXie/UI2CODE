@@ -9,7 +9,7 @@ from obj.HTML import HTML
 def visualize_CompoHTMLs(compos_html, img, img_shape):
     board = cv2.resize(img, img_shape)
     for compo in compos_html:
-        board = compo.visualize(board, img_shape, show=False)
+        board = compo.visualize(board)
     cv2.imshow('compos', board)
     cv2.waitKey()
     cv2.destroyWindow('compos')
@@ -78,12 +78,11 @@ class CompoHTML:
         self.compo_df.append(child.compo_df)
         self.init_boundary()
 
-    def visualize(self, img=None, img_shape=None, flag='line', show=True):
+    def visualize(self, img=None, flag='line', show=False, color=(0,255,0)):
         fill_type = {'line':2, 'block':-1}
         img = self.img if img is None else img
-        img_shape = self.img_shape if img_shape is None else img_shape
-        board = cv2.resize(img, img_shape)
-        board = cv2.rectangle(board, (self.left, self.top), (self.right, self.bottom), (0,255,0), fill_type[flag])
+        board = img.copy()
+        board = cv2.rectangle(board, (self.left, self.top), (self.right, self.bottom), color, fill_type[flag])
         if show:
             cv2.imshow('compo', board)
             cv2.waitKey()

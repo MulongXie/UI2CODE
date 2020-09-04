@@ -197,6 +197,11 @@ class Block:
         cv2.waitKey()
         cv2.destroyWindow('block')
 
+    '''
+    ******************************
+    ******** Visualization *******
+    ******************************
+    '''
     def visualize_block(self, img, flag='line', show=False, color=(0, 255, 0)):
         fill_type = {'line': 2, 'block': -1}
         board = img.copy()
@@ -207,15 +212,22 @@ class Block:
             cv2.destroyWindow('compo')
         return board
 
-    def visualize_sub_blocks(self, img, flag='line', show=True, color=None):
-        fill_type = {'line': 2, 'block': -1}
-        color = (rint(0, 255), rint(0, 255), rint(0, 255))
+    def visualize_compos(self, img, flag='line', show=False, color=(0, 255, 0)):
         board = img.copy()
-        board = self.visualize_block(board, flag, color=color)
-        for sub_block in self.sub_blocks:
-            board = sub_block.visualize_block(board)
-            # board = sub_block.visualize_sub_blocks(board, flag=flag, show=True, color=color)
+        for compo in self.compos:
+            board = compo.visualize(board, flag, color=color)
+        if show:
+            cv2.imshow('blk_compos', board)
+            cv2.waitKey()
+            cv2.destroyWindow('blk_compos')
+        return board
 
+    def visualize_sub_blocks(self, img, flag='line', show=True):
+        board = img.copy()
+        board = self.visualize_block(board)
+        board = self.visualize_compos(board, color=(0,0,200))
+        for sub_block in self.sub_blocks:
+            board = sub_block.visualize_block(board, color=(200,200,0))
         if show:
             print(len(self.sub_blocks), len(self.compos))
             cv2.imshow('sub_blocks', board)
@@ -225,5 +237,4 @@ class Block:
         board = img.copy()
         for sub_block in self.sub_blocks:
             board = sub_block.visualize_sub_blocks(board)
-
         return board
