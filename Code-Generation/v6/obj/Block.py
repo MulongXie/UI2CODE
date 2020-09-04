@@ -29,6 +29,7 @@ def slice_blocks(compos_html, direction='v'):
         compos_html.sort(key=lambda x: x.top)
         for compo in compos_html:
             # new block
+            # if divider is lower than this compo's top, then slice the last block
             if divider < compo.top:
                 prev_divider = divider
                 dividers.append(compo.top)
@@ -36,11 +37,11 @@ def slice_blocks(compos_html, direction='v'):
                 dividers.append(divider)
 
                 margin = int(compo.top - prev_divider)
-                # a single compo is sliced out, which should not be counted as a block
+                # a single compo is not be counted as a block
                 if len(block_compos) == 1:
-                    print(block_compos[0].html_id)
+                    block_compos = []
 
-                if len(block_compos) > 0:
+                elif len(block_compos) > 1:
                     block_id += 1
                     css_name = '#block-' + str(block_id)
                     css = CSS(css_name, margin_top=str(margin) + 'px', clear='left', border="solid 2px black")
@@ -74,11 +75,11 @@ def slice_blocks(compos_html, direction='v'):
                 dividers.append(divider)
 
                 margin = int(compo.top - prev_divider)
-                # a single compo is sliced out, which should not be counted as a block
+                # a single compo is not be counted as a block
                 if len(block_compos) == 1:
-                    print(block_compos[0].html_id)
+                    block_compos = []
 
-                if len(block_compos) > 0:
+                elif len(block_compos) > 1:
                     block_id += 1
                     css_name = '#block-' + str(block_id)
                     css = CSS(css_name, margin_left=str(margin) + 'px', float='left', border="solid 2px black")
@@ -196,7 +197,7 @@ class Block:
         cv2.waitKey()
         cv2.destroyWindow('block')
 
-    def visualize_block(self, img, flag='line', show=True, color=(0, 255, 0)):
+    def visualize_block(self, img, flag='line', show=False, color=(0, 255, 0)):
         fill_type = {'line': 2, 'block': -1}
         board = img.copy()
         board = cv2.rectangle(board, (self.left, self.top), (self.right, self.bottom), color, fill_type[flag])
@@ -206,17 +207,23 @@ class Block:
             cv2.destroyWindow('compo')
         return board
 
-    def visualize_sub_blocks(self, img, flag='line', show=True):
+    def visualize_sub_blocks(self, img, flag='line', show=True, color=None):
         fill_type = {'line': 2, 'block': -1}
         color = (rint(0, 255), rint(0, 255), rint(0, 255))
         board = img.copy()
-
+        board = self.visualize_block(board, flag, color=color)
         for sub_block in self.sub_blocks:
-            print(sub_block)
-            board = sub_block.visualize_block(board, flag=flag, show=False)
-        #     sub_block.visualize_sub_blocks(img)
+            board = sub_block.visualize_block(board)
+            # board = sub_block.visualize_sub_blocks(board, flag=flag, show=True, color=color)
 
         if show:
+            print(len(self.sub_blocks), len(self.compos))
             cv2.imshow('sub_blocks', board)
             cv2.waitKey()
             cv2.destroyWindow('sub_blocks')
+
+        board = img.copy()
+        for sub_block in self.sub_blocks:
+            board = sub_block.visualize_sub_blocks(board)
+
+        return board
