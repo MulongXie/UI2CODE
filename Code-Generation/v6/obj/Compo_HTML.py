@@ -17,7 +17,7 @@ def visualize_CompoHTMLs(compos_html, img, img_shape):
 
 class CompoHTML:
     def __init__(self, compo_id, html_tag,
-                 compo_df=None, html_id=None, html_class_name=None, children=None, parent=None, img=None, img_shape=None):
+                 compo_df=None, html_id=None, html_class_name=None, children=None, parent=None, img=None, img_shape=None, css=None):
         self.compo_df = compo_df
         self.compo_id = compo_id
 
@@ -33,13 +33,13 @@ class CompoHTML:
         self.height = None
 
         # html info
-        self.html = None        # HTML obj
+        self.html = None                             # HTML obj
         self.html_id = html_id
         self.html_class_name = html_class_name
         self.html_tag = html_tag
         self.html_tag_map = {'Compo': 'div', 'Text': 'div', 'Block': 'div'}
-        self.html_script = ''   # sting
-        self.css = {}           # CSS objs, a compo may have multiple css styles through linking to multiple css classes
+        self.html_script = ''                        # sting
+        self.css = {} if css is None else css        # directory of CSS objs, {'.class'/'#id' : CSS obj}
 
         self.img = img
         self.img_shape = img_shape

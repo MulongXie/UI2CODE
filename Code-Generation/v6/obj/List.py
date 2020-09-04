@@ -7,6 +7,7 @@ from obj.Compo_HTML import CompoHTML
 import lib.draw as draw
 
 tag_map = {'Compo': 'div', 'Text': 'div', 'Block': 'div'}
+backgrounds = {'Compo': 'grey', 'Text': 'green', 'Block': 'orange'}
 
 
 def gather_lists_by_pair_and_group(compos):
@@ -36,7 +37,9 @@ def gather_lists_by_pair_and_group(compos):
 
     for i in range(len(compos)):
         compo = compos.iloc[i]
-        compo_html = CompoHTML(compo_id=compo['id'], compo_df=compo, html_tag=tag_map[compo['class']], html_id=tag_map[compo['class']] + '-' + str(compo['id']))
+        html_id = tag_map[compo['class']] + '-' + str(compo['id'])
+        css = CSS(name='#' + html_id, background=backgrounds[compo['class']], width=str(compo['width']) + 'px', height=str(compo['height']) + 'px')
+        compo_html = CompoHTML(compo_id=compo['id'], compo_df=compo, html_tag=tag_map[compo['class']], html_id=html_id, css={html_id: css})
         non_list_compos.append(compo_html)
     return lists, non_list_compos
 
@@ -121,7 +124,6 @@ class List:
         self.compos_css['ul'] = CSS('ul', list_style='None', padding_left='0', clear='left')
         compos = self.compos_df
         groups = compos.groupby('group').groups
-        backgrounds = {'Compo': 'grey', 'Text': 'green'}
         for i in groups:
             self.compos_css['.' + i] = CSS('.' + i,
                                            width=str(int(compos.loc[groups[i], 'width'].mean())) + 'px',
