@@ -19,6 +19,7 @@ def slice_blocks(compos_html, direction='v'):
     '''
     blocks = []
     block_compos = []
+    non_blocked_compos = compos_html
     global block_id
 
     dividers = []
@@ -48,6 +49,8 @@ def slice_blocks(compos_html, direction='v'):
                     css = CSS(css_name, margin_top=str(margin) + 'px', clear='left', border="solid 2px black")
                     blocks.append(Block(id=block_id, compos=block_compos, slice_sub_block_direction=direction,
                                         html_id='block-'+str(block_id), css={css_name: css}))
+                    # remove blocked compos
+                    non_blocked_compos = list(set(non_blocked_compos) - set(block_compos))
                     block_compos = []
             # extend block
             elif compo.top < divider < compo.bottom:
@@ -62,6 +65,8 @@ def slice_blocks(compos_html, direction='v'):
             css = CSS(css_name, margin_top=str(int(block_compos[0].top - prev_divider)) + 'px', clear='left', border="solid 2px black")
             blocks.append(Block(id=block_id, compos=block_compos, slice_sub_block_direction=direction,
                                 html_id='block-' + str(block_id), css={css_name: css}))
+            # remove blocked compos
+            non_blocked_compos = list(set(non_blocked_compos) - set(block_compos))
 
     elif direction == 'h':
         # reverse the direction of next slicing
@@ -87,6 +92,8 @@ def slice_blocks(compos_html, direction='v'):
                     css = CSS(css_name, margin_left=str(margin) + 'px', float='left', border="solid 2px black")
                     blocks.append(Block(id=block_id, compos=block_compos, slice_sub_block_direction=direction,
                                         html_id='block-' + str(block_id), css={css_name: css}))
+                    # remove blocked compos
+                    non_blocked_compos = list(set(non_blocked_compos) - set(block_compos))
                     block_compos = []
             # extend block
             elif compo.left < divider < compo.right:
@@ -94,15 +101,17 @@ def slice_blocks(compos_html, direction='v'):
                 dividers[-1] = divider
             block_compos.append(compo)
 
-        # collect left compos
+        # if there are some sub-blocks, gather the left compos as a block
         if len(blocks) > 0 and len(block_compos) > 1:
             block_id += 1
             css_name = '#block-' + str(block_id)
             css = CSS(css_name, margin_left=str(int(block_compos[0].left - prev_divider)) + 'px', float='left', border="solid 2px black")
             blocks.append(Block(id=block_id, compos=block_compos, slice_sub_block_direction=direction,
                                 html_id='block-' + str(block_id), css={css_name: css}))
+            # remove blocked compos
+            non_blocked_compos = list(set(non_blocked_compos) - set(block_compos))
 
-    return blocks
+    return blocks, non_blocked_compos
 
 
 def visualize_blocks(blocks, img, img_shape):
@@ -148,31 +157,26 @@ class Block:
         self.init_html()
 
     def init_boundary(self):
-        self.top = min(self.compos, key=lambda x: x.top).top
-        self.bottom = max(self.compos, key=lambda x: x.bottom).bottom
-        self.left = min(self.compos, key=lambda x: x.left).left
-        self.right = max(self.compos, key=lambda x: x.right).right
+        self.top = min(self.compos + self.sub_blocks, key=lambda x: x.top).top
+        self.bottom = max(self.compos + self.sub_blocks, key=lambda x: x.bottom).bottom
+        self.left = min(self.compos + self.sub_blocks, key=lambda x: x.left).left
+        self.right = max(self.compos + self.sub_blocks, key=lambda x: x.right).right
 
     def init_html(self):
         self.html = HTML(tag=self.html_tag, id=self.html_id, class_name=self.html_class_name)
-
-        if len(self.sub_blocks) > 1:
-            # add compos of sub blocks
-            for sub_block in self.sub_blocks:
-                self.html.add_child(sub_block.html_script)
-        else:
-            for compo in self.compos:
-                self.html.add_child(compo.html_script)
+        # add compos and sub blocks
+        for sub_block in self.sub_blocks:
+            self.html.add_child(sub_block.html_script)
+        for compo in self.compos:
+            self.html.add_child(compo.html_script)
 
         self.html_script = self.html.html_script
 
     def init_css(self):
-        if len(self.sub_blocks) > 1:
-            for sub_block in self.sub_blocks:
-                self.css.update(sub_block.css)
-        else:
-            for compo in self.compos:
-                self.css.update(compo.css)
+        for sub_block in self.sub_blocks:
+            self.css.update(sub_block.css)
+        for compo in self.compos:
+            self.css.update(compo.css)
         self.css_script = self.css
         self.assembly_css()
 
@@ -186,17 +190,7 @@ class Block:
         '''
         Horizontally slice the block into sub-blocks
         '''
-        self.sub_blocks = slice_blocks(self.compos, direction=slice_sub_block_direction)
-
-    def clip_block_img(self, org, show=False):
-        self.block_img = org[self.top: self.bottom, self.left: self.right]
-        if show:
-            self.show_block_img()
-
-    def show_block_img(self):
-        cv2.imshow('block', self.block_img)
-        cv2.waitKey()
-        cv2.destroyWindow('block')
+        self.sub_blocks, self.compos = slice_blocks(self.compos, direction=slice_sub_block_direction)
 
     '''
     ******************************
