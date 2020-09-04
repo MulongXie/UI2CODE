@@ -74,7 +74,7 @@ def slice_blocks(compos_html, direction='v'):
                 divider = compo.right
                 dividers.append(divider)
 
-                margin = int(compo.top - prev_divider)
+                margin = int(compo.left - prev_divider)
                 # a single compo is not be counted as a block
                 if len(block_compos) == 1:
                     block_compos = []
