@@ -226,16 +226,22 @@ class Block:
                     child.update_css(css_name, padding_top=str(gap) + 'px')
                 else:
                     child.update_css(css_name, margin_top=str(gap) + 'px')
+                self.css.update(child.css)
 
         elif self.sub_blk_alignment == 'h':
-            for i in range(1, len(self.children)):
+            for i in range(len(self.children)):
                 child = self.children[i]
                 css_name = '#' + child.html_id
                 gap = child.left - self.children[i - 1].right
-                if child.html_tag == 'ul':
-                    child.update_css(css_name, padding_left=str(gap) + 'px', float='left')
-                else:
-                    child.update_css(css_name, margin_left=str(gap) + 'px', float='left')
+                child.update_css(css_name, float='left')
+                if i > 0:
+                    if child.html_tag == 'ul':
+                        child.update_css(css_name, padding_left=str(gap) + 'px')
+                    else:
+                        child.update_css(css_name, margin_left=str(gap) + 'px')
+                self.css.update(child.css)
+        self.assembly_css()
+
 
     '''
     ******************************
