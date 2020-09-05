@@ -150,16 +150,15 @@ class Block:
         self.css = css           # CSS objs
         self.css_script = ''    # string
 
-        # only slice sub-block once
+        # slice sub-block comprising multiple compos
         self.sub_blk_alignment = slice_sub_block_direction
         self.slice_sub_blocks()
         self.sort_compos_and_sub_blks()
 
-        if css is not None:
-            self.init_css()
-
         self.init_boundary()
         self.init_html()
+        self.init_css()
+        self.init_children_css()
 
     def init_boundary(self):
         self.top = min(self.compos + self.sub_blocks, key=lambda x: x.top).top
@@ -187,7 +186,12 @@ class Block:
         self.css_script = ''
         for i in self.css:
             self.css_script += self.css[i].css_script
-        # self.block_obj.css = self.css
+
+    def update_css(self, css_name, **attrs):
+        if css_name in self.css:
+            self.css[css_name].add_attrs(**attrs)
+        else:
+            self.css[css_name] = CSS(css_name, **attrs)
 
     '''
     ******************************
@@ -212,11 +216,26 @@ class Block:
         elif self.sub_blk_alignment == 'h':
             self.children = sorted(self.compos + self.sub_blocks, key=lambda x: x.left)
 
-    # def init_children_css(self):
-    #     for i in range(len(self.children) - 1):
-    #         child = self.children
-    #         if self.sub_blk_alignment == 'v':
-    #             css = CSS()
+    def init_children_css(self):
+        if self.sub_blk_alignment == 'v':
+            for i in range(1, len(self.children)):
+                child = self.children[i]
+                css_name = '#' + child.html_id
+                gap = child.top - self.children[i - 1].bottom
+                if child.html_tag == 'ul':
+                    child.update_css(css_name, padding_top=str(gap) + 'px')
+                else:
+                    child.update_css(css_name, margin_top=str(gap) + 'px')
+
+        elif self.sub_blk_alignment == 'h':
+            for i in range(1, len(self.children)):
+                child = self.children[i]
+                css_name = '#' + child.html_id
+                gap = child.left - self.children[i - 1].right
+                if child.html_tag == 'ul':
+                    child.update_css(css_name, padding_left=str(gap) + 'px', float='left')
+                else:
+                    child.update_css(css_name, margin_left=str(gap) + 'px', float='left')
 
     '''
     ******************************

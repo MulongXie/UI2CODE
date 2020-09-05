@@ -78,6 +78,12 @@ class CompoHTML:
         self.compo_df.append(child.compo_df)
         self.init_boundary()
 
+    def update_css(self, css_name, **attrs):
+        if css_name in self.css:
+            self.css[css_name].add_attrs(**attrs)
+        else:
+            self.css[css_name] = CSS(css_name, **attrs)
+
     def visualize(self, img=None, flag='line', show=False, color=(0,255,0)):
         fill_type = {'line':2, 'block':-1}
         img = self.img if img is None else img
