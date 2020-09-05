@@ -39,7 +39,7 @@ def gather_lists_by_pair_and_group(compos):
         compo = compos.iloc[i]
         html_id = tag_map[compo['class']] + '-' + str(compo['id'])
         css = CSS(name='#' + html_id, background=backgrounds[compo['class']], width=str(compo['width']) + 'px', height=str(compo['height']) + 'px')
-        compo_html = CompoHTML(compo_id=compo['id'], compo_df=compo, html_tag=tag_map[compo['class']], html_id=html_id, css={html_id: css})
+        compo_html = CompoHTML(compo_id=compo['id'], compo_df=compo, html_tag=tag_map[compo['class']], html_id=html_id, css={css.name: css})
         non_list_compos.append(compo_html)
     return lists, non_list_compos
 

@@ -41,8 +41,14 @@ def slice_blocks(compos_html, direction='v'):
                 margin = int(compo.top - prev_divider)
                 # a single compo is not be counted as a block
                 if len(block_compos) == 1:
+                    c = block_compos[0]
+                    if '#' + c.html_id in c.css:
+                        c.css['#' + c.html_id].add_attrs(margin_top=str(margin) + 'px')
+                    else:
+                        c.css['#' + c.html_id] = CSS('#' + c.html_id, margin_top=str(margin) + 'px')
                     block_compos = []
 
+                # gather previous compos in a block
                 elif len(block_compos) > 1:
                     block_id += 1
                     css_name = '#block-' + str(block_id)
@@ -84,8 +90,14 @@ def slice_blocks(compos_html, direction='v'):
                 margin = int(compo.left - prev_divider)
                 # a single compo is not be counted as a block
                 if len(block_compos) == 1:
+                    c = block_compos[0]
+                    if '#' + c.html_id in c.css:
+                        c.css['#' + c.html_id].add_attrs(margin_top=str(margin) + 'px')
+                    else:
+                        c.css['#' + c.html_id] = CSS('#' + c.html_id, margin_top=str(margin) + 'px')
                     block_compos = []
 
+                # gather previous compos in a block
                 elif len(block_compos) > 1:
                     block_id += 1
                     css_name = '#block-' + str(block_id)
@@ -234,7 +246,8 @@ class Block:
         for sub_block in self.sub_blocks:
             board = sub_block.visualize_block(board, color=(200,200,0))
         if show:
-            print(len(self.sub_blocks), len(self.compos))
+            print(self.sub_blocks + self.compos)
+            print(sorted(self.sub_blocks + self.compos, key=lambda x: x.top))
             cv2.imshow('sub_blocks', board)
             cv2.waitKey()
             cv2.destroyWindow('sub_blocks')
