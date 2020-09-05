@@ -121,7 +121,7 @@ class List:
         set css style for each group
         css is defined by class, which same as group name in compo_df
         '''
-        self.compos_css['ul'] = CSS('ul', list_style='None', padding_left='0', clear='left')
+        # self.compos_css['ul'] = CSS('ul', list_style='None', padding_left='0', clear='left')
         compos = self.compos_df
         groups = compos.groupby('group').groups
         for i in groups:

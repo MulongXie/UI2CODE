@@ -40,7 +40,7 @@ class Page:
         self.page_html = self.html_header + self.html_body + self.html_end
 
     def init_page_css(self):
-        self.page_css = ''
+        self.page_css = 'ul{\n\tlist-style: None;\n\tclear: left;\n\tpadding-left: 0;\n}'
         for css in self.compos_css:
             self.page_css += css
 
@@ -58,6 +58,11 @@ class Page:
             self.page_css += css
 
     def add_compo(self, compo_html, compo_css):
+        '''
+        :param compo_html: sting of html script
+        :param compo_css: string of css script
+        :return:
+        '''
         self.add_compo_html(compo_html)
         self.add_compo_css(compo_css)
 

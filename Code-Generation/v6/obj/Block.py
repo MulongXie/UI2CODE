@@ -236,7 +236,7 @@ class Block:
                 child.update_css(css_name, float='left')
                 if i > 0:
                     if child.html_tag == 'ul':
-                        child.update_css(css_name, padding_left=str(gap) + 'px')
+                        child.update_css(css_name, padding_left=str(gap) + 'px', clear='none')
                     else:
                         child.update_css(css_name, margin_left=str(gap) + 'px')
                 self.css.update(child.css)
