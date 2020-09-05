@@ -132,7 +132,7 @@ class Block:
         self.compos = compos                # list of CompoHTML objs
         self.block_obj = None               # CompoHTML obj
         self.sub_blocks = []                # list of Block objs
-        self.contents = []                  # compos + sub_blocks
+        self.children = []                  # compos + sub_blocks
 
         self.top = None
         self.left = None
@@ -151,8 +151,9 @@ class Block:
         self.css_script = ''    # string
 
         # only slice sub-block once
-        self.slice_sub_blocks(slice_sub_block_direction)
-        self.sort_compos_and_sub_blks(slice_sub_block_direction)
+        self.sub_blk_alignment = slice_sub_block_direction
+        self.slice_sub_blocks()
+        self.sort_compos_and_sub_blks()
 
         if css is not None:
             self.init_css()
@@ -169,13 +170,8 @@ class Block:
     def init_html(self):
         self.html = HTML(tag=self.html_tag, id=self.html_id, class_name=self.html_class_name)
 
-        for content in self.contents:
-            self.html.add_child(content.html_script)
-        # add compos and sub blocks
-        # for sub_block in self.sub_blocks:
-        #     self.html.add_child(sub_block.html_script)
-        # for compo in self.compos:
-        #     self.html.add_child(compo.html_script)
+        for child in self.children:
+            self.html.add_child(child.html_script)
 
         self.html_script = self.html.html_script
 
@@ -193,23 +189,34 @@ class Block:
             self.css_script += self.css[i].css_script
         # self.block_obj.css = self.css
 
-    def slice_sub_blocks(self, slice_sub_block_direction):
+    '''
+    ******************************
+    ********** Children **********
+    ******************************
+    '''
+
+    def slice_sub_blocks(self):
         '''
         slice the block into sub-blocks
         '''
-        self.sub_blocks, self.compos = slice_blocks(self.compos, direction=slice_sub_block_direction)
+        self.sub_blocks, self.compos = slice_blocks(self.compos, direction=self.sub_blk_alignment)
 
-    def sort_compos_and_sub_blks(self, direction):
+    def sort_compos_and_sub_blks(self):
         '''
         combine comps and sub_blocks w.r.t the slicing direction
         :param direction: slicing direction: 'v': from top to bottom; 'h': from left to right
-        :return:
+        :return: children: sorted sub-blocks and compos
         '''
-        if direction == 'v':
-            self.contents = sorted(self.compos + self.sub_blocks, key=lambda x: x.top)
-        elif direction == 'h':
-            self.contents = sorted(self.compos + self.sub_blocks, key=lambda x: x.left)
+        if self.sub_blk_alignment == 'v':
+            self.children = sorted(self.compos + self.sub_blocks, key=lambda x: x.top)
+        elif self.sub_blk_alignment == 'h':
+            self.children = sorted(self.compos + self.sub_blocks, key=lambda x: x.left)
 
+    # def init_children_css(self):
+    #     for i in range(len(self.children) - 1):
+    #         child = self.children
+    #         if self.sub_blk_alignment == 'v':
+    #             css = CSS()
 
     '''
     ******************************
