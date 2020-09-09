@@ -154,6 +154,7 @@ class Block:
         self.sub_blk_alignment = slice_sub_block_direction
         self.slice_sub_blocks()
         self.sort_compos_and_sub_blks()
+        print(self.html_id, slice_sub_block_direction)
 
         self.init_boundary()
         self.init_html()
