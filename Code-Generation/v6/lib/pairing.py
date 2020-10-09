@@ -39,17 +39,17 @@ def pair_matching_between_multi_groups(groups1, groups2):
         for j, g2 in enumerate(groups2):
             if g1.alignment == g2.alignment and abs(g1.compos_number - g2.compos_number) <= 2:
                 if match_two_groups(g1, g2, 10):
-                    if 'pair' not in g1.compos_dataframe.columns:
+                    if 'group_pair' not in g1.compos_dataframe.columns:
                         # hasn't paired yet, creat a new pair
                         pair_id += 1
-                        g1.compos_dataframe['pair'] = pair_id
-                        g1.compos_dataframe['pair'].astype(int)
+                        g1.compos_dataframe['group_pair'] = pair_id
+                        g1.compos_dataframe['group_pair'].astype(int)
                         pairs[pair_id] = [g1, g2]
                     else:
-                        # existing pair
-                        pairs[g1.compos_dataframe.iloc[0]['pair']].append(g2)
-                    g2.compos_dataframe['pair'] = pair_id
-                    g2.compos_dataframe['pair'].astype(int)
+                        # existing group_pair
+                        pairs[g1.compos_dataframe.iloc[0]['group_pair']].append(g2)
+                    g2.compos_dataframe['group_pair'] = pair_id
+                    g2.compos_dataframe['group_pair'].astype(int)
     return pairs
 
 
@@ -59,8 +59,8 @@ def pair_matching_within_groups(groups, new_pairs=True):
     mark = np.full(len(groups), False)
     if new_pairs:
         for group in groups:
-            if 'pair' in group.columns:
-                group.drop('pair', axis=1, inplace=True)
+            if 'group_pair' in group.columns:
+                group.drop('group_pair', axis=1, inplace=True)
     for i, g1 in enumerate(groups):
         alignment1 = g1.iloc[0]['alignment_in_group']
         for j in range(i + 1, len(groups)):
@@ -71,15 +71,15 @@ def pair_matching_within_groups(groups, new_pairs=True):
                     if not mark[i]:
                         # hasn't paired yet, creat a new pair
                         pair_id += 1
-                        g1['pair'] = pair_id
+                        g1['group_pair'] = pair_id
                         pairs[pair_id] = [g1, g2]
                         mark[i] = True
                         mark[j] = True
                     else:
                         # existing pair
-                        pairs[g1.iloc[0]['pair']].append(g2)
+                        pairs[g1.iloc[0]['group_pair']].append(g2)
                         mark[j] = True
-                    g2['pair'] = pair_id
+                    g2['group_pair'] = pair_id
 
     merged_pairs = None
     for i in pairs:
@@ -97,12 +97,12 @@ def pair_visualization(pairs, img, img_shape, show_method='line'):
         for id in pairs:
             pair = pairs[id]
             for p in pair:
-                board = draw.visualize(board, p.compos_dataframe, img_shape, attr='pair', show=False)
+                board = draw.visualize(board, p.compos_dataframe, img_shape, attr='group_pair', show=False)
     elif show_method == 'block':
         for id in pairs:
             pair = pairs[id]
             for p in pair:
-                board = draw.visualize_block(board, p.compos_dataframe, img_shape, attr='pair', show=False)
+                board = draw.visualize_block(board, p.compos_dataframe, img_shape, attr='group_pair', show=False)
     cv2.imshow('pairs', board)
     cv2.waitKey()
     cv2.destroyAllWindows()

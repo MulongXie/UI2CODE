@@ -18,7 +18,7 @@ def gather_lists_by_pair_and_group(compos):
     '''
     lists = []
     non_list_compos = []
-    groups = compos.groupby('pair').groups
+    groups = compos.groupby('group_pair').groups
     list_id = 0
     for i in groups:
         if i == -1 or len(groups[i]) == 1:

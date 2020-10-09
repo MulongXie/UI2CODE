@@ -219,7 +219,7 @@ class ComposDF:
         # fill nan and change type
         df_all = df_all.fillna(-1)
         # df_all[list(df_all.filter(like='group'))] = df_all[list(df_all.filter(like='group'))].astype(int)
-        df_all['pair'] = df_all['pair'].astype(int)
+        df_all['group_pair'] = df_all['group_pair'].astype(int)
         df_all['pair_to'] = df_all['pair_to'].astype(int)
         self.compos_dataframe = df_all
 
@@ -230,7 +230,7 @@ class ComposDF:
     '''
     def list_item_partition(self):
         compos = self.compos_dataframe
-        groups = compos.groupby("pair").groups
+        groups = compos.groupby("group_pair").groups
         listed_compos = pd.DataFrame()
         for i in groups:
             if i == -1:

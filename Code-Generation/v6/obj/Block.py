@@ -286,7 +286,7 @@ class Block:
         for sub_block in self.sub_blocks:
             board = sub_block.visualize_block(board, color=(200,200,0))
         if show:
-            print(len(self.sub_blocks), len(self.compos))
+            print('Num of sub_block:%i; Num of element: %i' % (len(self.sub_blocks), len(self.compos)))
             cv2.imshow('sub_blocks', board)
             cv2.waitKey()
             cv2.destroyWindow('sub_blocks')
