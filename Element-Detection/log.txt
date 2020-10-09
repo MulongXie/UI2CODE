@@ -8,3 +8,8 @@
 11：00 23/7/2020
 - Synchronized with Webapp.
 
+10：53 4/8/2020
+- Synchronized with Webapp.
+
+7/10/2020
+- Extract parameters as configurable

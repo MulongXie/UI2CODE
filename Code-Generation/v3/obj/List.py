@@ -27,7 +27,7 @@ def generate_lists_html_css(lists):
 
         li.generate_css_by_element()
         li.generate_css_by_item_group()
-        # li.generate_css_by_list_item()
+        li.generate_css_by_list_item()
 
 
 class List:
@@ -121,6 +121,7 @@ class List:
                     self.compos_css[name].add_attrs(margin_left=str(int(compos.loc[ids[i], 'column_min'].min() - compos.loc[ids[i-1], 'column_max'].max())) + 'px')
                 if self.list_alignment == 'h':
                     self.compos_css[name].add_attrs(margin_top=str(int(compos.loc[ids[i], 'row_min'].min() - compos.loc[ids[i-1], 'row_max'].max())) + 'px')
+        self.list_css = ''
         for i in self.compos_css:
             self.list_css += self.compos_css[i].css
 
@@ -143,15 +144,23 @@ class List:
             s_groups = sorted(s_groups, key=lambda k: k[2])
             return s_groups
 
-        css = ''
         if self.list_type == 'multiple':
             sorted_groups = sort_list_item()
             ids = [s[1] for s in sorted_groups]
-            for i in range(1, len(sorted_groups)):
-                name = '.' + sorted_groups[i][0]
-                if self.list_alignment == 'v':
-                    self.compos_css[name].add_attrs(margin_top=str(int(compos.loc[ids[i], 'row_min'].min() - compos.loc[ids[i - 1], 'row_max'].max())) + 'px')
-                if self.list_alignment == 'h':
-                    self.compos_css[name].add_attrs(margin_left=str(int(compos.loc[ids[i], 'column_min'].min() - compos.loc[ids[i-1], 'column_max'].max())) + 'px')
-                css += self.compos_css[name].css
-        self.list_css = css
+            n1 = compos.loc[ids[0][0]]['group'].split('-')
+            n2 = compos.loc[ids[0][1]]['group'].split('-')
+            name = 'li-' + n1[1] + '-' + n2[1] if n1[0] == 't' else 'li-' + n2[1] + '-' + n1[1]
+            print(name)
+            # if self.list_alignment == 'v':
+            #     self.compos_css[name].add_attrs(margin_top=str(int(compos.loc[ids[1], 'row_min'].min() - compos.loc[ids[0], 'row_max'].max())) + 'px')
+            # if self.list_alignment == 'h':
+            #     self.compos_css[name].add_attrs(margin_left=str(int(compos.loc[ids[1], 'column_min'].min() - compos.loc[ids[0], 'column_max'].max())) + 'px')
+
+        #     name = '.' + sorted_groups[i][0]
+        #     if self.list_alignment == 'v':
+        #         self.compos_css[name].add_attrs(margin_top=str(int(compos.loc[ids[i], 'row_min'].min() - compos.loc[ids[i - 1], 'row_max'].max())) + 'px')
+        #     if self.list_alignment == 'h':
+        #         self.compos_css[name].add_attrs(margin_left=str(int(compos.loc[ids[i], 'column_min'].min() - compos.loc[ids[i-1], 'column_max'].max())) + 'px')
+        # self.list_css = ''
+        # for i in self.compos_css:
+        #     self.list_css += self.compos_css[i].css

@@ -6,6 +6,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="v3" />
   </component>
   <component name="PyDocumentationSettings">
     <option name="format" value="PLAIN" />
