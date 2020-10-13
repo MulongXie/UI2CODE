@@ -147,7 +147,7 @@ class Block:
         self.html_id = html_id
         self.html_class_name = html_class_name
         self.html_script = ''   # sting
-        self.css = css           # CSS objs
+        self.css = css          # dictionary: {'css-name': CSS obj}
         self.css_script = ''    # string
 
         # slice sub-block comprising multiple compos
@@ -166,6 +166,8 @@ class Block:
         self.bottom = max(self.compos + self.sub_blocks, key=lambda x: x.bottom).bottom
         self.left = min(self.compos + self.sub_blocks, key=lambda x: x.left).left
         self.right = max(self.compos + self.sub_blocks, key=lambda x: x.right).right
+        self.height = self.bottom - self.top
+        self.width = self.right - self.left
 
     def init_html(self):
         self.html = HTML(tag=self.html_tag, id=self.html_id, class_name=self.html_class_name)
