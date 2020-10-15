@@ -75,6 +75,7 @@ class ComposDF:
         df = df.merge(df_nontext, how='left')
         df.loc[df['alignment'].isna(), 'alignment'] = df_text['alignment']
         df = df.merge(df_text, how='left')
+        df.rename({'alignment': 'alignment_in_group'}, axis=1, inplace=True)
 
         if clean_attrs:
             df = df.drop(list(df.filter(like='cluster')), axis=1)
@@ -86,7 +87,12 @@ class ComposDF:
                 elif df.iloc[i]['group_text'] != -1:
                     df.loc[i, 'group'] = 't-' + str(int(df.iloc[i]['group_text']))
 
-        df.rename({'alignment': 'alignment_in_group'}, axis=1, inplace=True)
+            groups = df.groupby('group').groups
+            for i in groups:
+                if len(groups[i]) == 1:
+                    df.loc[groups[i], 'group'] = np.nan
+
+        # df = rep.rm_invalid_groups(df)
         self.compos_dataframe = df
 
     def cluster_dbscan_by_attr(self, attr, eps, min_samples=1, show=True, show_method='line'):
