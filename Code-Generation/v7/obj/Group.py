@@ -1,7 +1,9 @@
+import difflib
 
-def split_groups_with_intersection(compos):
+
+def split_groups_with_interleaving(compos):
     grps = {}
-    intersections = {}
+    interleavings = {}
     groups = compos.groupby('group').groups
     for i in groups:
         if len(groups[i]) <= 1:
@@ -10,21 +12,46 @@ def split_groups_with_intersection(compos):
         for j in grps:
             g = grps[j]
             if grp.is_intersected(g):
-                if grp.id not in intersections:
-                    intersections[grp.id] = [g.id]
+                if grp.id not in interleavings:
+                    interleavings[grp.id] = [g.id]
                 else:
-                    intersections[grp.id].append(g.id)
-                if g.id not in intersections:
-                    intersections[g.id] = [grp.id]
+                    interleavings[grp.id].append(g.id)
+                if g.id not in interleavings:
+                    interleavings[g.id] = [grp.id]
                 else:
-                    intersections[g.id].append(grp.id)
+                    interleavings[g.id].append(grp.id)
         grps[grp.id] = grp
-    return grps, intersections
+    return grps, interleavings
 
 
-def find_sandwiches_in_group(group, compos_all):
+def split_groups(compos):
+    grps = {}
+    groups = compos.groupby('group').groups
+    for i in groups:
+        if len(groups[i]) <= 1:
+            continue
+        grp = Group(i, compos.loc[groups[i]])
+        grps[grp.id] = grp
+    return grps
+
+
+def is_valid_group_by_similar_interleave(grp_interleaves):
+    for i in range(len(grp_interleaves) - 1):
+        sw_a = list(grp_interleaves[i]['group'])
+        sw_b = list(grp_interleaves[i + 1]['group'])
+        # print(sw_a, sw_b)
+        if len(sw_a) <= 1 and len(sw_b) <= 1:
+            continue
+        sm = difflib.SequenceMatcher(None, sw_a, sw_b).ratio()
+        if sm < 0.5:
+            return False
+    return True
+
+
+def find_interleaves_in_group(group, compos_all):
+    c_all = compos_all.sort_values('row_min')
     alignment = group.alignment
-    sandwiches = []
+    interleaves = []
     for i in range(len(group.compos) - 1):
         c_a = group.compos.iloc[i]
         c_b = group.compos.iloc[i + 1]
@@ -32,20 +59,30 @@ def find_sandwiches_in_group(group, compos_all):
         col_max = max(c_a['column_max'], c_b['column_max'])
         row_min = min(c_a['row_min'], c_b['row_min'])
         row_max = max(c_a['row_max'], c_b['row_max'])
-        sandwich = compos_all[compos_all['group'] != group.id]
+        interleaving = c_all[c_all['group'] != group.id]
         if alignment == 'h':
             # filter elements not on the same horizontal level
-            sandwich = sandwich[~((sandwich['row_max'] < row_min) | (sandwich['row_min'] > row_max))]
+            interleaving = interleaving[~((interleaving['row_max'] < row_min) | (interleaving['row_min'] > row_max))]
             # c_a is on the left of c_b
-            sandwich = sandwich[
-                (sandwich['column_min'] > c_a['column_max']) & (sandwich['column_max'] < c_b['column_min'])]
+            interleaving = interleaving[
+                (interleaving['column_min'] > c_a['column_max']) & (interleaving['column_max'] < c_b['column_min'])]
         elif alignment == 'v':
             # filter elements not on the same vertical level
-            sandwich = sandwich[~((sandwich['column_max'] < col_min) | (sandwich['column_min'] > col_max))]
+            interleaving = interleaving[~((interleaving['column_max'] < col_min) | (interleaving['column_min'] > col_max))]
             # c_a is above c_b
-            sandwich = sandwich[(sandwich['row_min'] > c_a['row_max']) & (sandwich['row_max'] < c_b['row_min'])]
-        sandwiches.append(sandwich)
-    return sandwiches
+            interleaving = interleaving[(interleaving['row_min'] > c_a['row_max']) & (interleaving['row_max'] < c_b['row_min'])]
+        interleaves.append(interleaving)
+    return interleaves
+
+
+def check_valid_group_by_interleaving(groups, compos_all):
+    for gid in groups:
+        interleaves = find_interleaves_in_group(groups[gid], compos_all)
+        if is_valid_group_by_similar_interleave(interleaves):
+            print('valid:', gid)
+        else:
+            print('invalid:', gid)
+
 
 
 class Group:
