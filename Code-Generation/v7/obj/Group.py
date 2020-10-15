@@ -36,12 +36,15 @@ def split_groups(compos):
     return grps
 
 
-def is_valid_group_by_similar_interleave(grp_interleaves):
+def is_valid_group_by_similar_interleave(grp_interleaves, need_rectify_compos):
     for i in range(len(grp_interleaves) - 1):
         inter_a = list(grp_interleaves[i]['group'])
         inter_b = list(grp_interleaves[i + 1]['group'])
         # print(sw_a, sw_b)
         if len(inter_a) <= 1 and len(inter_b) <= 1:
+            need_rectify_compos.append(grp_interleaves[i])
+            if i == len(grp_interleaves) - 2:
+                need_rectify_compos.append(grp_interleaves[i+1])
             continue
         sm = difflib.SequenceMatcher(None, inter_a, inter_b).ratio()
         if sm < 0.5:
@@ -76,12 +79,17 @@ def find_interleaves_in_group(group, compos_all):
     return interleaves
 
 
-def check_valid_group_by_interleaving(compos_all):
+def check_valid_group_by_interleaving(compos_all, rectify_compos=True):
     groups = split_groups(compos_all)
     for gid in groups:
         interleaves = find_interleaves_in_group(groups[gid], compos_all)
-        if is_valid_group_by_similar_interleave(interleaves):
-            continue
+        need_rectify_compos = []
+        if is_valid_group_by_similar_interleave(interleaves, need_rectify_compos):
+            if rectify_compos and len(need_rectify_compos) > 0:
+                c1 = need_rectify_compos[0]
+                for c in need_rectify_compos[1:]:
+                    c1 = c1.append(c)
+                compos_all.loc[compos_all[compos_all['id'].isin(list(c1['id']))].id, 'group'] = gid
         else:
             compos_all.loc[compos_all[compos_all['group'] == gid].id, 'group'] = np.nan
             print('invalid:', gid)
