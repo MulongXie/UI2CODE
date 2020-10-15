@@ -1,4 +1,5 @@
 import difflib
+import numpy as np
 
 
 def split_groups_with_interleaving(compos):
@@ -37,12 +38,12 @@ def split_groups(compos):
 
 def is_valid_group_by_similar_interleave(grp_interleaves):
     for i in range(len(grp_interleaves) - 1):
-        sw_a = list(grp_interleaves[i]['group'])
-        sw_b = list(grp_interleaves[i + 1]['group'])
+        inter_a = list(grp_interleaves[i]['group'])
+        inter_b = list(grp_interleaves[i + 1]['group'])
         # print(sw_a, sw_b)
-        if len(sw_a) <= 1 and len(sw_b) <= 1:
+        if len(inter_a) <= 1 and len(inter_b) <= 1:
             continue
-        sm = difflib.SequenceMatcher(None, sw_a, sw_b).ratio()
+        sm = difflib.SequenceMatcher(None, inter_a, inter_b).ratio()
         if sm < 0.5:
             return False
     return True
@@ -75,14 +76,15 @@ def find_interleaves_in_group(group, compos_all):
     return interleaves
 
 
-def check_valid_group_by_interleaving(groups, compos_all):
+def check_valid_group_by_interleaving(compos_all):
+    groups = split_groups(compos_all)
     for gid in groups:
         interleaves = find_interleaves_in_group(groups[gid], compos_all)
         if is_valid_group_by_similar_interleave(interleaves):
-            print('valid:', gid)
+            continue
         else:
+            compos_all.loc[compos_all[compos_all['group'] == gid].id, 'group'] = np.nan
             print('invalid:', gid)
-
 
 
 class Group:
