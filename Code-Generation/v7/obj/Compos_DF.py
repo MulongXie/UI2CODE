@@ -90,7 +90,8 @@ class ComposDF:
             groups = df.groupby('group').groups
             for i in groups:
                 if len(groups[i]) == 1:
-                    df.loc[groups[i], 'group'] = np.nan
+                    df.loc[groups[i], 'group'] = -1
+            df.group = df.group.fillna(-1)
 
         # df = rep.rm_invalid_groups(df)
         self.compos_dataframe = df
