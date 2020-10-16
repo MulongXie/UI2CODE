@@ -2,29 +2,6 @@ import difflib
 import numpy as np
 
 
-def split_groups_with_interleaving(compos):
-    grps = {}
-    interleavings = {}
-    groups = compos.groupby('group').groups
-    for i in groups:
-        if len(groups[i]) <= 1:
-            continue
-        grp = Group(i, compos.loc[groups[i]])
-        for j in grps:
-            g = grps[j]
-            if grp.is_intersected(g):
-                if grp.id not in interleavings:
-                    interleavings[grp.id] = [g.id]
-                else:
-                    interleavings[grp.id].append(g.id)
-                if g.id not in interleavings:
-                    interleavings[g.id] = [grp.id]
-                else:
-                    interleavings[g.id].append(grp.id)
-        grps[grp.id] = grp
-    return grps, interleavings
-
-
 def split_groups(compos):
     grps = {}
     groups = compos.groupby('group').groups
@@ -68,8 +45,7 @@ def find_interleaves_in_group(group, compos_all):
             # filter elements not on the same horizontal level
             interleaving = interleaving[~((interleaving['row_max'] < row_min) | (interleaving['row_min'] > row_max))]
             # c_a is on the left of c_b
-            interleaving = interleaving[
-                (interleaving['column_min'] > c_a['column_max']) & (interleaving['column_max'] < c_b['column_min'])]
+            interleaving = interleaving[(interleaving['column_min'] > c_a['column_max']) & (interleaving['column_max'] < c_b['column_min'])]
         elif alignment == 'v':
             # filter elements not on the same vertical level
             interleaving = interleaving[~((interleaving['column_max'] < col_min) | (interleaving['column_min'] > col_max))]
@@ -82,14 +58,15 @@ def find_interleaves_in_group(group, compos_all):
 def check_valid_group_by_interleaving(compos_all, rectify_compos=True):
     groups = split_groups(compos_all)
     for gid in groups:
-        interleaves = find_interleaves_in_group(groups[gid], compos_all)
+        grp = groups[gid]
+        interleaves = find_interleaves_in_group(grp, compos_all)
         need_rectify_compos = []
         if is_valid_group_by_similar_interleave(interleaves, need_rectify_compos):
             if rectify_compos and len(need_rectify_compos) > 0:
-                c1 = need_rectify_compos[0]
-                for c in need_rectify_compos[1:]:
-                    c1 = c1.append(c)
-                compos_all.loc[compos_all[compos_all['id'].isin(list(c1['id']))].id, 'group'] = gid
+                for c in need_rectify_compos:
+                    if len(c) > 0 and c.iloc[0]['group'] == -1:
+                        c = grp.add_compo(c)
+                        compos_all.loc[list(c['id'])] = c
         else:
             compos_all.loc[compos_all[compos_all['group'] == gid].id, 'group'] = np.nan
             print('invalid:', gid)
@@ -100,10 +77,7 @@ class Group:
         self.id = id
         self.compos = compos                                    # dataframe
         self.alignment = compos.iloc[0]['alignment_in_group']   # group element's alignment
-        if self.alignment == 'v':
-            self.compos.sort_values('row_min', inplace=True)
-        else:
-            self.compos.sort_values('column_min', inplace=True)
+        self.cls = compos.iloc[0]['class']
 
         self.top, self.bottom, self.left, self.right = self.group_boundary()
         self.width = self.bottom - self.top
@@ -111,6 +85,7 @@ class Group:
         self.area = self.width * self.height
 
         self.intersected_grps = []
+        self.sort_group()
 
     def group_boundary(self):
         compo = self.compos
@@ -135,3 +110,19 @@ class Group:
         if w == 0 or h == 0:
             return False
         return True
+
+    def add_compo(self, compo):
+        compo['class'] = self.cls
+        compo['alignment_in_group'] = self.alignment
+        compo['group'] = self.id
+        compo['group_text'] = self.compos.iloc[0]['group_text']
+        compo['group_nontext'] = self.compos.iloc[0]['group_nontext']
+        self.compos.append(compo)
+        self.sort_group()
+        return compo
+
+    def sort_group(self):
+        if self.alignment == 'v':
+            self.compos.sort_values('row_min', inplace=True)
+        else:
+            self.compos.sort_values('column_min', inplace=True)
