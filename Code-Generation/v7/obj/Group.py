@@ -68,7 +68,10 @@ def check_valid_group_by_interleaving(compos_all, rectify_compos=True):
                         c = grp.add_compo(c)
                         compos_all.loc[list(c['id'])] = c
         else:
-            compos_all.loc[compos_all[compos_all['group'] == gid].id, 'group'] = np.nan
+            compos_all.loc[compos_all[compos_all['group'] == gid].id, 'group_nontext'] = -1
+            compos_all.loc[compos_all[compos_all['group'] == gid].id, 'group_text'] = -1
+            compos_all.loc[compos_all[compos_all['group'] == gid].id, 'alignment_in_group'] = -1
+            compos_all.loc[compos_all[compos_all['group'] == gid].id, 'group'] = -1
             print('invalid:', gid)
 
 
