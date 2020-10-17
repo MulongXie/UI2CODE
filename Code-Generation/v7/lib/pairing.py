@@ -76,9 +76,9 @@ def pair_matching_within_groups(groups, new_pairs=True):
                         mark[i] = True
                         mark[j] = True
                     else:
-                        # existing pair
-                        pairs[g1.iloc[0]['group_pair']].append(g2)
-                        mark[j] = True
+                        if not mark[j]:
+                            pairs[g1.iloc[0]['group_pair']].append(g2)
+                            mark[j] = True
                     g2['group_pair'] = pair_id
 
     merged_pairs = None
