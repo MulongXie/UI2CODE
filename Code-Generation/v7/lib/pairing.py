@@ -62,6 +62,7 @@ def pair_matching_within_groups(groups, new_pairs=True):
             if 'group_pair' in group.columns:
                 group.drop('group_pair', axis=1, inplace=True)
     for i, g1 in enumerate(groups):
+        # if mark[i]: continue
         alignment1 = g1.iloc[0]['alignment_in_group']
         for j in range(i + 1, len(groups)):
             g2 = groups[j]
