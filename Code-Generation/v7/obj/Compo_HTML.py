@@ -6,8 +6,8 @@ from obj.CSS import CSS
 from obj.HTML import HTML
 
 
-def visualize_CompoHTMLs(compos_html, img, img_shape):
-    board = cv2.resize(img, img_shape)
+def visualize_CompoHTMLs(compos_html, img):
+    board = img.copy()
     for compo in compos_html:
         board = compo.visualize(board)
     cv2.imshow('compos', board)

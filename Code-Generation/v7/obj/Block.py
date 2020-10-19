@@ -22,7 +22,6 @@ def slice_blocks(compos_html, direction='v'):
     non_blocked_compos = compos_html
     global block_id
 
-    dividers = []
     divider = -1
     prev_divider = 0
     if direction == 'v':
@@ -31,20 +30,15 @@ def slice_blocks(compos_html, direction='v'):
         compos_html.sort(key=lambda x: x.top)
         for compo in compos_html:
             # new block
-            # if divider is lefter than this compo's right, then gather the previous block_compos as a block
+            # if divider is above than this compo's top, then gather the previous block_compos as a block
             if divider < compo.top:
                 prev_divider = divider
-                dividers.append(compo.top)
                 divider = compo.bottom
-                dividers.append(divider)
 
                 margin = int(compo.top - prev_divider)
-                # a single compo is not be counted as a block
-                if len(block_compos) == 1:
-                    block_compos = []
-
                 # gather previous compos in a block
-                elif len(block_compos) > 1:
+                # a single compo is not be counted as a block
+                if len(block_compos) > 1:
                     block_id += 1
                     css_name = '#block-' + str(block_id)
                     css = CSS(css_name, margin_top=str(margin) + 'px', clear='left', border="solid 2px black")
@@ -52,11 +46,10 @@ def slice_blocks(compos_html, direction='v'):
                                         html_id='block-'+str(block_id), css={css_name: css}))
                     # remove blocked compos
                     non_blocked_compos = list(set(non_blocked_compos) - set(block_compos))
-                    block_compos = []
+                block_compos = []
             # extend block
             elif compo.top < divider < compo.bottom:
                 divider = compo.bottom
-                dividers[-1] = divider
             block_compos.append(compo)
 
         # if there are some sub-blocks, gather the left compos as a block
@@ -78,17 +71,12 @@ def slice_blocks(compos_html, direction='v'):
             # if divider is lefter than this compo's right, then gather the previous block_compos as a block
             if divider < compo.left:
                 prev_divider = divider
-                dividers.append(compo.left)
                 divider = compo.right
-                dividers.append(divider)
 
                 margin = int(compo.left - prev_divider)
-                # a single compo is not be counted as a block
-                if len(block_compos) == 1:
-                    block_compos = []
-
                 # gather previous compos in a block
-                elif len(block_compos) > 1:
+                # a single compo is not to be counted as a block
+                if len(block_compos) > 1:
                     block_id += 1
                     css_name = '#block-' + str(block_id)
                     css = CSS(css_name, margin_left=str(margin) + 'px', float='left', border="solid 2px black")
@@ -96,11 +84,10 @@ def slice_blocks(compos_html, direction='v'):
                                         html_id='block-' + str(block_id), css={css_name: css}))
                     # remove blocked compos
                     non_blocked_compos = list(set(non_blocked_compos) - set(block_compos))
-                    block_compos = []
+                block_compos = []
             # extend block
             elif compo.left < divider < compo.right:
                 divider = compo.right
-                dividers[-1] = divider
             block_compos.append(compo)
 
         # if there are some sub-blocks, gather the left compos as a block
