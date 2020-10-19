@@ -18,6 +18,7 @@ def gather_lists_by_pair_and_group(compos):
     '''
     lists = []
     non_list_compos = []
+    # list type of multiple (multiple compos in each list item) for paired groups
     groups = compos.groupby('group_pair').groups
     list_id = 0
     for i in groups:
@@ -25,19 +26,24 @@ def gather_lists_by_pair_and_group(compos):
             continue
         lists.append(List(list_id, compos.loc[groups[i]], 'multiple', compos.loc[groups[i][0]]['alignment_in_group']))
         list_id += 1
+        # remove selected compos
         compos = compos.drop(list(groups[i]))
 
+    # list type of single (single compo in each list item) for non-paired groups
     groups = compos.groupby('group').groups
     for i in groups:
         if i == -1 or len(groups[i]) == 1:
             continue
         lists.append(List(list_id, compos.loc[groups[i]], 'single', compos.loc[groups[i][0]]['alignment_in_group']))
         list_id += 1
+        # remove selected compos
         compos = compos.drop(list(groups[i]))
 
+    # not count as list for non-grouped compos
     for i in range(len(compos)):
         compo = compos.iloc[i]
         html_id = tag_map[compo['class']] + '-' + str(compo['id'])
+        # fake compo presented by colored div
         css = CSS(name='#' + html_id, background=backgrounds[compo['class']], width=str(compo['width']) + 'px', height=str(compo['height']) + 'px')
         compo_html = CompoHTML(compo_id=compo['id'], compo_df=compo, html_tag=tag_map[compo['class']], html_id=html_id, css={css.name: css})
         non_list_compos.append(compo_html)
@@ -74,6 +80,7 @@ class List:
     '''
     def generate_html_list(self):
         lis = []
+        # 'li' for each list-item
         if self.list_type == 'multiple':
             groups = self.compos_df.groupby('list_item').groups
             for i in groups:
@@ -88,7 +95,7 @@ class List:
                     items.append(self.compos_html[compo_id])
                     items_id.append(str(compo_id))
 
-                # html of list-items
+                # html of list-item
                 li_id = 'li-' + '-'.join(sorted(items_id))
                 self.compos_html[li_id] = CompoHTML(compo_id=li_id, compo_df=list_items, html_tag='li', children=items, html_class_name='li-' + str(self.list_id))
                 lis.append(self.compos_html[li_id])
