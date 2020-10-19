@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import cv2
 
 from obj.CSS import CSS
 from obj.HTML import HTML
@@ -8,6 +9,15 @@ import lib.draw as draw
 
 tag_map = {'Compo': 'div', 'Text': 'div', 'Block': 'div'}
 backgrounds = {'Compo': 'grey', 'Text': 'green', 'Block': 'orange'}
+
+
+def visualize_lists(img, lists):
+    board = img.copy()
+    for li in lists:
+        board = li.visualize(board, draw.random_color())
+    cv2.imshow('lists', board)
+    cv2.waitKey()
+    cv2.destroyAllWindows()
 
 
 def gather_lists_by_pair_and_group(compos):
@@ -217,3 +227,24 @@ class List:
                 self.compos_css[name] = CSS(name, margin_left=str(margin) + 'px', float='left')
 
         self.assembly_css()
+
+    '''
+    ******************************
+    ******* CSS Generation *******
+    ******************************
+    '''
+    def visualize(self, img, color=(0, 255, 0), show=False):
+        compos_df = self.compos_df
+        board = img.copy()
+        for i in range(len(compos_df)):
+            compo = compos_df.iloc[i]
+            board = cv2.rectangle(board, (compo.column_min, compo.row_min), (compo.column_max, compo.row_max),
+                                  color, -1)
+            board = cv2.putText(board, str(self.list_id), (compo.column_min + 5, compo.row_min + 10),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255), 1)
+
+        if show:
+            cv2.imshow('list', board)
+            cv2.waitKey()
+            cv2.destroyAllWindows()
+        return board
