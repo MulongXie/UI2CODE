@@ -41,7 +41,7 @@ def slice_blocks(compos_html, direction='v'):
                 if len(block_compos) > 1:
                     block_id += 1
                     css_name = '#block-' + str(block_id)
-                    css = CSS(css_name, margin_top=str(margin) + 'px', clear='left', border="solid 2px black")
+                    css = CSS(css_name, margin_bottom=str(margin) + 'px', clear='left', border="solid 2px black")
                     blocks.append(Block(id=block_id, compos=block_compos, slice_sub_block_direction=next_direction,
                                         html_id='block-'+str(block_id), css={css_name: css}))
                     # remove blocked compos
@@ -56,7 +56,7 @@ def slice_blocks(compos_html, direction='v'):
         if len(blocks) > 0 and len(block_compos) > 1:
             block_id += 1
             css_name = '#block-' + str(block_id)
-            css = CSS(css_name, margin_top=str(int(block_compos[0].top - prev_divider)) + 'px', clear='left', border="solid 2px black")
+            css = CSS(css_name, margin_bottom=str(int(block_compos[0].top - prev_divider)) + 'px', clear='left', border="solid 2px black")
             blocks.append(Block(id=block_id, compos=block_compos, slice_sub_block_direction=next_direction,
                                 html_id='block-' + str(block_id), css={css_name: css}))
             # remove blocked compos
@@ -79,7 +79,7 @@ def slice_blocks(compos_html, direction='v'):
                 if len(block_compos) > 1:
                     block_id += 1
                     css_name = '#block-' + str(block_id)
-                    css = CSS(css_name, margin_left=str(margin) + 'px', float='left', border="solid 2px black")
+                    css = CSS(css_name, margin_right=str(margin) + 'px', float='left', border="solid 2px black")
                     blocks.append(Block(id=block_id, compos=block_compos, slice_sub_block_direction=next_direction,
                                         html_id='block-' + str(block_id), css={css_name: css}))
                     # remove blocked compos
@@ -94,7 +94,7 @@ def slice_blocks(compos_html, direction='v'):
         if len(blocks) > 0 and len(block_compos) > 1:
             block_id += 1
             css_name = '#block-' + str(block_id)
-            css = CSS(css_name, margin_left=str(int(block_compos[0].left - prev_divider)) + 'px', float='left', border="solid 2px black")
+            css = CSS(css_name, margin_right=str(int(block_compos[0].left - prev_divider)) + 'px', float='left', border="solid 2px black")
             blocks.append(Block(id=block_id, compos=block_compos, slice_sub_block_direction=next_direction,
                                 html_id='block-' + str(block_id), css={css_name: css}))
             # remove blocked compos
