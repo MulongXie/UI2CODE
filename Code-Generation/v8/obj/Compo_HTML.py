@@ -4,6 +4,7 @@ import cv2
 
 from obj.CSS import CSS
 from obj.HTML import HTML
+from obj.React import React
 
 
 def visualize_CompoHTMLs(compos_html, img):
@@ -38,13 +39,16 @@ class CompoHTML:
         self.html_class_name = html_class_name
         self.html_tag = html_tag
         self.html_tag_map = {'Compo': 'div', 'Text': 'div', 'Block': 'div'}
-        self.html_script = ''                        # sting
+        self.html_script = ''                        # string
+        self.react = None                            # React
+        self.react_script = ''                       # string
         self.css = {} if css is None else css        # directory of CSS objs, {'.class'/'#id' : CSS obj}
 
         self.img = img
         self.img_shape = img_shape
 
         self.init_html()
+        self.init_react()
         self.init_boundary()
 
     def init_html(self):
@@ -54,6 +58,12 @@ class CompoHTML:
         for child in self.children:
             self.html.add_child(child.html_script)
         self.html_script = self.html.html_script
+
+    def init_react(self):
+        self.react = React(tag=self.html_tag, id=self.html_id, class_name=self.html_class_name)
+        for child in self.children:
+            self.react.add_child(child.react_script)
+        self.react_script = self.react.react_script
 
     def init_boundary(self):
         compo = self.compo_df

@@ -4,6 +4,7 @@ from random import randint as rint
 
 from obj.Compo_HTML import CompoHTML
 from obj.HTML import HTML
+from obj.React import React
 from obj.CSS import CSS
 
 block_id = 0
@@ -134,6 +135,8 @@ class Block:
         self.html_id = html_id
         self.html_class_name = html_class_name
         self.html_script = ''   # sting
+        self.react = None       # React obj
+        self.react_script = ''  # string
         self.css = css          # dictionary: {'css-name': CSS obj}
         self.css_script = ''    # string
 
@@ -145,6 +148,7 @@ class Block:
 
         self.init_boundary()
         self.init_html()
+        self.init_react()
         self.init_css()
         self.init_children_css()
 
@@ -163,6 +167,14 @@ class Block:
             self.html.add_child(child.html_script)
 
         self.html_script = self.html.html_script
+
+    def init_react(self):
+        self.react = React(tag=self.html_tag, id=self.html_id, class_name=self.html_class_name)
+
+        for child in self.children:
+            self.react.add_child(child.react_script)
+
+        self.react_script = self.react.react_script
 
     def init_css(self):
         for sub_block in self.sub_blocks:
