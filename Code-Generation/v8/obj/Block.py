@@ -148,9 +148,9 @@ class Block:
 
         self.init_boundary()
         self.init_html()
-        self.init_react()
         self.init_css()
         self.init_children_css()
+        self.init_react()
 
     def init_boundary(self):
         self.top = min(self.compos + self.sub_blocks, key=lambda x: x.top).top
@@ -169,7 +169,7 @@ class Block:
         self.html_script = self.html.html_script
 
     def init_react(self):
-        self.react = React(tag=self.html_tag, id=self.html_id, class_name=self.html_class_name)
+        self.react = React(tag=self.html_tag, react_compo_name='Block' + str(self.block_id), id=self.html_id, class_name=self.html_class_name)
 
         for child in self.children:
             self.react.add_child(child.react_script)
