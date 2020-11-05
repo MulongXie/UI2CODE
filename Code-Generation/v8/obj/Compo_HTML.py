@@ -41,7 +41,7 @@ class CompoHTML:
         self.html_tag_map = {'Compo': 'div', 'Text': 'div', 'Block': 'div'}
         self.html_script = ''                        # string
         self.react = None                            # React
-        self.react_script = ''                       # string
+        self.react_html_script = ''                       # string
         self.css = {} if css is None else css        # directory of CSS objs, {'.class'/'#id' : CSS obj}
 
         self.img = img
@@ -62,8 +62,8 @@ class CompoHTML:
     def init_react(self):
         self.react = React(tag=self.html_tag, id=self.html_id, class_name=self.html_class_name)
         for child in self.children:
-            self.react.add_child(child.react_script)
-        self.react_script = self.react.react_script
+            self.react.add_child(child.react_html_script)
+        self.react_html_script = self.react.react_html_script
 
     def init_boundary(self):
         compo = self.compo_df

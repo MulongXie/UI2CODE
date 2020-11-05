@@ -136,7 +136,7 @@ class Block:
         self.html_class_name = html_class_name
         self.html_script = ''   # sting
         self.react = None       # React obj
-        self.react_script = ''  # string
+        self.react_html_script = ''  # string
         self.css = css          # dictionary: {'css-name': CSS obj}
         self.css_script = ''    # string
 
@@ -172,9 +172,9 @@ class Block:
         self.react = React(tag=self.html_tag, react_compo_name='Block' + str(self.block_id), id=self.html_id, class_name=self.html_class_name)
 
         for child in self.children:
-            self.react.add_child(child.react_script)
+            self.react.add_child(child.react_html_script)
 
-        self.react_script = self.react.react_script
+        self.react_html_script = self.react.react_html_script
 
     def init_css(self):
         for sub_block in self.sub_blocks:
