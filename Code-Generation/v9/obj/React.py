@@ -19,17 +19,19 @@ def assembly_compos_react(compos):
     return react_page, react_compo_names
 
 
-def export_react_program(compos, export_dir='page/react'):
+def export_react_program(compos, export_dir='data/output/react'):
     os.makedirs(export_dir, exist_ok=True)
     # 1. block.js
     blocks_js, react_compo_names = assembly_compos_react(compos)
     # 2. index.js
     index_js = 'import React from "react";\nimport ReactDOM from "react-dom";\n' + \
-               'import {' + ','.join(react_compo_names) + '} from "./blocks;"'
+               'import {' + ','.join(react_compo_names) + '} from "./blocks;"\n'
     main_react_script = '\n'.join(['<' + n + '/>' for n in react_compo_names])
     index_js += React(react_compo_name='main', html=main_react_script).assembly_react_component([])
     index_js += "ReactDOM.render(<Main />, document.getElementById('root'))"
 
+    open(os.path.join(export_dir, 'index.js'), 'w').write(index_js)
+    open(os.path.join(export_dir, 'blocks.js'), 'w').write(blocks_js)
     return blocks_js, index_js
 
 

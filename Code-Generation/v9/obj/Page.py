@@ -1,6 +1,15 @@
 import os
 
 
+def export_html_and_css(compos, export_dir='data/output/page'):
+    os.makedirs(export_dir, exist_ok=True)
+    page = Page()
+    for compo in compos:
+        page.add_compo(compo.html_script, compo.css_script)
+    page_html, page_css = page.export(export_dir)
+    return page_html, page_css
+
+
 class Page:
     def __init__(self, compos_html=None, compos_css=None, title='Title',
                  html_file_name='xml.html', css_file_name='xml.css'):
@@ -72,3 +81,4 @@ class Page:
         css_path = os.path.join(directory, css_file_name)
         open(html_path, 'w').write(self.page_html)
         open(css_path, 'w').write(self.page_css)
+        return self.page_html, self.page_css
