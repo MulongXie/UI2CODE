@@ -1,54 +1,54 @@
 import React from "react";
-class Block1 extends React.Component{
+class Block9 extends React.Component{
 	constructor(){
 		super();
 		this.state = {css:{
-		nt6:{
-			width: 34px,
-			background: grey,
-			height: 11px
-		},
-		ul6:{
-			float: left,
-			padding-left: 76px,
-			clear: none
-		},
-		div2:{
-			float: left,
-			background: green,
-			height: 23px,
-			width: 89px
-		},
-		block1:{
-			border: solid 2px black,
-			margin-bottom: 11px,
-			clear: left
-		},
-		div3:{
-			float: left,
-			background: grey,
-			height: 22px,
-			width: 301px,
-			margin-left: 23px
-		},
-		li6:{
+		li4:{
 			float: left,
 			margin-left: 19px
+		},
+		div2:{
+			height: 23px,
+			background: green,
+			width: 89px,
+			float: left
+		},
+		nt6:{
+			height: 11px,
+			background: grey,
+			width: 34px
+		},
+		ul4:{
+			clear: none,
+			float: left,
+			padding-left: 76px
+		},
+		div3:{
+			background: grey,
+			float: left,
+			height: 22px,
+			margin-left: 23px,
+			width: 301px
+		},
+		block9:{
+			clear: left,
+			margin-bottom: 11px,
+			border: solid 2px black
 		}
 	}
 	render(){
 		return (
-			<div style={this.state.css.block1}>
+			<div style={this.state.css.block9}>
 				<div style={this.state.css.div2}>
 				</div>
 				<div style={this.state.css.div3}>
 				</div>
-				<ul style={this.state.css.ul6}>
-					<li style={this.state.css.li6}>
+				<ul style={this.state.css.ul4}>
+					<li style={this.state.css.li4}>
 						<div style={this.state.css.nt6}>
 						</div>
 					</li>
-					<li style={this.state.css.li6}>
+					<li style={this.state.css.li4}>
 						<div style={this.state.css.nt6}>
 						</div>
 					</li>
@@ -59,39 +59,39 @@ class Block1 extends React.Component{
 	}
 }
 
-class Block2 extends React.Component{
+class Block10 extends React.Component{
 	constructor(){
 		super();
 		this.state = {css:{
+		div6:{
+			height: 10px,
+			background: grey,
+			width: 28px,
+			float: left
+		},
+		t0:{
+			height: 6px,
+			background: green,
+			width: 26px
+		},
+		block10:{
+			clear: left,
+			margin-bottom: 22px,
+			border: solid 2px black
+		},
 		li5:{
 			float: left,
 			margin-left: 18px
 		},
-		t0:{
-			width: 26px,
-			background: green,
-			height: 6px
-		},
-		block2:{
-			border: solid 2px black,
-			margin-bottom: 22px,
-			clear: left
-		},
 		ul5:{
+			clear: none,
 			float: left,
-			padding-left: 17px,
-			clear: none
-		},
-		div6:{
-			float: left,
-			background: grey,
-			height: 10px,
-			width: 28px
+			padding-left: 17px
 		}
 	}
 	render(){
 		return (
-			<div style={this.state.css.block2}>
+			<div style={this.state.css.block10}>
 				<div style={this.state.css.div6}>
 				</div>
 				<ul style={this.state.css.ul5}>
@@ -130,92 +130,92 @@ class Block2 extends React.Component{
 	}
 }
 
-class Block3 extends React.Component{
+class Block11 extends React.Component{
 	constructor(){
 		super();
 		this.state = {css:{
-		block3:{
-			border: solid 2px black,
-			margin-bottom: 2px,
-			clear: left
-		},
-		nt3:{
-			width: 7px,
-			background: grey,
-			height: 8px
-		},
-		block6:{
-			border: solid 2px black,
-			margin-bottom: 3px,
-			clear: left
-		},
-		div14:{
-			float: left,
-			background: grey,
-			height: 87px,
-			width: 140px
-		},
-		ul4:{
-			float: left,
-			padding-left: 3px,
-			clear: none
-		},
-		div64:{
-			float: left,
+		div65:{
+			height: 133px,
 			background: orange,
-			height: 67px,
-			width: 119px,
-			margin-left: -138px
+			margin-top: -135px,
+			width: 163px
 		},
-		block5:{
+		div16:{
+			height: 135px,
+			background: grey,
+			width: 410px
+		},
+		block13:{
 			float: left,
 			margin-right: 3px,
-			border: solid 2px black,
-			margin-left: 27px
+			margin-left: 27px,
+			border: solid 2px black
 		},
-		block4:{
+		ul6:{
+			clear: none,
+			float: left,
+			padding-left: 3px
+		},
+		div19:{
+			height: 7px,
+			background: green,
+			margin-top: 18px,
+			width: 48px
+		},
+		nt3:{
+			height: 8px,
+			background: grey,
+			width: 7px
+		},
+		div14:{
+			height: 87px,
+			background: grey,
+			width: 140px,
+			float: left
+		},
+		div18:{
+			height: 14px,
+			background: grey,
+			margin-top: 3px,
+			width: 114px
+		},
+		block12:{
 			float: left,
 			margin-right: 27px,
 			border: solid 2px black
 		},
-		div16:{
-			background: grey,
-			height: 135px,
-			width: 410px
-		},
-		div18:{
-			background: grey,
-			height: 14px,
-			width: 114px,
-			margin-top: 3px
-		},
-		li4:{
-			margin-top: 6px
-		},
-		div65:{
+		div64:{
 			background: orange,
-			height: 133px,
-			width: 163px,
-			margin-top: -135px
+			float: left,
+			height: 67px,
+			margin-left: -138px,
+			width: 119px
 		},
-		div19:{
-			background: green,
-			height: 7px,
-			width: 48px,
-			margin-top: 18px
+		block14:{
+			clear: left,
+			margin-bottom: 3px,
+			border: solid 2px black
+		},
+		block11:{
+			clear: left,
+			margin-bottom: 2px,
+			border: solid 2px black
+		},
+		li6:{
+			margin-top: 6px
 		}
 	}
 	render(){
 		return (
-			<div style={this.state.css.block3}>
-				<div style={this.state.css.block4}>
+			<div style={this.state.css.block11}>
+				<div style={this.state.css.block12}>
 					<div style={this.state.css.div16}>
 					</div>
 					<div style={this.state.css.div65}>
 					</div>
 				</div>
-				<div style={this.state.css.block5}>
-					<div style={this.state.css.block6}>
+				<div style={this.state.css.block13}>
+					<div style={this.state.css.block14}>
 						<div style={this.state.css.div14}>
 						</div>
 						<div style={this.state.css.div64}>
@@ -226,12 +226,12 @@ class Block3 extends React.Component{
 					<div style={this.state.css.div19}>
 					</div>
 				</div>
-				<ul style={this.state.css.ul4}>
-					<li style={this.state.css.li4}>
+				<ul style={this.state.css.ul6}>
+					<li style={this.state.css.li6}>
 						<div style={this.state.css.nt3}>
 						</div>
 					</li>
-					<li style={this.state.css.li4}>
+					<li style={this.state.css.li6}>
 						<div style={this.state.css.nt3}>
 						</div>
 					</li>
@@ -242,65 +242,65 @@ class Block3 extends React.Component{
 	}
 }
 
-class Block7 extends React.Component{
+class Block15 extends React.Component{
 	constructor(){
 		super();
 		this.state = {css:{
-		nt7:{
-			width: 15px,
-			margin-top: -5px,
-			background: grey,
-			height: 5px
+		t1:{
+			height: 6px,
+			background: green,
+			width: 12px
 		},
-		ul2:{
+		li2:{
+			height: 30px,
 			float: left,
-			padding-left: 27px,
-			clear: none
-		},
-		li3:{
-			float: left,
-			height: 51px,
-			margin-left: 4px
-		},
-		nt9:{
-			width: 78px,
-			background: grey,
-			height: 37px
+			margin-left: 21px
 		},
 		nt8:{
-			width: 18px,
-			margin-top: 5px,
+			height: 17px,
 			background: grey,
-			height: 17px
+			margin-top: 5px,
+			width: 18px
 		},
-		block7:{
-			border: solid 2px black,
+		nt7:{
+			height: 5px,
+			background: grey,
+			margin-top: -5px,
+			width: 15px
+		},
+		block15:{
+			clear: left,
 			margin-bottom: 5px,
-			clear: left
+			border: solid 2px black
+		},
+		li3:{
+			height: 51px,
+			float: left,
+			margin-left: 4px
 		},
 		t2:{
-			width: 73px,
-			margin-top: 1px,
+			height: 13px,
 			background: green,
-			height: 13px
+			margin-top: 1px,
+			width: 73px
+		},
+		ul2:{
+			clear: none,
+			float: left,
+			padding-left: 27px
+		},
+		nt9:{
+			height: 37px,
+			background: grey,
+			width: 78px
 		},
 		ul3:{
 			float: left
-		},
-		li2:{
-			float: left,
-			height: 30px,
-			margin-left: 21px
-		},
-		t1:{
-			width: 12px,
-			background: green,
-			height: 6px
 		}
 	}
 	render(){
 		return (
-			<div style={this.state.css.block7}>
+			<div style={this.state.css.block15}>
 				<ul style={this.state.css.ul3}>
 					<li style={this.state.css.li3}>
 						<div style={this.state.css.nt9}>
@@ -371,68 +371,68 @@ class Block7 extends React.Component{
 	}
 }
 
-class Block8 extends React.Component{
+class Block16 extends React.Component{
 	constructor(){
 		super();
 		this.state = {css:{
-		block8:{
-			border: solid 2px black,
-			margin-bottom: 11px,
-			clear: left
+		li1:{
+			height: 59px,
+			margin-top: 11px
+		},
+		t7:{
+			height: 24px,
+			background: green,
+			float: left,
+			width: 83px,
+			margin-left: 6px
 		},
 		t8:{
+			height: 40px,
+			background: green,
 			float: left,
 			width: 249px,
-			background: green,
-			height: 40px,
 			margin-left: 10px
 		},
-		li1:{
-			margin-top: 11px,
-			height: 59px
+		li0:{
+			height: 33px,
+			margin-top: 7px
 		},
 		ul1:{
 			float: left
 		},
-		li0:{
-			margin-top: 7px,
-			height: 33px
-		},
-		t7:{
-			float: left,
-			width: 83px,
-			background: green,
-			height: 24px,
-			margin-left: 6px
+		nt4:{
+			height: 33px,
+			background: grey,
+			width: 33px,
+			float: left
 		},
 		ul0:{
+			clear: none,
 			float: left,
-			padding-left: 63px,
-			clear: none
-		},
-		nt4:{
-			float: left,
-			width: 33px,
-			background: grey,
-			height: 33px
+			padding-left: 63px
 		},
 		nt5:{
-			float: left,
-			width: 103px,
+			height: 58px,
 			background: grey,
-			height: 58px
+			width: 103px,
+			float: left
+		},
+		block16:{
+			clear: left,
+			margin-bottom: 11px,
+			border: solid 2px black
 		},
 		div54:{
-			float: left,
 			background: green,
+			float: left,
 			height: 26px,
-			width: 131px,
-			margin-left: -127px
+			margin-left: -127px,
+			width: 131px
 		}
 	}
 	render(){
 		return (
-			<div style={this.state.css.block8}>
+			<div style={this.state.css.block16}>
 				<ul style={this.state.css.ul1}>
 					<li style={this.state.css.li1}>
 						<div style={this.state.css.nt5}>
@@ -505,4 +505,4 @@ class Block8 extends React.Component{
 	}
 }
 
-export {Block1,Block2,Block3,Block7,Block8};
+export {Block9,Block10,Block11,Block15,Block16};
