@@ -116,7 +116,7 @@ class React:
                 new_css = new_tag + ':{\n' + indent(new_css[:-2], 1) + '},\n'
                 style += new_css
             style = style[:-4] + '\n}'
-            constructor += indent(style, 1) + '},'
+            constructor += indent(style, 1) + '}},'
 
         render = 'render(){\n' + \
             indent('return (', 1) + \

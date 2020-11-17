@@ -18,9 +18,10 @@ def visualize_CompoHTMLs(compos_html, img):
 
 class CompoHTML:
     def __init__(self, compo_id, html_tag,
-                 compo_df=None, html_id=None, html_class_name=None, children=None, parent=None, img=None, img_shape=None, css=None):
+                 compo_class=None, compo_df=None, html_id=None, html_class_name=None, children=None, parent=None, img=None, img_shape=None, css=None):
         self.compo_df = compo_df
         self.compo_id = compo_id
+        self.compo_class = compo_class
 
         self.children = children if children is not None else []    # CompoHTML objs
         self.parent = parent                                        # CompoHTML obj
@@ -67,15 +68,17 @@ class CompoHTML:
 
     def init_boundary(self):
         compo = self.compo_df
-        self.top = compo['row_min'].min()
-        self.left = compo['column_min'].min()
-        self.bottom = compo['row_max'].max()
-        self.right = compo['column_max'].max()
-        self.width = self.right - self.left
-        self.height = self.bottom - self.top
+        self.top = int(compo['row_min'].min())
+        self.left = int(compo['column_min'].min())
+        self.bottom = int(compo['row_max'].max())
+        self.right = int(compo['column_max'].max())
+        self.width = int(self.right - self.left)
+        self.height = int(self.bottom - self.top)
 
     def put_boundary(self):
-        return {'top': self.top, 'left': self.left, 'bottom': self.bottom, 'right': self.right, 'width': self.width, 'height': self.height}
+        return {'class': self.compo_class,
+                'column_min': self.left, 'column_max': self.right, 'row_min': self.top, 'row_max': self.bottom,
+                'height': self.height, 'width': self.width}
 
     def add_child(self, child):
         '''

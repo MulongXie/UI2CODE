@@ -118,7 +118,6 @@ class Block:
                  slice_sub_block_direction='h', html_tag=None, html_id=None, html_class_name=None, css=None):
         self.block_id = id
         self.compos = compos                # list of CompoHTML objs
-        self.block_obj = None               # CompoHTML obj
         self.sub_blocks = []                # list of Block objs
         self.children = []                  # compos + sub_blocks
 
@@ -153,12 +152,12 @@ class Block:
         self.init_react()
 
     def init_boundary(self):
-        self.top = min(self.compos + self.sub_blocks, key=lambda x: x.top).top
-        self.bottom = max(self.compos + self.sub_blocks, key=lambda x: x.bottom).bottom
-        self.left = min(self.compos + self.sub_blocks, key=lambda x: x.left).left
-        self.right = max(self.compos + self.sub_blocks, key=lambda x: x.right).right
-        self.height = self.bottom - self.top
-        self.width = self.right - self.left
+        self.top = int(min(self.compos + self.sub_blocks, key=lambda x: x.top).top)
+        self.bottom = int(max(self.compos + self.sub_blocks, key=lambda x: x.bottom).bottom)
+        self.left = int(min(self.compos + self.sub_blocks, key=lambda x: x.left).left)
+        self.right = int(max(self.compos + self.sub_blocks, key=lambda x: x.right).right)
+        self.height = int(self.bottom - self.top)
+        self.width = int(self.right - self.left)
 
     def init_html(self):
         self.html = HTML(tag=self.html_tag, id=self.html_id, class_name=self.html_class_name)
@@ -297,3 +296,8 @@ class Block:
             for sub_block in self.sub_blocks:
                 board = sub_block.visualize_sub_blocks_and_compos(board, recursive)
         return board
+
+    def put_boundary(self):
+        return {'class':'block',
+                'column_min': self.left, 'column_max': self.right, 'row_min':self.top, 'row_max':self.bottom,
+                'height': self.height, 'width':self.width}
