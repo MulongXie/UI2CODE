@@ -109,11 +109,14 @@ class React:
                 for line in s[1:-2]:
                     line = line.replace('\t', '')
                     c = line.split(':')
-                    new_css += ':'.join([c[0], c[1][:-1]]) + ',\n'
+                    if '-' in c[0]:
+                        sp = c[0].split('-')
+                        c[0] = sp[0] + sp[1].capitalize()
+                    new_css += ':"'.join([c[0], c[1][1:-1]]) + '",\n'
                 new_css = new_tag + ':{\n' + indent(new_css[:-2], 1) + '},\n'
                 style += new_css
             style = style[:-4] + '\n}'
-            constructor += indent(style, 1) + '}'
+            constructor += indent(style, 1) + '},'
 
         render = 'render(){\n' + \
             indent('return (', 1) + \
