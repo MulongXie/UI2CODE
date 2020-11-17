@@ -55,7 +55,7 @@ def gather_lists_by_pair_and_group(compos):
         html_id = tag_map[compo['class']] + '-' + str(compo['id'])
         # fake compo presented by colored div
         css = CSS(name='#' + html_id, background=backgrounds[compo['class']], width=str(compo['width']) + 'px', height=str(compo['height']) + 'px')
-        compo_html = CompoHTML(compo_id=compo['id'], compo_df=compo, html_tag=tag_map[compo['class']], html_id=html_id, css={css.name: css})
+        compo_html = CompoHTML(compo_class=compo['class'], compo_id=compo['id'], compo_df=compo, html_tag=tag_map[compo['class']], html_id=html_id, css={css.name: css})
         non_list_compos.append(compo_html)
     return lists, non_list_compos
 
@@ -101,25 +101,25 @@ class List:
                     # html of items
                     item = list_items.iloc[j]
                     compo_id = item['id']
-                    self.compos_html[compo_id] = CompoHTML(compo_id=compo_id, compo_df=item, html_tag=tag_map[item['class']], html_class_name=item['group'])
+                    self.compos_html[compo_id] = CompoHTML(compo_class=item['class'], compo_id=compo_id, compo_df=item, html_tag=tag_map[item['class']], html_class_name=item['group'])
                     items.append(self.compos_html[compo_id])
                     items_id.append(str(compo_id))
 
                 # html of list-item
                 li_id = 'li-' + '-'.join(sorted(items_id))
-                self.compos_html[li_id] = CompoHTML(compo_id=li_id, compo_df=list_items, html_tag='li', children=items, html_class_name='li-' + str(self.list_id))
+                self.compos_html[li_id] = CompoHTML(compo_class='Li', compo_id=li_id, compo_df=list_items, html_tag='li', children=items, html_class_name='li-' + str(self.list_id))
                 lis.append(self.compos_html[li_id])
 
         elif self.list_type == 'single':
             for i in range(len(self.compos_df)):
                 item = self.compos_df.iloc[i]
                 compo_id = item['id']
-                self.compos_html[compo_id] = CompoHTML(compo_id=compo_id, compo_df=item, html_tag=tag_map[item['class']], html_class_name=item['group'])
+                self.compos_html[compo_id] = CompoHTML(compo_class=item['class'], compo_id=compo_id, compo_df=item, html_tag=tag_map[item['class']], html_class_name=item['group'])
                 li_id = 'li-' + str(compo_id)
-                self.compos_html[li_id] = CompoHTML(compo_id=li_id, compo_df=item, html_tag='li', children=self.compos_html[compo_id], html_class_name='li-' + str(self.list_id))
+                self.compos_html[li_id] = CompoHTML(compo_class='Li', compo_id=li_id, compo_df=item, html_tag='li', children=self.compos_html[compo_id], html_class_name='li-' + str(self.list_id))
                 lis.append(self.compos_html[li_id])
 
-        self.list_obj = CompoHTML(compo_id='ul-' + str(self.list_id), compo_df=self.compos_df, html_tag='ul', children=lis, html_id='ul-' + str(self.list_id))
+        self.list_obj = CompoHTML(compo_class='Ul', compo_id='ul-' + str(self.list_id), compo_df=self.compos_df, html_tag='ul', children=lis, html_id='ul-' + str(self.list_id))
         self.html_script = self.list_obj.html_script
 
     '''

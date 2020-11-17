@@ -17,8 +17,8 @@ def visualize_CompoHTMLs(compos_html, img):
 
 
 class CompoHTML:
-    def __init__(self, compo_id, html_tag,
-                 compo_class=None, compo_df=None, html_id=None, html_class_name=None, children=None, parent=None, img=None, img_shape=None, css=None):
+    def __init__(self, compo_id, html_tag, compo_class,
+                 compo_df=None, html_id=None, html_class_name=None, children=None, parent=None, img=None, img_shape=None, css=None):
         self.compo_df = compo_df
         self.compo_id = compo_id
         self.compo_class = compo_class

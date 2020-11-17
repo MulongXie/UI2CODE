@@ -3,37 +3,37 @@ class Block1 extends React.Component{
 	constructor(){
 		super();
 		this.state = {css:{
-		div2:{
-			width:"89px",
+		li6:{
 			float:"left",
-			background:"green",
-			height:"23px"
+			marginLeft:"19px"
 		},
-		ul5:{
+		nt6:{
+			height:"11px",
+			width:"34px",
+			background:"grey"
+		},
+		ul6:{
 			float:"left",
 			paddingLeft:"76px",
 			clear:"none"
 		},
-		block1:{
-			border:"solid 2px black",
-			clear:"left",
-			marginBottom:"11px"
-		},
-		li5:{
+		div2:{
+			height:"23px",
 			float:"left",
-			marginLeft:"19px"
+			width:"89px",
+			background:"green"
+		},
+		block1:{
+			marginBottom:"11px",
+			border:"solid 2px black",
+			clear:"left"
 		},
 		div3:{
-			width:"301px",
+			height:"22px",
 			float:"left",
+			width:"301px",
 			marginLeft:"23px",
-			background:"grey",
-			height:"22px"
-		},
-		nt6:{
-			width:"34px",
-			background:"grey",
-			height:"11px"
+			background:"grey"
 		}
 	}},
 	render(){
@@ -43,12 +43,12 @@ class Block1 extends React.Component{
 				</div>
 				<div style={this.state.css.div3}>
 				</div>
-				<ul style={this.state.css.ul5}>
-					<li style={this.state.css.li5}>
+				<ul style={this.state.css.ul6}>
+					<li style={this.state.css.li6}>
 						<div style={this.state.css.nt6}>
 						</div>
 					</li>
-					<li style={this.state.css.li5}>
+					<li style={this.state.css.li6}>
 						<div style={this.state.css.nt6}>
 						</div>
 					</li>
@@ -63,30 +63,30 @@ class Block2 extends React.Component{
 	constructor(){
 		super();
 		this.state = {css:{
-		li6:{
-			float:"left",
-			marginLeft:"18px"
-		},
-		div6:{
-			width:"28px",
-			float:"left",
-			background:"grey",
-			height:"10px"
-		},
-		block2:{
-			border:"solid 2px black",
-			clear:"left",
-			marginBottom:"22px"
-		},
-		t0:{
-			width:"26px",
-			background:"green",
-			height:"6px"
-		},
-		ul6:{
+		ul5:{
 			float:"left",
 			paddingLeft:"17px",
 			clear:"none"
+		},
+		div6:{
+			height:"10px",
+			float:"left",
+			width:"28px",
+			background:"grey"
+		},
+		block2:{
+			marginBottom:"22px",
+			border:"solid 2px black",
+			clear:"left"
+		},
+		t0:{
+			height:"6px",
+			width:"26px",
+			background:"green"
+		},
+		li5:{
+			float:"left",
+			marginLeft:"18px"
 		}
 	}},
 	render(){
@@ -94,32 +94,32 @@ class Block2 extends React.Component{
 			<div style={this.state.css.block2}>
 				<div style={this.state.css.div6}>
 				</div>
-				<ul style={this.state.css.ul6}>
-					<li style={this.state.css.li6}>
+				<ul style={this.state.css.ul5}>
+					<li style={this.state.css.li5}>
 						<div style={this.state.css.t0}>
 						</div>
 					</li>
-					<li style={this.state.css.li6}>
+					<li style={this.state.css.li5}>
 						<div style={this.state.css.t0}>
 						</div>
 					</li>
-					<li style={this.state.css.li6}>
+					<li style={this.state.css.li5}>
 						<div style={this.state.css.t0}>
 						</div>
 					</li>
-					<li style={this.state.css.li6}>
+					<li style={this.state.css.li5}>
 						<div style={this.state.css.t0}>
 						</div>
 					</li>
-					<li style={this.state.css.li6}>
+					<li style={this.state.css.li5}>
 						<div style={this.state.css.t0}>
 						</div>
 					</li>
-					<li style={this.state.css.li6}>
+					<li style={this.state.css.li5}>
 						<div style={this.state.css.t0}>
 						</div>
 					</li>
-					<li style={this.state.css.li6}>
+					<li style={this.state.css.li5}>
 						<div style={this.state.css.t0}>
 						</div>
 					</li>
@@ -134,75 +134,75 @@ class Block3 extends React.Component{
 	constructor(){
 		super();
 		this.state = {css:{
-		nt3:{
-			width:"7px",
-			background:"grey",
-			height:"8px"
-		},
-		block3:{
+		block6:{
+			marginBottom:"3px",
 			border:"solid 2px black",
-			clear:"left",
-			marginBottom:"2px"
+			clear:"left"
+		},
+		block5:{
+			float:"left",
+			marginLeft:"27px",
+			border:"solid 2px black",
+			marginRight:"3px"
+		},
+		div18:{
+			height:"14px",
+			width:"114px",
+			marginTop:"3px",
+			background:"grey"
+		},
+		div16:{
+			height:"135px",
+			width:"410px",
+			background:"grey"
+		},
+		div14:{
+			height:"87px",
+			float:"left",
+			width:"140px",
+			background:"grey"
 		},
 		div19:{
+			height:"7px",
 			width:"48px",
 			marginTop:"18px",
-			background:"green",
-			height:"7px"
+			background:"green"
+		},
+		div64:{
+			height:"67px",
+			float:"left",
+			width:"119px",
+			marginLeft:"-138px",
+			background:"orange"
 		},
 		ul4:{
 			float:"left",
 			paddingLeft:"3px",
 			clear:"none"
 		},
-		block6:{
+		block4:{
+			float:"left",
 			border:"solid 2px black",
-			clear:"left",
-			marginBottom:"3px"
+			marginRight:"27px"
 		},
-		div64:{
-			width:"119px",
-			float:"left",
-			marginLeft:"-138px",
-			background:"orange",
-			height:"67px"
-		},
-		div18:{
-			width:"114px",
-			marginTop:"3px",
-			background:"grey",
-			height:"14px"
-		},
-		div14:{
-			width:"140px",
-			float:"left",
-			background:"grey",
-			height:"87px"
-		},
-		block5:{
+		block3:{
+			marginBottom:"2px",
 			border:"solid 2px black",
-			float:"left",
-			marginLeft:"27px",
-			marginRight:"3px"
+			clear:"left"
+		},
+		div65:{
+			height:"133px",
+			width:"163px",
+			marginTop:"-135px",
+			background:"orange"
 		},
 		li4:{
 			marginTop:"6px"
 		},
-		div65:{
-			width:"163px",
-			marginTop:"-135px",
-			background:"orange",
-			height:"133px"
-		},
-		block4:{
-			border:"solid 2px black",
-			float:"left",
-			marginRight:"27px"
-		},
-		div16:{
-			width:"410px",
-			background:"grey",
-			height:"135px"
+		nt3:{
+			height:"8px",
+			width:"7px",
+			background:"grey"
 		}
 	}},
 	render(){
@@ -246,56 +246,56 @@ class Block7 extends React.Component{
 	constructor(){
 		super();
 		this.state = {css:{
+		li3:{
+			float:"left",
+			height:"51px",
+			marginLeft:"4px"
+		},
+		ul3:{
+			float:"left"
+		},
 		t1:{
+			height:"6px",
 			width:"12px",
-			background:"green",
-			height:"6px"
+			background:"green"
+		},
+		ul2:{
+			float:"left",
+			paddingLeft:"27px",
+			clear:"none"
+		},
+		nt8:{
+			height:"17px",
+			width:"18px",
+			marginTop:"5px",
+			background:"grey"
 		},
 		nt9:{
+			height:"37px",
 			width:"78px",
-			background:"grey",
-			height:"37px"
+			background:"grey"
+		},
+		t2:{
+			height:"13px",
+			width:"73px",
+			marginTop:"1px",
+			background:"green"
+		},
+		nt7:{
+			height:"5px",
+			width:"15px",
+			marginTop:"-5px",
+			background:"grey"
 		},
 		li2:{
 			float:"left",
 			height:"30px",
 			marginLeft:"21px"
 		},
-		li3:{
-			float:"left",
-			height:"51px",
-			marginLeft:"4px"
-		},
-		nt7:{
-			width:"15px",
-			marginTop:"-5px",
-			background:"grey",
-			height:"5px"
-		},
 		block7:{
+			marginBottom:"5px",
 			border:"solid 2px black",
-			clear:"left",
-			marginBottom:"5px"
-		},
-		t2:{
-			width:"73px",
-			marginTop:"1px",
-			background:"green",
-			height:"13px"
-		},
-		ul3:{
-			float:"left"
-		},
-		nt8:{
-			width:"18px",
-			marginTop:"5px",
-			background:"grey",
-			height:"17px"
-		},
-		ul2:{
-			float:"left",
-			paddingLeft:"27px",
-			clear:"none"
+			clear:"left"
 		}
 	}},
 	render(){
@@ -375,59 +375,59 @@ class Block8 extends React.Component{
 	constructor(){
 		super();
 		this.state = {css:{
+		li1:{
+			height:"59px",
+			marginTop:"11px"
+		},
+		div54:{
+			height:"26px",
+			float:"left",
+			width:"131px",
+			marginLeft:"-127px",
+			background:"green"
+		},
+		t8:{
+			height:"40px",
+			float:"left",
+			width:"249px",
+			marginLeft:"10px",
+			background:"green"
+		},
 		ul0:{
 			float:"left",
 			paddingLeft:"63px",
 			clear:"none"
 		},
-		ul1:{
-			float:"left"
-		},
-		li0:{
-			marginTop:"7px",
-			height:"33px"
-		},
-		div54:{
-			width:"131px",
+		nt5:{
+			height:"58px",
 			float:"left",
-			marginLeft:"-127px",
-			background:"green",
-			height:"26px"
-		},
-		t8:{
-			width:"249px",
-			float:"left",
-			marginLeft:"10px",
-			background:"green",
-			height:"40px"
-		},
-		t7:{
-			width:"83px",
-			float:"left",
-			marginLeft:"6px",
-			background:"green",
-			height:"24px"
+			width:"103px",
+			background:"grey"
 		},
 		nt4:{
+			height:"33px",
+			float:"left",
 			width:"33px",
-			float:"left",
-			background:"grey",
-			height:"33px"
+			background:"grey"
 		},
-		li1:{
-			marginTop:"11px",
-			height:"59px"
-		},
-		nt5:{
-			width:"103px",
+		t7:{
+			height:"24px",
 			float:"left",
-			background:"grey",
-			height:"58px"
+			width:"83px",
+			marginLeft:"6px",
+			background:"green"
+		},
+		li0:{
+			height:"33px",
+			marginTop:"7px"
 		},
 		block8:{
+			marginBottom:"11px",
 			border:"solid 2px black",
-			clear:"left",
-			marginBottom:"11px"
+			clear:"left"
+		},
+		ul1:{
+			float:"left"
 		}
 	}},
 	render(){
