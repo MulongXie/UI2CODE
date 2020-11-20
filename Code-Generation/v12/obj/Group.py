@@ -14,6 +14,8 @@ def split_groups(compos):
 
 
 def is_valid_group_by_similar_interleave(grp_interleaves, need_rectify_compos):
+    if len(grp_interleaves) == 1:
+        return False
     for i in range(len(grp_interleaves) - 1):
         inter_a = list(grp_interleaves[i]['group'])
         inter_b = list(grp_interleaves[i + 1]['group'])

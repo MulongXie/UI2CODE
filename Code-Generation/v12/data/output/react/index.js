@@ -1,13 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {Block17,Block18,Block19} from "./blocks;"
+import {Block1,Block2,Block3,Block4,Block10,Block11} from "./blocks;"
 class Main extends React.Component{
 	
 	render(){
 		return (
-			<Block17/>
-			<Block18/>
-			<Block19/>
+			<Block1/>
+			<Block2/>
+			<Block3/>
+			<Block4/>
+			<Block10/>
+			<Block11/>
 		)
 	}
 }
