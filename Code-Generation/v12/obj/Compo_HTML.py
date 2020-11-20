@@ -22,6 +22,8 @@ class CompoHTML:
         self.compo_df = compo_df
         self.compo_id = compo_id
         self.compo_class = compo_class
+        # get the clip for single element
+        self.compo_clip = compo_df['clip_path'] if compo_df is not None and type(compo_df) == pd.Series and 'clip_path' in compo_df.index else None
 
         self.children = children if children is not None else []    # CompoHTML objs
         self.parent = parent                                        # CompoHTML obj
