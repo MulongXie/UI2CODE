@@ -12,7 +12,7 @@ def recog_repetition_nontext(compos, show=True, inplace=True):
     compos_cp.compos_dataframe.rename({'group':'group_nontext'}, axis=1, inplace=True)
 
     df = compos_cp.compos_dataframe
-    df = df.drop(columns=['cluster_area', 'cluster_center_column', 'cluster_center_row'])
+    # df = df.drop(columns=['cluster_area', 'cluster_center_column', 'cluster_center_row'])
     return df
 
 
@@ -29,7 +29,7 @@ def recog_repetition_text(compos, show=True, inplace=True):
     compos_cp.compos_dataframe.rename({'group':'group_text'}, axis=1, inplace=True)
 
     df = compos_cp.compos_dataframe
-    df = df.drop(columns=['cluster_column_min', 'cluster_row_min'])
+    # df = df.drop(columns=['cluster_column_min', 'cluster_row_min'])
     return df
 
 

@@ -149,7 +149,7 @@ class ComposDF:
             elif show_method == 'block':
                 self.visualize_block(gather_attr='group', name=name)
 
-    def close_distance_to_cluster_mean_area(self, compo_index, cluster1, cluster2):
+    def closer_cluster_by_mean_area(self, compo_index, cluster1, cluster2):
         compos = self.compos_dataframe
         compo = compos.loc[compo_index]
         mean_area1 = compos[compos[cluster1] == compo[cluster1]]['area'].mean()
@@ -157,6 +157,30 @@ class ComposDF:
 
         compo_area = compo['area']
         if abs(compo_area - mean_area1) < abs(compo_area - mean_area2):
+            return 1
+        return 2
+
+    def closer_cluster_by_mean_distance(self, compo_index, cluster1, cluster2):
+        def min_distance(c, cl):
+            return np.mean(np.square(abs(cl['center_row'] - c['center_row'])) + np.square(abs(cl['center_column'] - c['center_column'])))
+        compos = self.compos_dataframe
+        compo = compos.loc[compo_index]
+        compos = compos[compos['id'] != compo['id']]
+        cl1 = compos[compos[cluster1] == compo[cluster1]]
+        cl2 = compos[compos[cluster2] == compo[cluster2]]
+
+        print(min_distance(compo, cl1), min_distance(compo, cl2))
+        if min_distance(compo, cl1) < min_distance(compo, cl2):
+            return 1
+        return 2
+
+    def closer_cluster_by_size(self, compo_index, cluster1, cluster2):
+        compos = self.compos_dataframe
+        compo = compos.loc[compo_index]
+        cl1 = compos[compos[cluster1] == compo[cluster1]]
+        cl2 = compos[compos[cluster2] == compo[cluster2]]
+        print(len(cl1), len(cl2))
+        if len(cl1) > len(cl2):
             return 1
         return 2
 
@@ -172,14 +196,14 @@ class ComposDF:
                     if compos.loc[j, 'group'] == -1:
                         compos.loc[j, 'group'] = group_id
                         compos.loc[j, 'alignment'] = alignment
-                    # conflict raised if a component can be grouped into multiple groups
-                    # then double check it by distance to the mean area of the groups
+                    # conflict raises if a component can be grouped into multiple groups
+                    # then double check it by the average area of the groups
                     else:
                         # keep in the previous group if the it is the only member in a new group
                         if member_num <= 1:
                             continue
                         # close to the current cluster
-                        if self.close_distance_to_cluster_mean_area(j, cluster, prev_cluster) == 1:
+                        if self.closer_cluster_by_mean_area(j, cluster, prev_cluster) == 1:
                             compos.loc[j, 'group'] = group_id
                             compos.loc[j, 'alignment'] = alignment
                         else:
