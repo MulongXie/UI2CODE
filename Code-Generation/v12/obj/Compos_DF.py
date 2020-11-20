@@ -180,17 +180,6 @@ class ComposDF:
             return 1
         return 2
 
-    def closer_cluster_by_size(self, compo_index, cluster1, cluster2):
-        compos = self.compos_dataframe
-        compo = compos.loc[compo_index]
-        compos = compos[compos['id'] != compo['id']]
-        cl1 = compos[compos[cluster1] == compo[cluster1]]
-        cl2 = compos[compos[cluster2] == compo[cluster2]]
-        print(len(cl1), len(cl2))
-        if len(cl1) > len(cl2):
-            return 1
-        return 2
-
     def group_by_clusters_conflict(self, cluster, prev_cluster, alignment, show=True, show_method='block'):
         compos = self.compos_dataframe
         group_id = compos['group'].max() + 1
