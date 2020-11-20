@@ -152,8 +152,14 @@ class ComposDF:
     def closer_cluster_by_mean_area(self, compo_index, cluster1, cluster2):
         compos = self.compos_dataframe
         compo = compos.loc[compo_index]
-        mean_area1 = compos[compos[cluster1] == compo[cluster1]]['area'].mean()
-        mean_area2 = compos[compos[cluster2] == compo[cluster2]]['area'].mean()
+        compos = compos[compos['id'] != compo['id']]
+        cl1 = compos[compos[cluster1] == compo[cluster1]]
+        cl2 = compos[compos[cluster2] == compo[cluster2]]
+        if len(cl2) == 1: return 1
+        elif len(cl1) == 1: return 2
+
+        mean_area1 = cl1['area'].mean()
+        mean_area2 = cl2['area'].mean()
 
         compo_area = compo['area']
         if abs(compo_area - mean_area1) < abs(compo_area - mean_area2):
@@ -177,6 +183,7 @@ class ComposDF:
     def closer_cluster_by_size(self, compo_index, cluster1, cluster2):
         compos = self.compos_dataframe
         compo = compos.loc[compo_index]
+        compos = compos[compos['id'] != compo['id']]
         cl1 = compos[compos[cluster1] == compo[cluster1]]
         cl2 = compos[compos[cluster2] == compo[cluster2]]
         print(len(cl1), len(cl2))
