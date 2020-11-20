@@ -23,8 +23,8 @@ class CompoHTML:
         self.compo_id = compo_id
         self.compo_class = compo_class
         # get the clip for single element
-        self.compo_clip = compo_df['clip_path'] if compo_df is not None and type(compo_df) == pd.Series and 'clip_path' in compo_df.index else None
-
+        self.compo_clip = compo_df['clip_path'].replace('data/output\clips\\', '') \
+            if compo_df is not None and children is None and 'clip_path' in compo_df.index else None
         self.children = children if children is not None else []    # CompoHTML objs
         self.parent = parent                                        # CompoHTML obj
 
@@ -56,6 +56,9 @@ class CompoHTML:
 
     def init_html(self):
         self.html = HTML(tag=self.html_tag, id=self.html_id, class_name=self.html_class_name)
+        if self.compo_clip is not None:
+            clip_img = '<img src="' + self.compo_clip + '" class="clip_img">\n'
+            self.html.add_child(clip_img)
         if type(self.children) is not list:
             self.children = [self.children]
         for child in self.children:
