@@ -6,6 +6,7 @@ def export_html_and_css(compos, export_dir='data/output/page'):
     page = Page()
     for compo in compos:
         page.add_compo(compo.html_script, compo.css_script)
+    page.page_css += '.clip_img{\n\tdisplay:none}\n'
     page_html, page_css = page.export(export_dir)
     return page_html, page_css
 
