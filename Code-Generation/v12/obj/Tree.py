@@ -3,7 +3,7 @@ import json
 
 
 def build_branch(compo):
-    branch = compo.put_boundary()
+    branch = compo.put_info()
     if len(compo.children) > 0:
         branch['children'] = []
         for c in compo.children:

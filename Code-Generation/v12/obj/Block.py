@@ -297,7 +297,12 @@ class Block:
                 board = sub_block.visualize_sub_blocks_and_compos(board, recursive)
         return board
 
-    def put_boundary(self):
-        return {'class':'block',
+    def put_info(self):
+        info = {'class':'block',
                 'column_min': self.left, 'column_max': self.right, 'row_min':self.top, 'row_max':self.bottom,
                 'height': self.height, 'width':self.width}
+        if self.html_id is not None:
+            info['html_id'] = self.html_id
+        if self.html_class_name is not None:
+            info['html_class_name'] = self.html_class_name
+        return info

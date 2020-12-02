@@ -101,6 +101,8 @@ class ComposDF:
         # df = rep.rm_invalid_groups(df)
         self.compos_dataframe = df
 
+    # def cluster_check_correct_by_gap(self, by_attr):
+
     def cluster_dbscan_by_attr(self, attr, eps, min_samples=1, show=True, show_method='line'):
         x = np.reshape(list(self.compos_dataframe[attr]), (-1, 1))
         clustering = DBSCAN(eps=eps, min_samples=min_samples).fit(x)
@@ -174,6 +176,8 @@ class ComposDF:
         compos = compos[compos['id'] != compo['id']]
         cl1 = compos[compos[cluster1] == compo[cluster1]]
         cl2 = compos[compos[cluster2] == compo[cluster2]]
+        if len(cl2) == 1: return 1
+        elif len(cl1) == 1: return 2
 
         print(min_distance(compo, cl1), min_distance(compo, cl2))
         if min_distance(compo, cl1) < min_distance(compo, cl2):

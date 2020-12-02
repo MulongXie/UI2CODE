@@ -80,10 +80,15 @@ class CompoHTML:
         self.width = int(self.right - self.left)
         self.height = int(self.bottom - self.top)
 
-    def put_boundary(self):
-        return {'class': self.compo_class,
+    def put_info(self):
+        info = {'class': self.compo_class,
                 'column_min': self.left, 'column_max': self.right, 'row_min': self.top, 'row_max': self.bottom,
                 'height': self.height, 'width': self.width}
+        if self.html_id is not None:
+            info['html_id'] = self.html_id
+        if self.html_class_name is not None:
+            info['html_class_name'] = self.html_class_name
+        return info
 
     def add_child(self, child):
         '''
