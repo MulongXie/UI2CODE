@@ -1,0 +1,8 @@
+v11
+1. Export Tree
+2. Add class to CompoHTML
+
+v12
+1. Update group_by_clusters_conflict by average area and size of cluster
+2. Count invalid group consisting one interleaving
+3. Add clips in CompoHTML
