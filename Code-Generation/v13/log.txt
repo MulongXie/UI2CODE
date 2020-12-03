@@ -5,4 +5,7 @@ v11
 v12
 1. Update group_by_clusters_conflict by average area and size of cluster
 2. Count invalid group consisting one interleaving
-3. Add clips in CompoHTML
+3. Add compo image clips in CompoHTML and HTML skeleton
+
+v13
+1. Refactoring: decouple component's CSS (especially margin) generation in a certain stage

@@ -62,7 +62,6 @@ def gather_list_items(compos):
     return list_items
 
 
-
 def gather_lists_by_pair_and_group(compos):
     '''
     :param compos: type of dataframe
