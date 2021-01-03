@@ -168,23 +168,23 @@ class List:
             margin = int(max(gaps))     # set the margin as the max gap among lis
             if self.list_alignment == 'v':
                 height = max([compos.loc[g[1], 'height'].max() for g in sorted_groups])  # set the height of the li as the highest element
-                self.compos_css[name] = CSS(name, margin_top=str(margin) + 'px', height=str(height) + 'px')
+                self.compos_css[name] = CSS(name, margin_bottom=str(margin) + 'px', height=str(height) + 'px')
             elif self.list_alignment == 'h':
                 height = max([sum(compos.loc[g[1], 'height']) for g in sorted_groups])
-                self.compos_css[name] = CSS(name, margin_left=str(margin) + 'px', height=str(height) + 'px', float='left')
+                self.compos_css[name] = CSS(name, margin_right=str(margin) + 'px', height=str(height) + 'px', float='left')
 
         elif self.list_type == 'single':
             if self.list_alignment == 'v':
                 margin = 0
                 for i in range(1, len(compos)):
                     margin = max(margin, compos.iloc[i]['row_min'] - compos.iloc[i - 1]['row_max'])
-                self.compos_css[name] = CSS(name, margin_top=str(margin) + 'px')
+                self.compos_css[name] = CSS(name, margin_bottom=str(margin) + 'px')
 
             elif self.list_alignment == 'h':
                 margin = 0
                 for i in range(1, len(compos)):
                     margin = max(margin, compos.iloc[i]['column_min'] - compos.iloc[i - 1]['column_max'])
-                self.compos_css[name] = CSS(name, margin_left=str(margin) + 'px', float='left')
+                self.compos_css[name] = CSS(name, margin_right=str(margin) + 'px', float='left')
 
         self.assembly_css()
 
