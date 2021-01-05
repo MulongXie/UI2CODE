@@ -27,6 +27,7 @@ class CompoHTML:
             if compo_df is not None and children is None and 'clip_path' in compo_df.index else None
         self.children = children if children is not None else []    # CompoHTML objs
         self.parent = parent                                        # CompoHTML obj
+        self.type = 'compo'
 
         # compo boundary
         self.top = None
