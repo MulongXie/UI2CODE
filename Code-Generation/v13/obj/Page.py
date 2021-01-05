@@ -50,7 +50,7 @@ class Page:
         self.page_html = self.html_header + self.html_body + self.html_end
 
     def init_page_css(self):
-        self.page_css = 'ul{\n\tlist-style: None;\n\tclear: left;\n\tpadding: 0;\n\tmargin:0;\n}'
+        self.page_css = 'ul{\n\tlist-style: None;\n\tpadding: 0;\n\tmargin:0;\n}'
         for css in self.compos_css:
             self.page_css += css
 
