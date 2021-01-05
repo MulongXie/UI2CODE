@@ -23,6 +23,7 @@ def slice_blocks(compos_html, direction='v'):
     non_blocked_compos = compos_html
     global block_id
 
+    is_divided = False
     divider = -1
     prev_divider = 0
     # slice from top to bottom
@@ -40,14 +41,17 @@ def slice_blocks(compos_html, direction='v'):
                 gap = int(compo.top - prev_divider)
                 # gather previous compos in a block
                 # a single compo is not be counted as a block
+                if len(block_compos) == 1:
+                    is_divided = True
                 if len(block_compos) > 1:
+                    is_divided = True
                     tops = [c.top for c in block_compos]
                     bottoms = [c.bottom for c in block_compos]
                     height = int(max(bottoms) - min(tops))
                     block_id += 1
                     css_name = '#block-' + str(block_id)
                     # css = CSS(css_name, margin_bottom=str(gap) + 'px', clear='left', border="solid 2px black")
-                    css = CSS(css_name, padding_bottom=str(gap) + 'px', clear='left', border="solid 2px black", height=str(height) + 'px')
+                    css = CSS(css_name, clear='left', border="solid 2px black", height=str(height) + 'px')
                     blocks.append(Block(id=block_id, compos=block_compos, slice_sub_block_direction=next_direction,
                                         html_id='block-'+str(block_id), css={css_name: css}))
                     # remove blocked compos
@@ -59,14 +63,14 @@ def slice_blocks(compos_html, direction='v'):
             block_compos.append(compo)
 
         # if there are some sub-blocks, gather the left compos as a block
-        if len(blocks) > 0 and len(block_compos) > 1:
+        if is_divided and len(block_compos) > 1:
             tops = [c.top for c in block_compos]
             bottoms = [c.bottom for c in block_compos]
             height = int(max(bottoms) - min(tops))
             block_id += 1
             css_name = '#block-' + str(block_id)
             # css = CSS(css_name, margin_bottom=str(int(block_compos[0].top - prev_divider)) + 'px', clear='left', border="solid 2px black")
-            css = CSS(css_name, padding_bottom=str(int(block_compos[0].top - prev_divider)) + 'px', clear='left', border="solid 2px black", height=str(height) + 'px')
+            css = CSS(css_name, clear='left', border="solid 2px black", height=str(height) + 'px')
             blocks.append(Block(id=block_id, compos=block_compos, slice_sub_block_direction=next_direction,
                                 html_id='block-' + str(block_id), css={css_name: css}))
             # remove blocked compos
@@ -87,14 +91,17 @@ def slice_blocks(compos_html, direction='v'):
                 gap = int(compo.left - prev_divider)
                 # gather previous compos in a block
                 # a single compo is not to be counted as a block
+                if len(block_compos) == 1:
+                    is_divided = True
                 if len(block_compos) > 1:
+                    is_divided = True
                     tops = [c.top for c in block_compos]
                     bottoms = [c.bottom for c in block_compos]
                     height = int(max(bottoms) - min(tops))
                     block_id += 1
                     css_name = '#block-' + str(block_id)
                     # css = CSS(css_name, margin_right=str(gap) + 'px', float='left', border="solid 2px black")
-                    css = CSS(css_name, padding_right=str(gap) + 'px', float='left', border="solid 2px black", height=str(height) + 'px')
+                    css = CSS(css_name, float='left', border="solid 2px black", height=str(height) + 'px')
                     blocks.append(Block(id=block_id, compos=block_compos, slice_sub_block_direction=next_direction,
                                         html_id='block-' + str(block_id), css={css_name: css}))
                     # remove blocked compos
@@ -106,20 +113,38 @@ def slice_blocks(compos_html, direction='v'):
             block_compos.append(compo)
 
         # if there are some sub-blocks, gather the left compos as a block
-        if len(blocks) > 0 and len(block_compos) > 1:
+        if is_divided and len(block_compos) > 1:
             tops = [c.top for c in block_compos]
             bottoms = [c.bottom for c in block_compos]
             height = int(max(bottoms) - min(tops))
             block_id += 1
             css_name = '#block-' + str(block_id)
             # css = CSS(css_name, margin_right=str(int(block_compos[0].left - prev_divider)) + 'px', float='left', border="solid 2px black")
-            css = CSS(css_name, padding_right=str(int(block_compos[0].left - prev_divider)) + 'px', float='left', border="solid 2px black", height=str(height) + 'px')
+            css = CSS(css_name, float='left', border="solid 2px black", height=str(height) + 'px')
             blocks.append(Block(id=block_id, compos=block_compos, slice_sub_block_direction=next_direction,
                                 html_id='block-' + str(block_id), css={css_name: css}))
             # remove blocked compos
             non_blocked_compos = list(set(non_blocked_compos) - set(block_compos))
 
     return blocks, non_blocked_compos
+
+
+def build_layout_blocks(compos_html):
+    global block_id
+    blocks, single_compos = slice_blocks(compos_html, 'v')
+    for compo in single_compos:
+        block_id += 1
+        css_name = '#block-' + str(block_id)
+        css = CSS(css_name, clear='left', border="solid 2px black", height=str(compo.height) + 'px')
+        blocks.append(Block(id=block_id, compos=[compo], slice_sub_block_direction='h',
+                            html_id='block-' + str(block_id), css={css_name: css}))
+
+    blocks.sort(key=lambda x: x.top)
+    for i in range(len(blocks) - 1):
+        css_name = '#block-' + str(blocks[i].block_id)
+        gap = blocks[i + 1].top - blocks[i].bottom
+        blocks[i].update_css(css_name, margin_bottom=str(gap) + 'px')
+    return blocks
 
 
 def visualize_blocks(blocks, img, img_shape):
@@ -138,6 +163,7 @@ class Block:
         self.compos = compos                # list of CompoHTML objs
         self.sub_blocks = []                # list of Block objs
         self.children = []                  # compos + sub_blocks
+        self.type = 'block'
 
         self.top = None
         self.left = None
@@ -211,6 +237,7 @@ class Block:
             self.css[css_name].add_attrs(**attrs)
         else:
             self.css[css_name] = CSS(css_name, **attrs)
+        self.assembly_css()
 
     '''
     ******************************
@@ -239,6 +266,7 @@ class Block:
         if self.sub_blk_alignment == 'v':
             for i in range(1, len(self.children)):
                 child = self.children[i]
+                # if child.type == 'block': continue
                 css_name = '#' + child.html_id
                 gap = child.top - self.children[i - 1].bottom
                 if child.html_tag == 'ul':
@@ -250,10 +278,19 @@ class Block:
         elif self.sub_blk_alignment == 'h':
             for i in range(len(self.children)):
                 child = self.children[i]
+                # if child.type == 'block': continue
                 css_name = '#' + child.html_id
-                gap = child.left - self.children[i - 1].right
                 child.update_css(css_name, float='left')
                 if i > 0:
+                    gap = child.left - self.children[i - 1].right
+
+                    # for nested compos, cancel float and move upper
+                    if gap < 0:
+                        self.children[i - 1].update_css('#' + self.children[i - 1].html_id, float='none')
+                        gap = child.top - self.children[i - 1].bottom
+                        child.update_css(css_name, float='none', margin_top=str(gap) + 'px')
+                        continue
+
                     if child.html_tag == 'ul':
                         child.update_css(css_name, padding_left=str(gap) + 'px', clear='none')
                     else:
