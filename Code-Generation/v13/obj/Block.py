@@ -140,10 +140,10 @@ def build_layout_blocks(compos_html):
                             html_id='block-' + str(block_id), css={css_name: css}))
 
     blocks.sort(key=lambda x: x.top)
-    for i in range(len(blocks) - 1):
-        css_name = '#block-' + str(blocks[i].block_id)
-        gap = blocks[i + 1].top - blocks[i].bottom
-        blocks[i].update_css(css_name, margin_bottom=str(gap) + 'px')
+    blocks[0].update_css('#' + blocks[0].html_id, margin_top=str(blocks[0].top) + 'px')
+    for i in range(1, len(blocks)):
+        gap = blocks[i].top - blocks[i - 1].bottom
+        blocks[i].update_css('#' + blocks[i].html_id, margin_top=str(gap) + 'px', margin_left=str(blocks[i].left) + 'px')
     return blocks
 
 
