@@ -10,11 +10,12 @@ from obj.CSS import CSS
 block_id = 0
 
 
-def slice_blocks(compos_html, direction='v'):
+def slice_blocks(compos_html, direction='v', border='none'):
     '''
     Vertically or horizontally scan compos
     :param direction: slice vertically or horizontally
     :param compos_html: CompoHTML objects, including elements and lists
+    :param border: block CSS border # solid 2px black
     :return blocks: list of [Block objs]
     :return compos_html: list of compos not blocked: list of [CompoHTML objects]
     '''
@@ -50,8 +51,8 @@ def slice_blocks(compos_html, direction='v'):
                     height = int(max(bottoms) - min(tops))
                     block_id += 1
                     css_name = '#block-' + str(block_id)
-                    # css = CSS(css_name, margin_bottom=str(gap) + 'px', clear='left', border="solid 2px black")
-                    css = CSS(css_name, clear='left', border="solid 2px black", height=str(height) + 'px')
+                    # css = CSS(css_name, margin_bottom=str(gap) + 'px', clear='left', border="none")
+                    css = CSS(css_name, clear='left', border=border, height=str(height) + 'px')
                     blocks.append(Block(id=block_id, compos=block_compos, slice_sub_block_direction=next_direction,
                                         html_id='block-'+str(block_id), css={css_name: css}))
                     # remove blocked compos
@@ -69,8 +70,8 @@ def slice_blocks(compos_html, direction='v'):
             height = int(max(bottoms) - min(tops))
             block_id += 1
             css_name = '#block-' + str(block_id)
-            # css = CSS(css_name, margin_bottom=str(int(block_compos[0].top - prev_divider)) + 'px', clear='left', border="solid 2px black")
-            css = CSS(css_name, clear='left', border="solid 2px black", height=str(height) + 'px')
+            # css = CSS(css_name, margin_bottom=str(int(block_compos[0].top - prev_divider)) + 'px', clear='left', border="none")
+            css = CSS(css_name, clear='left', border=border, height=str(height) + 'px')
             blocks.append(Block(id=block_id, compos=block_compos, slice_sub_block_direction=next_direction,
                                 html_id='block-' + str(block_id), css={css_name: css}))
             # remove blocked compos
@@ -100,8 +101,8 @@ def slice_blocks(compos_html, direction='v'):
                     height = int(max(bottoms) - min(tops))
                     block_id += 1
                     css_name = '#block-' + str(block_id)
-                    # css = CSS(css_name, margin_right=str(gap) + 'px', float='left', border="solid 2px black")
-                    css = CSS(css_name, float='left', border="solid 2px black", height=str(height) + 'px')
+                    # css = CSS(css_name, margin_right=str(gap) + 'px', float='left', border="none")
+                    css = CSS(css_name, float='left', border=border, height=str(height) + 'px')
                     blocks.append(Block(id=block_id, compos=block_compos, slice_sub_block_direction=next_direction,
                                         html_id='block-' + str(block_id), css={css_name: css}))
                     # remove blocked compos
@@ -119,8 +120,8 @@ def slice_blocks(compos_html, direction='v'):
             height = int(max(bottoms) - min(tops))
             block_id += 1
             css_name = '#block-' + str(block_id)
-            # css = CSS(css_name, margin_right=str(int(block_compos[0].left - prev_divider)) + 'px', float='left', border="solid 2px black")
-            css = CSS(css_name, float='left', border="solid 2px black", height=str(height) + 'px')
+            # css = CSS(css_name, margin_right=str(int(block_compos[0].left - prev_divider)) + 'px', float='left', border="none")
+            css = CSS(css_name, float='left', border=border, height=str(height) + 'px')
             blocks.append(Block(id=block_id, compos=block_compos, slice_sub_block_direction=next_direction,
                                 html_id='block-' + str(block_id), css={css_name: css}))
             # remove blocked compos
@@ -129,13 +130,13 @@ def slice_blocks(compos_html, direction='v'):
     return blocks, non_blocked_compos
 
 
-def build_layout_blocks(compos_html):
+def build_layout_blocks(compos_html, border='none'):
     global block_id
     blocks, single_compos = slice_blocks(compos_html, 'v')
     for compo in single_compos:
         block_id += 1
         css_name = '#block-' + str(block_id)
-        css = CSS(css_name, clear='left', border="solid 2px black", height=str(compo.height) + 'px')
+        css = CSS(css_name, clear='left', border=border, height=str(compo.height) + 'px')
         blocks.append(Block(id=block_id, compos=[compo], slice_sub_block_direction='h',
                             html_id='block-' + str(block_id), css={css_name: css}))
 
