@@ -6,7 +6,7 @@ HTML & CSS generation:
         ii. HTML: compo skeleton with css class and html id and compo clip image
     b. For List as a whole
         i. Add compos_df, list type and list alignment
-
+        ii. No HTML and CSS generated at this satge
 
 2. generate_lists_html_css(lists)
     a. HTML (skeleton with css class and html id and compo clip image):
@@ -28,3 +28,9 @@ HTML & CSS generation:
     b. CSS
         i. Margin and border for each block
         ii. Recurssively slice for sub-blocks
+
+4. Block.init_children_css()
+    a. Ul children
+        Padding nad margin
+    b. Vertical alignment
+        left float for

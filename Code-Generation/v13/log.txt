@@ -9,3 +9,10 @@ v12
 
 v13
 1. Refactoring: decouple component's CSS (especially margin) generation in a certain stage
+2. Add height and width for blocks (commented as not working properly)
+3. Only set height for blocks
+4. Add gap checking for clustering
+5. Fix bug of independent compos margin
+6. Build all css in one place (Block)
+7. Build the outest blocks separatly
+8. Set the margin of nested compo
