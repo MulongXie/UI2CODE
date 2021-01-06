@@ -64,7 +64,7 @@ def draw_bounding_box_non_text(org, compos, org_shape=None, color=(0, 255, 0), l
 def save_corners_json(output_dir, background, compos, img_shape):
     components = {'compos': [], 'img': {'shape': img_shape}}
     clip_dir = pjoin(output_dir, 'clips')
-    if background is not None: components['compos'].append(background)
+    # if background is not None: components['compos'].append(background)
 
     for i, compo in enumerate(compos):
         corner = compo.put_bbox()

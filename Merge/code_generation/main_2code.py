@@ -14,8 +14,8 @@ import lib.draw as draw
 from lib.list_item_gethering import gather_lists_by_pair_and_group
 
 
-def generate_code(input_name='code_generation/data/input/9', output_dir='code_generation/data/output'):
-    compos = ComposDF(json_file=input_name + '-new.json', img_file=input_name + '.png')
+def generate_code(img_path='code_generation/data/input/9.png', uied_path='code_generation/data/input/9.json', output_dir='code_generation/data/output'):
+    compos = ComposDF(json_file=uied_path, img_file=img_path)
 
     # ***Step 1*** repetitive list recognition
     compos.repetitive_group_recognition()    # group_nontext, group_text
